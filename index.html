@@ -28,10 +28,10 @@
                 <p>Drone Link: <strong id="hw-status">ONLINE</strong></p>
             </div>
             <nav class="nav-links">
-                <a href="#" class="nav-item active"><i class="fa-solid fa-gauge-high"></i> Telemetria RT</a>
-                <a href="#" class="nav-item"><i class="fa-solid fa-map-location-dot"></i> Mapas de Calor</a>
-                <a href="#" class="nav-item"><i class="fa-solid fa-leaf"></i> Eco-Métricas</a>
-                <a href="#" class="nav-item"><i class="fa-solid fa-database"></i> Histórico Local</a>
+                <a href="#" class="nav-item active" onclick="trocarAba(event, 'telemetria')"><i class="fa-solid fa-gauge-high"></i> Telemetria RT</a>
+                <a href="#" class="nav-item" onclick="trocarAba(event, 'mapas')"><i class="fa-solid fa-map-location-dot"></i> Mapas de Calor</a>
+                <a href="#" class="nav-item" onclick="trocarAba(event, 'ecometricas')"><i class="fa-solid fa-leaf"></i> Eco-Métricas</a>
+                <a href="#" class="nav-item" onclick="trocarAba(event, 'historico')"><i class="fa-solid fa-database"></i> Histórico Local</a>
             </nav>
             <div class="project-tag">
                 <p>PROJETO AGRINHO 2026</p>
@@ -43,8 +43,8 @@
         <main class="main-viewport">
             <header class="control-header">
                 <div class="header-info">
-                    <h1>Central de Pulverização Autônoma IA</h1>
-                    <p>Mapeamento cirúrgico de defensivos agrícolas por altitude dinâmica</p>
+                    <h1 id="main-title">Central de Pulverização Autônoma IA</h1>
+                    <p id="main-subtitle">Mapeamento cirúrgico de defensivos agrícolas por altitude dinâmica</p>
                 </div>
                 <div class="header-actions">
                     <div class="gps-box">
@@ -60,104 +60,109 @@
                 </div>
             </header>
 
-            <!-- Grid de Sensores de Alta Definição -->
-            <section class="telemetry-grid">
-                <div class="sensor-card">
-                    <div class="sensor-header">
-                        <span>ALTITUDE CRÍTICA</span>
-                        <i class="fa-solid fa-arrows-up-down text-blue"></i>
+            <!-- ====== TELA 1: TELEMETRIA (CONTEÚDO PRINCIPAL) ====== -->
+            <div id="tela-telemetria" class="aba-conteudo">
+                <section class="telemetry-grid">
+                    <div class="sensor-card">
+                        <div class="sensor-header">
+                            <span>ALTITUDE CRÍTICA</span>
+                            <i class="fa-solid fa-arrows-up-down text-blue"></i>
+                        </div>
+                        <div class="sensor-body">
+                            <h2 id="val-altitude">0.00 <small>m</small></h2>
+                            <div class="progress-bar"><div id="bar-altitude" class="progress bg-blue" style="width: 0%"></div></div>
+                        </div>
+                        <div class="sensor-footer" id="lbl-altitude">Aguardando decolagem</div>
                     </div>
-                    <div class="sensor-body">
-                        <h2 id="val-altitude">0.00 <small>m</small></h2>
-                        <div class="progress-bar"><div id="bar-altitude" class="progress bg-blue" style="width: 0%"></div></div>
-                    </div>
-                    <div class="sensor-footer" id="lbl-altitude">Aguardando decolagem</div>
-                </div>
 
-                <div class="sensor-card">
-                    <div class="sensor-header">
-                        <span>VAZÃO EM TEMPO REAL</span>
-                        <i class="fa-solid fa-faucet-drip text-green"></i>
+                    <div class="sensor-card">
+                        <div class="sensor-header">
+                            <span>VAZÃO EM TEMPO REAL</span>
+                            <i class="fa-solid fa-faucet-drip text-green"></i>
+                        </div>
+                        <div class="sensor-body">
+                            <h2 id="val-vazao">0.0 <small>L/min</small></h2>
+                            <div class="progress-bar"><div id="bar-vazao" class="progress bg-green" style="width: 0%"></div></div>
+                        </div>
+                        <div class="sensor-footer" id="lbl-vazao">Válvula estanque</div>
                     </div>
-                    <div class="sensor-body">
-                        <h2 id="val-vazao">0.0 <small>L/min</small></h2>
-                        <div class="progress-bar"><div id="bar-vazao" class="progress bg-green" style="width: 0%"></div></div>
-                    </div>
-                    <div class="sensor-footer" id="lbl-vazao">Válvula estanque</div>
-                </div>
 
-                <div class="sensor-card">
-                    <div class="sensor-header">
-                        <span>ANEMÔMETRO (VENTO)</span>
-                        <i class="fa-solid fa-wind text-amber"></i>
+                    <div class="sensor-card">
+                        <div class="sensor-header">
+                            <span>ANEMÔMETRO (VENTO)</span>
+                            <i class="fa-solid fa-wind text-amber"></i>
+                        </div>
+                        <div class="sensor-body">
+                            <h2 id="val-vento">0.0 <small>km/h</small></h2>
+                            <div class="progress-bar"><div id="bar-vento" class="progress bg-amber" style="width: 0%"></div></div>
+                        </div>
+                        <div class="sensor-footer" id="lbl-vento">Estável</div>
                     </div>
-                    <div class="sensor-body">
-                        <h2 id="val-vento">0.0 <small>km/h</small></h2>
-                        <div class="progress-bar"><div id="bar-vento" class="progress bg-amber" style="width: 0%"></div></div>
-                    </div>
-                    <div class="sensor-footer" id="lbl-vento">Estável</div>
-                </div>
 
-                <div class="sensor-card">
-                    <div class="sensor-header">
-                        <span>ÁGUA ECONOMIZADA</span>
-                        <i class="fa-solid fa-hand-holding-droplet text-purple"></i>
+                    <div class="sensor-card">
+                        <div class="sensor-header">
+                            <span>ÁGUA ECONOMIZADA</span>
+                            <i class="fa-solid fa-hand-holding-droplet text-purple"></i>
+                        </div>
+                        <div class="sensor-body">
+                            <h2 id="val-economia">0.0 <small>Litros</small></h2>
+                            <div class="progress-bar"><div id="bar-economia" class="progress bg-purple" style="width: 0%"></div></div>
+                        </div>
+                        <div class="sensor-footer text-green"><i class="fa-solid fa-shield-halved"></i> Impacto ambiental reduzido</div>
                     </div>
-                    <div class="sensor-body">
-                        <h2 id="val-economia">0.0 <small>Litros</small></h2>
-                        <div class="progress-bar"><div id="bar-economia" class="progress bg-purple" style="width: 0%"></div></div>
-                    </div>
-                    <div class="sensor-footer text-green"><i class="fa-solid fa-shield-halved"></i> Impacto ambiental reduzido</div>
-                </div>
-            </section>
+                </section>
 
-            <!-- Visualização Gráfica e Analítica -->
-            <section class="analysis-area">
-                <div class="analytics-box graph">
-                    <div class="box-title">
-                        <h3>Oscilação de Voo vs Faixa Segura de Deriva</h3>
-                        <span class="tag-tech">Sinal Telemetria 5G</span>
+                <section class="analysis-area" style="margin-top: 25px;">
+                    <div class="analytics-box graph">
+                        <div class="box-title">
+                            <h3>Oscilação de Voo vs Faixa Segura de Deriva</h3>
+                            <span class="tag-tech">Sinal Telemetria 5G</span>
+                        </div>
+                        <div class="canvas-holder">
+                            <canvas id="liveChart"></canvas>
+                        </div>
                     </div>
-                    <div class="canvas-holder">
-                        <canvas id="liveChart"></canvas>
+
+                    <div class="analytics-box terminal">
+                        <div class="box-title">
+                            <h3>Terminal de Eventos do Processador</h3>
+                            <button class="btn-clear" onclick="limparTerminal()">Limpar</button>
+                        </div>
+                        <div class="terminal-screen" id="terminal-output">
+                            <p class="t-sys">[SISTEMA] Aguardando comando de inicialização via Barramento CAN...</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- ====== TELA 2: MAPAS DE CALOR ====== -->
+            <div id="tela-mapas" class="aba-conteudo" style="display: none;">
+                <div class="sensor-card" style="text-align: center; padding: 40px;">
+                    <i class="fa-solid fa-map-pinned" style="font-size: 3rem; color: #00d2ff; margin-bottom: 15px;"></i>
+                    <h3>Mapeamento de Infestação de Pragas por Satélite</h3>
+                    <p style="color: var(--text-secondary); margin-top: 10px;">Interface de Geoprocessamento simulando os talhões com maior necessidade de aplicação cirúrgica.</p>
+                    <div style="background: #05070f; border: 1px dashed var(--border-color); height: 200px; margin-top: 20px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #22c55e; gap: 10px;">
+                       <i class="fa-solid fa-layer-group"></i> Camada NDVI do Paraná Carregada com Sucesso
                     </div>
                 </div>
+            </div>
 
-                <div class="analytics-box terminal">
-                    <div class="box-title">
-                        <h3>Terminal de Eventos do Processador</h3>
-                        <button class="btn-clear" onclick="limparTerminal()">Limpar</button>
-                    </div>
-                    <div class="terminal-screen" id="terminal-output">
-                        <p class="t-sys">[SISTEMA] Aguardando comando de inicialização via Barramento CAN...</p>
+            <!-- ====== TELA 3: ECO-MÉTRICAS ====== -->
+            <div id="tela-ecometricas" class="aba-conteudo" style="display: none;">
+                <div class="sensor-card" style="text-align: center; padding: 40px;">
+                    <i class="fa-solid fa-leaf" style="font-size: 3rem; color: #22c55e; margin-bottom: 15px;"></i>
+                    <h3>Relatório de Sustentabilidade e Pegada de Carbono</h3>
+                    <p style="color: var(--text-secondary); margin-top: 10px;">Substituir tratores pesados a diesel por drones elétricos inteligentes mitiga a emissão de gases poluentes e evita totalmente a compactação prejudicial do solo.</p>
+                    <div style="display: flex; justify-content: space-around; margin-top: 30px;">
+                        <div style="background: var(--bg-darkest); padding: 20px; border-radius: 10px; width: 45%;">
+                            <h4 style="color: #22c55e; font-size: 1.5rem;">-90%</h4>
+                            <p style="font-size: 0.85rem; margin-top: 5px; color: var(--text-secondary);">Redução no consumo hídrico</p>
+                        </div>
+                        <div style="background: var(--bg-darkest); padding: 20px; border-radius: 10px; width: 45%;">
+                            <h4 style="color: #bf5af2; font-size: 1.5rem;">0% Amassamento</h4>
+                            <p style="font-size: 0.85rem; margin-top: 5px; color: var(--text-secondary);">Preservação mecânica das raízes</p>
+                        </div>
                     </div>
                 </div>
-            </section>
+            </div>
 
-            <!-- Logs de Auditoria Salva em Banco de Dados -->
-            <section class="history-table-box">
-                <div class="box-title">
-                    <h3>Registro de Eficiência Sustentável (Mapeamento Automatizado por Talhão)</h3>
-                </div>
-                <table class="tech-table">
-                    <thead>
-                        <tr>
-                            <th>Identificador do Talhão</th>
-                            <th>Cultura Monitorada</th>
-                            <th>Pulverização Drone</th>
-                            <th>Prevenção de Sobreposição</th>
-                            <th>Redução Química</th>
-                            <th>Pegada de Carbono</th>
-                        </tr>
-                    </thead>
-                    <tbody id="table-rows">
-                        <!-- Gerado dinamicamente via JS -->
-                    </tbody>
-                </table>
-            </section>
-        </main>
-    </div>
-
-    <script src="main.js"></script>
-</body>
-</html>

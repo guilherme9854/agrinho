@@ -44,7 +44,7 @@ body {
 }
 
 .logo-hex {
-    background: linear-gradient(135s, #22c55e, #00f2fe);
+    background: linear-gradient(135deg, #22c55e, #00f2fe);
     width: 42px;
     height: 42px;
     border-radius: 10px;
@@ -98,6 +98,7 @@ body {
 .nav-item.active {
     border-left: 4px solid #22c55e;
     box-shadow: inset 10px 0 20px rgba(34, 197, 94, 0.05);
+    color: var(--text-primary);
 }
 
 .project-tag { text-align: center; border-top: 1px solid var(--border-color); padding-top: 20px; }
@@ -118,7 +119,7 @@ body {
 .btn-cyber { padding: 16px 32px; border-radius: 10px; font-weight: 700; letter-spacing: 0.5px; border: none; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: all 0.3s ease; }
 .btn-activate { background: linear-gradient(135deg, #22c55e, #16a34a); color: white; box-shadow: 0 4px 20px rgba(34, 197, 94, 0.3); }
 .btn-activate:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(34, 197, 94, 0.4); }
-.btn-deactivate { background: linear-gradient(135deg, var(--red), #dc2626); color: white; }
+.btn-deactivate { background: linear-gradient(135deg, var(--red), #dc2626); color: white; box-shadow: 0 4px 20px rgba(239, 68, 68, 0.3); }
 
 /* Grid de Sensores */
 .telemetry-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; }
@@ -146,7 +147,12 @@ body {
 .box-title h3 { font-size: 1.05rem; font-weight: 600; }
 .tag-tech { font-size: 0.75rem; background: rgba(0, 210, 255, 0.1); color: var(--blue); padding: 4px 10px; border-radius: 6px; font-weight: bold; }
 
-.canvas-holder { height: 280px; position: relative; }
+/* FIX DO GRÁFICO: Garantir tamanho explícito de exibição */
+.canvas-holder { 
+    height: 280px; 
+    position: relative; 
+    width: 100%;
+}
 
 /* Terminal Terminal Realista */
 .terminal-screen { background-color: var(--bg-darkest); border-radius: 10px; padding: 18px; height: 280px; overflow-y: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; display: flex; flex-direction: column; gap: 10px; border: 1px solid rgba(30, 38, 74, 0.6); }
@@ -158,10 +164,8 @@ body {
 .btn-clear:hover { border-color: var(--text-primary); color: var(--text-primary); }
 
 /* Tabela Tecnológica */
-.history-table-box { background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 24px; }
+.history-table-box { background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 24px; overflow-x: auto; }
 .tech-table { width: 100%; border-collapse: collapse; text-align: left; margin-top: 15px; }
 .tech-table th, .tech-table td { padding: 16px; border-bottom: 1px solid var(--border-color); font-size: 0.9rem; }
 .tech-table th { color: var(--text-secondary); font-weight: 600; }
 .text-green { color: #22c55e; font-weight: bold; }
-
-.badge-row { background: rgba(34, 197, 94, 0.1); color: #22c55e; padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: bold; }
