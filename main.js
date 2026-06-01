@@ -4,43 +4,83 @@ let graficoFoguete = null;
 let contadorTempo = 0;
 let aguaSalvaAcumulada = 0;
 
-// Banco de Dados Local Fake (Simulando persistência de dados reais)
 const dadosIniciaisTalhoes = [
     { id: "TL-NORTE-01", cultura: "Algodão", vazao: "14.8 L/ha", sobreposicao: "0.2%", reducao: "91%", carbono: "-12.4 kg" },
     { id: "TL-SUL-09", cultura: "Milho", vazao: "16.1 L/ha", sobreposicao: "0.0%", reducao: "89%", carbono: "-10.8 kg" },
     { id: "TL-OESTE-04", cultura: "Soja", vazao: "13.5 L/ha", sobreposicao: "0.5%", reducao: "93%", carbono: "-14.1 kg" }
 ];
 
-// Inicialização do Gráfico Avançado com a Biblioteca Chart.js
+// Gerencia a troca de telas na interface de forma nativa e sem bugs
+function trocarAba(event, nomeAba) {
+    if (event) event.preventDefault();
+
+    // Remove classe ativa de todos os botões da barra lateral
+    const botoes = document.querySelectorAll('.nav-item');
+    botoes.forEach(btn => btn.classList.remove('active'));
+
+    // Adiciona classe ativa no botão clicado
+    if (event) {
+        event.currentTarget.classList.add('active');
+    }
+
+    // Oculta todas as telas do painel
+    const telas = document.querySelectorAll('.aba-conteudo');
+    telas.forEach(tela => tela.style.display = 'none');
+
+    // Mostra a tela selecionada
+    document.getElementById(`tela-${nomeAba}`).style.display = 'block';
+
+    // Ajusta os títulos superiores de acordo com a área ativa
+    const titulo = document.getElementById('main-title');
+    const subtitulo = document.getElementById('main-subtitle');
+    
+    if(nomeAba === 'telemetria') {
+        titulo.innerText = "Central de Pulverização Autônoma IA";
+        subtitulo.innerText = "Mapeamento cirúrgico de defensivos agrícolas por altitude dinâmica";
+    } else if(nomeAba === 'mapas') {
+        titulo.innerText = "Geolocalização e Mapas de Calor";
+        subtitulo.innerText = "Índice de vegetação NDVI integrado ao plano de voo";
+    } else if(nomeAba === 'ecometricas') {
+        titulo.innerText = "Painel ESG & Indicadores Ecológicos";
+        subtitulo.innerText = "Métricas de preservação ambiental calculadas por hectare";
+    } else if(nomeAba === 'historico') {
+        titulo.innerText = "Banco de Dados de Auditoria";
+        subtitulo.innerText = "Histórico persistente de missões concluídas com sucesso";
+    }
+}
+
 function carregarGraficoEstrutural() {
     const ctx = document.getElementById('liveChart').getContext('2d');
+    
+    renderizarTabela();
+
     graficoFoguete = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: [],
+            labels: ['0s'],
             datasets: [
                 {
                     label: 'Altitude Atual (m)',
-                    data: [],
+                    data: [0],
                     borderColor: '#00d2ff',
-                    backgroundColor: 'rgba(0, 210, 255, 0.05)',
+                    backgroundColor: 'rgba(0, 210, 255, 0.1)',
                     borderWidth: 2.5,
                     tension: 0.4,
                     fill: true
                 },
                 {
-                    label: 'Limite Teto (Deriva)',
-                    data: [],
+                    label: 'Limite Teto (3.5m)',
+                    data: [3.5],
                     borderColor: '#ff453a',
-                    borderDash: [6, 6],
+                    borderDash: [5, 5],
                     borderWidth: 1.5,
                     fill: false
                 },
                 {
-                    label: 'Limite Piso (Colisão)',
-                    data: [],
+                    label: 'Limite Piso (1.5m)',
+                    data: [1.5],
                     borderColor: '#ff453a',
-                    borderDash: [6, 6],
+                    borderDash: [5, 5],
                     borderWidth: 1.5,
                     fill: false
                 }
@@ -56,10 +96,8 @@ function carregarGraficoEstrutural() {
             }
         }
     });
-    renderizarTabela();
 }
 
-// Inicia e Pausa a Operação Computacional do Drone
 function alternarSistemas() {
     const btn = document.getElementById('master-btn');
     const hw = document.getElementById('hw-status');
@@ -81,25 +119,20 @@ function alternarSistemas() {
     }
 }
 
-// Algoritmo Central de Sustentabilidade de Voo (Coração do Projeto para o Agrinho)
 function executarVarreduraSensores() {
     loopSensores = setInterval(() => {
         contadorTempo += 1;
         
-        // Simulação Estocástica de Altura e Vento em Condições Agrícolas Reais
         const altitude = (Math.random() * (5.0 - 0.5) + 0.5).toFixed(2);
         const vento = (Math.random() * (22.0 - 5.0) + 5.0).toFixed(1);
         
-        // Geração Dinâmica de Coordenadas de GPS Fictícias (Região Agro do Paraná)
         const latConst = (25.42 + Math.random() * 0.01).toFixed(4);
         const lonConst = (49.27 + Math.random() * 0.01).toFixed(4);
         document.getElementById('gps-coords').innerText = `PR - 25°${latConst}'S, 49°${lonConst}'W`;
 
-        // Manipulação Gráfica e Visual dos Elementos DOM
         document.getElementById('val-altitude').innerHTML = `${altitude} <small>m</small>`;
         document.getElementById('val-vento').innerHTML = `${vento} <small>km/h</small>`;
         
-        // Atualiza Barras de Progresso Tecnológicas
         document.getElementById('bar-altitude').style.width = `${(altitude / 6) * 100}%`;
         document.getElementById('bar-vento').style.width = `${(vento / 25) * 100}%`;
 
@@ -108,9 +141,7 @@ function executarVarreduraSensores() {
         const lblAlt = document.getElementById('lbl-altitude');
         const lblVaz = document.getElementById('lbl-vazao');
 
-        // MÁXIMO EQUILÍBRIO AGRO-AMBIENTAL: LÓGICA DE PULVERIZAÇÃO ANTIDERIVA
         if (altitude >= 1.50 && altitude <= 3.50) {
-            // Zona Verde Comercial Inteligente: Perfeita Aplicação Sem Desperdício
             elVazao.innerHTML = "12.4 <small>L/min</small>";
             barVazao.style.width = "75%";
             
@@ -125,7 +156,6 @@ function executarVarreduraSensores() {
 
             imprimirTerminal(`[TELEMETRIA] Altitude: ${altitude}m | Vazão Nominal Constante. Zero deriva detectada.`, "t-success");
         } else {
-            // Zona Vermelha Crítica: Interrupção Eletrônica Instantânea para Prevenção de Crimes Ambientais
             elVazao.innerHTML = "0.0 <small>L/min</small>";
             barVazao.style.width = "0%";
             lblVaz.innerText = "ELETROVÁLVULA BLOQUEADA (CORTE)";
@@ -142,60 +172,13 @@ function executarVarreduraSensores() {
             }
         }
 
-        // Alimentação de dados na API de Gráficos do Canvas
-        atualizarGraficoTempoReal(contadorTempo, altitude);
+        atualizarGraficoTempoReal(contadorTempo, parseFloat(altitude));
 
     }, 1500);
 }
 
 function atualizarGraficoTempoReal(tempo, alt) {
+    if (!graficoFoguete) return;
+
     if (graficoFoguete.data.labels.length > 10) {
-        graficoFoguete.data.labels.shift();
-        graficoFoguete.data.datasets[0].data.shift();
-        graficoFoguete.data.datasets[1].data.shift();
-        graficoFoguete.data.datasets[2].data.shift();
-    }
-    graficoFoguete.data.labels.push(`${tempo}s`);
-    graficoFoguete.data.datasets[0].data.push(alt);
-    graficoFoguete.data.datasets[1].data.push(3.50); // Faixa Máxima Fixa
-    graficoFoguete.data.datasets[2].data.push(1.50); // Faixa Mínima Fixa
-    graficoFoguete.data.update();
-}
-
-function imprimirTerminal(mensagem, estilo) {
-    const box = document.getElementById('terminal-output');
-    const p = document.createElement('p');
-    p.className = estilo;
-    p.innerText = mensagem;
-    box.appendChild(p);
-    box.scrollTop = box.scrollHeight;
-}
-
-function limparTerminal() {
-    document.getElementById('terminal-output').innerHTML = '<p class="t-sys">[SISTEMA] Logs limpos pelo usuário.</p>';
-}
-
-function renderizarTabela() {
-    const tbody = document.getElementById('table-rows');
-    tbody.innerHTML = dadosIniciaisTalhoes.map(dado => `
-        <tr>
-            <td style="font-family: 'JetBrains Mono', monospace;">${dado.id}</td>
-            <td>${dado.cultura}</td>
-            <td><strong>${dado.vazao}</strong></td>
-            <td>${dado.sobreposicao}</td>
-            <td class="text-green">${dado.reducao}</td>
-            <td><span class="badge-row">${dado.carbono} CO2e</span></td>
-        </tr>
-    `).join('');
-}
-
-function zerarDisplays() {
-    document.getElementById('val-altitude').innerHTML = `0.00 <small>m</small>`;
-    document.getElementById('val-vazao').innerHTML = `0.0 <small>L/min</small>`;
-    document.getElementById('bar-altitude').style.width = "0%";
-    document.getElementById('bar-vazao').style.width = "0%";
-    document.getElementById('lbl-altitude').innerText = "Voo em Standby";
-    document.getElementById('lbl-vazao').innerText = "Válvula Fechada";
-}
-
-window.onload = carregarGraficoEstrutural;
+        graficoFoguete.data
