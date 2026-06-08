@@ -1,4 +1,6 @@
-/* Paleta de Cores Dinâmica (Modo Escuro / Claro) */
+/* ==========================================================================
+   PALETA DE CORES DINÂMICA (MODO ESCURO / CLARO)
+   ========================================================================== */
 .light-mode {
     --bg-main: #f8fafc;
     --card-bg: #ffffff;
@@ -36,6 +38,9 @@
     --speed: 0.3s;
 }
 
+/* ==========================================================================
+   ESTRUTURA GLOBAL E NAVEGAÇÃO
+   ========================================================================== */
 body {
     font-family: 'Segoe UI', system-ui, sans-serif;
     background-color: var(--bg-main);
@@ -51,7 +56,6 @@ body {
     margin: 0 auto;
 }
 
-/* Navbar Corrigida */
 .navbar {
     background-color: var(--navbar-bg);
     color: var(--navbar-text);
@@ -80,6 +84,7 @@ body {
 .nav-links {
     display: flex;
     gap: 24px;
+    align-items: center;
 }
 
 .nav-links a {
@@ -111,7 +116,26 @@ body {
     width: 100%;
 }
 
-/* Botão de Alternância de Tema */
+/* Botão de Destaque no Menu (Link para outra página) */
+.nav-links .nav-btn-highlight {
+    background-color: var(--lime-accent);
+    color: #1e5631 !important;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.nav-links .nav-btn-highlight:hover {
+    transform: scale(1.05);
+    background-color: #ffffff;
+}
+
+.nav-links .nav-btn-highlight::after {
+    display: none;
+}
+
+/* Botão de Alternância de Tema (Sol/Lua) */
 .theme-btn {
     background: rgba(255, 255, 255, 0.12);
     border: none;
@@ -127,9 +151,11 @@ body {
     transform: scale(1.05);
 }
 
-/* Hero Section (Abertura) */
+/* ==========================================================================
+   CONTEÚDO E SEÇÕES PRINCIPAIS
+   ========================================================================== */
 .hero-section {
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('https://unsplash.com') no-repeat center center/cover;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('https://workers.dev') no-repeat center center/cover;
     border-radius: var(--radius);
     padding: 70px 40px;
     text-align: center;
@@ -153,7 +179,6 @@ body {
     text-shadow: 0 1px 4px rgba(0,0,0,0.4);
 }
 
-/* Títulos das Seções */
 .content-section {
     margin-bottom: 55px;
     scroll-margin-top: 110px;
@@ -174,7 +199,9 @@ body {
     font-size: 0.95rem;
 }
 
-/* Botões Interativos (Accordions) */
+/* ==========================================================================
+   COMPONENTES INTERATIVOS (ACCORDIONS)
+   ========================================================================== */
 .accordion-container {
     display: flex;
     flex-direction: column;
@@ -251,7 +278,9 @@ body {
     border-radius: 8px;
 }
 
-/* Grids Gerais */
+/* ==========================================================================
+   SISTEMA DE GRIDS E CARDS
+   ========================================================================== */
 .cards-grid {
     display: grid;
     gap: 24px;
@@ -267,7 +296,6 @@ body {
     align-items: stretch;
 }
 
-/* Cards de Impacto */
 .card {
     background-color: var(--card-bg);
     padding: 30px;
@@ -304,7 +332,7 @@ body {
     color: var(--text-muted);
 }
 
-/* Lista Ambiental */
+/* Customização de Listas e Imagens Laterais */
 .list-card ul {
     display: flex;
     flex-direction: column;
@@ -334,7 +362,6 @@ body {
     box-shadow: var(--shadow);
 }
 
-/* Cards Alternativos Premium */
 .premium-card {
     text-align: center;
 }
@@ -365,47 +392,9 @@ footer {
     font-size: 0.95rem;
 }
 
-/* Responsividade de Telas */
-@media (max-width: 992px) {
-    .nav-container {
-        flex-direction: column;
-        height: auto;
-        padding: 15px 0;
-        gap: 15px;
-    }
-    .nav-links {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 16px;
-    }
-    body { padding-top: 175px; }
-    .grid-2-dynamic { grid-template-columns: 1fr; }
-    .content-flex { flex-direction: column; text-align: center; }
-    .section-img { width: 100%; height: 160px; }
-}
-/* --- Estilos da Nova Página (saiba-mais.html) e Botão Extra --- */
-
-/* Botão de Destaque no Menu */
-.nav-links .nav-btn-highlight {
-    background-color: var(--lime-accent);
-    color: #1e5631 !important;
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-weight: bold;
-    transition: transform 0.2s, background-color 0.2s;
-}
-
-.nav-links .nav-btn-highlight:hover {
-    transform: scale(1.05);
-    background-color: #ffffff;
-}
-
-/* Remove a linha embaixo do botão de destaque */
-.nav-links .nav-btn-highlight::after {
-    display: none;
-}
-
-/* Espaçamento extra para o conteúdo não colar na barra */
+/* ==========================================================================
+   ESTILOS DA SEGUNDA PÁGINA (SAIBA-MAIS.HTML)
+   ========================================================================== */
 .page-padding {
     padding-top: 30px;
 }
@@ -432,7 +421,6 @@ footer {
     color: var(--text-muted);
 }
 
-/* Cartões da Galeria de Imagens */
 .gallery-section {
     margin-top: 60px;
 }
@@ -470,3 +458,6 @@ footer {
     font-size: 0.95rem;
     color: var(--text-muted);
 }
+
+/* ==========================================================================
+   RESPONSIVIDADE (TELA MOBILE / TABLET)
