@@ -6,12 +6,12 @@
     --card-bg: #ffffff;
     --text-main: #1e293b;
     --text-muted: #64748b;
-    --navbar-bg: #1e5631;
+    --navbar-bg: #121814; /* Escuro premium igual à foto */
     --navbar-text: #ffffff;
-    --accordion-header: #f1f5f9;
-    --accordion-hover: #e2e8f0;
+    --accordion-header: #ffffff;
+    --accordion-hover: #f1f5f9;
     --shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-    --border: 1px solid rgba(0, 0, 0, 0.06);
+    --border: 1px solid rgba(0, 0, 0, 0.08);
     --badge-bg: #fee2e2;
     --badge-text: #ef4444;
 }
@@ -21,10 +21,10 @@
     --card-bg: #1e293b;
     --text-main: #f8fafc;
     --text-muted: #94a3b8;
-    --navbar-bg: #092412;
+    --navbar-bg: #030712;
     --navbar-text: #f8fafc;
-    --accordion-header: #334155;
-    --accordion-hover: #475569;
+    --accordion-header: #1e293b;
+    --accordion-hover: #334155;
     --shadow: 0 4px 25px rgba(0, 0, 0, 0.35);
     --border: 1px solid rgba(255, 255, 255, 0.08);
     --badge-bg: #7f1d1d;
@@ -32,9 +32,9 @@
 }
 
 :root {
-    --primary-green: #2e7d43;
-    --lime-accent: #a3e635;
-    --radius: 12px;
+    --primary-green: #3f6212; /* Verde musgo das fotos */
+    --lime-accent: #84cc16;
+    --radius: 16px; /* Bordas mais arredondadas premium */
     --speed: 0.3s;
 }
 
@@ -46,13 +46,13 @@ body {
     background-color: var(--bg-main);
     color: var(--text-main);
     line-height: 1.6;
-    padding-top: 100px;
+    padding-top: 110px;
     transition: background-color var(--speed), color var(--speed);
 }
 
 .container {
     width: 90%;
-    max-width: 1140px;
+    max-width: 1000px; /* Alinhamento mais compacto e elegante */
     margin: 0 auto;
 }
 
@@ -88,9 +88,9 @@ body {
 }
 
 .nav-links a {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 500;
-    opacity: 0.85;
+    opacity: 0.75;
     position: relative;
     padding: 6px 0;
     transition: color 0.2s, opacity 0.2s;
@@ -101,26 +101,11 @@ body {
     color: var(--lime-accent);
 }
 
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: var(--lime-accent);
-    transition: width 0.3s;
-}
-
-.nav-links a:hover::after {
-    width: 100%;
-}
-
-/* Botão de Alternância de Tema (Sol/Lua) */
+/* Botão de Alternância de Tema */
 .theme-btn {
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.1);
     border: none;
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     cursor: pointer;
     padding: 8px 14px;
     border-radius: 30px;
@@ -128,7 +113,7 @@ body {
 }
 
 .theme-btn:hover {
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.2);
     transform: scale(1.05);
 }
 
@@ -136,9 +121,9 @@ body {
    CONTEÚDO E SEÇÕES PRINCIPAIS
    ========================================================================== */
 .hero-section {
-    background: linear-gradient(135deg, #1e5631 0%, #092412 100%);
+    background: linear-gradient(135deg, #14281a 0%, #09140e 100%);
     border-radius: var(--radius);
-    padding: 70px 40px;
+    padding: 60px 40px;
     text-align: center;
     color: white;
     margin-bottom: 50px;
@@ -146,17 +131,17 @@ body {
 }
 
 .hero-content h1 {
-    font-size: 2.8rem;
+    font-size: 2.5rem;
     font-weight: 800;
     margin-bottom: 15px;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    letter-spacing: -0.02em;
 }
 
 .hero-content p {
-    max-width: 800px;
+    max-width: 700px;
     margin: 0 auto;
-    font-size: 1.15rem;
-    opacity: 0.95;
+    font-size: 1.05rem;
+    opacity: 0.85;
 }
 
 .content-section {
@@ -166,10 +151,10 @@ body {
 
 .content-section h2 {
     color: var(--primary-green);
-    font-size: 1.75rem;
+    font-size: 1.6rem;
     font-weight: 700;
     margin-bottom: 20px;
-    border-left: 5px solid var(--lime-accent);
+    border-left: 4px solid var(--lime-accent);
     padding-left: 14px;
 }
 
@@ -180,7 +165,7 @@ body {
 }
 
 /* ==========================================================================
-   COMPONENTES INTERATIVOS (ACCORDIONS)
+   SISTEMA DE ACCORDIONS (CORRIGIDO)
    ========================================================================== */
 .accordion-container {
     display: flex;
@@ -194,6 +179,7 @@ body {
     background-color: var(--card-bg);
     overflow: hidden;
     box-shadow: var(--shadow);
+    transition: background-color var(--speed);
 }
 
 .accordion-header {
@@ -202,14 +188,14 @@ body {
     color: var(--text-main);
     padding: 18px 24px;
     border: none;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 600;
     text-align: left;
     display: flex;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    transition: background-color 0.2s, color 0.2s;
+    transition: background-color 0.2s;
 }
 
 .accordion-header:hover {
@@ -217,36 +203,35 @@ body {
 }
 
 .chevron {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     transition: transform var(--speed);
-    color: var(--primary-green);
+    color: var(--text-muted);
 }
 
 .accordion-item.active .chevron {
     transform: rotate(180deg);
+    color: var(--primary-green);
 }
 
+/* CORREÇÃO DO CONTEÚDO OCULTO */
 .accordion-content {
     max-height: 0;
     overflow: hidden;
-    transition: max-height var(--speed) cubic-bezier(0, 1, 0, 1);
+    transition: max-height 0.3s ease-out; /* Transição suave de descida */
 }
 
 .accordion-item.active .accordion-content {
-    max-height: 1000px;
-    transition: max-height var(--speed) cubic-bezier(1, 0, 1, 0);
+    max-height: 200px; /* Permitir que o bloco expanda */
 }
 
 .content-flex {
-    padding: 24px;
-    display: flex;
+    padding: 20px 24px 24px 24px;
     border-top: var(--border);
 }
 
 .content-flex p {
-    flex: 1;
     color: var(--text-muted);
-    font-size: 1.05rem;
+    font-size: 1rem;
 }
 
 /* ==========================================================================
@@ -257,8 +242,8 @@ body {
     gap: 24px;
 }
 
-.grid-3 { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
-.grid-2 { grid-template-columns: repeat(auto-fit, minmax(460px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); }
 
 .card {
     background-color: var(--card-bg);
@@ -266,21 +251,20 @@ body {
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     border: var(--border);
-    position: relative;
     transition: transform 0.25s, box-shadow 0.25s, background-color var(--speed);
 }
 
 .card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
 }
 
 .card-badge {
     display: inline-block;
     padding: 4px 10px;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 700;
-    border-radius: 4px;
+    border-radius: 6px;
     margin-bottom: 15px;
     text-transform: uppercase;
     background-color: var(--badge-bg);
@@ -289,11 +273,13 @@ body {
 
 .card h3 {
     margin-bottom: 12px;
-    font-size: 1.3rem;
+    font-size: 1.25rem;
+    font-weight: 700;
 }
 
 .card p {
     color: var(--text-muted);
+    font-size: 0.95rem;
 }
 
 /* Customização de Listas */
@@ -306,6 +292,8 @@ body {
 .list-card li {
     padding-left: 28px;
     position: relative;
+    font-size: 1rem;
+    color: var(--text-muted);
 }
 
 .list-card li::before {
@@ -314,7 +302,7 @@ body {
     font-weight: bold;
     position: absolute;
     left: 4px;
-    top: 1px;
+    top: 0px;
 }
 
 .premium-card {
@@ -322,19 +310,21 @@ body {
 }
 
 .card-icon {
-    font-size: 2.2rem;
+    font-size: 2rem;
     margin-bottom: 12px;
 }
 
 /* Lista de Referências */
 .references-list p {
-    background-color: var(--accordion-header);
-    padding: 14px 20px;
-    margin-bottom: 10px;
-    border-radius: 8px;
+    background-color: var(--card-bg);
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    border-radius: var(--radius);
     font-size: 0.95rem;
     border-left: 4px solid var(--primary-green);
     color: var(--text-muted);
+    box-shadow: var(--shadow);
+    border: var(--border);
 }
 
 /* Rodapé */
@@ -343,13 +333,12 @@ footer {
     color: var(--navbar-text);
     text-align: center;
     padding: 30px;
-    margin-top: 60px;
-    font-size: 0.95rem;
+    margin-top: 80px;
+    font-size: 0.9rem;
+    opacity: 0.9;
 }
 
-/* ==========================================================================
-   RESPONSIVIDADE (TELA MOBILE / TABLET)
-   ========================================================================== */
+/* Responsividade */
 @media (max-width: 992px) {
     .nav-container {
         flex-direction: column;
@@ -357,11 +346,5 @@ footer {
         padding: 15px 0;
         gap: 15px;
     }
-    .nav-links {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 16px;
-    }
     body { padding-top: 175px; }
-    .content-flex { text-align: center; }
 }
