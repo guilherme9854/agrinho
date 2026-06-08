@@ -2,5 +2,23 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    outline: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f4f7f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    text-shadow: none;
+    text-decoration: none;
+    color: inherit;
 }

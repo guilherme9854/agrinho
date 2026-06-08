@@ -3,154 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgroVoo Pro - Sistema de Telemetria Agrinho 2026</title>
+    <title>Influência dos Agrotóxicos</title>
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cloudflare.com">
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-    <script src="https://jsdelivr.net"></script>
 </head>
 <body>
-
-    <div class="dashboard-wrapper">
-        <!-- Navegação Lateral -->
-        <aside class="cyber-sidebar">
-            <div class="logo-area">
-                <div class="logo-hex"><i class="fa-solid fa-satellite-dish"></i></div>
-                <h2>AGRO<span>VOO</span></h2>
-            </div>
-            <div class="status-hardware">
-                <span class="pulse-indicator green"></span>
-                <p>Drone Link: <strong id="hw-status">ONLINE</strong></p>
-            </div>
-            <nav class="nav-links">
-                <button class="nav-item active" onclick="trocarAba(event, 'telemetria')"><i class="fa-solid fa-gauge-high"></i> Telemetria RT</button>
-                <button class="nav-item" onclick="trocarAba(event, 'mapas')"><i class="fa-solid fa-map-location-dot"></i> Mapas de Calor</button>
-                <button class="nav-item" onclick="trocarAba(event, 'ecometricas')"><i class="fa-solid fa-leaf"></i> Eco-Métricas</button>
-                <button class="nav-item" onclick="trocarAba(event, 'historico')"><i class="fa-solid fa-database"></i> Histórico Local</button>
+    <header>
+        <div class="container">
+            <h1>Influência dos Agrotóxicos</h1>
+            <nav>
+                <ul>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#impactos">Impactos</a></li>
+                    <li><a href="#precos">Preços</a></li>
+                </ul>
             </nav>
-            <div class="project-tag">
-                <p>PROJETO AGRINHO 2026</p>
-                <span>Sustentabilidade Digital</span>
-            </div>
-        </aside>
+        </div>
+    </header>
 
-        <!-- Área Operacional Principal -->
-        <main class="main-viewport">
-            <header class="control-header">
-                <div class="header-info">
-                    <h1 id="main-title">Central de Pulverização Autônoma IA</h1>
-                    <p id="main-subtitle">Mapeamento cirúrgico de defensivos agrícolas por altitude dinâmica</p>
-                </div>
-                <div class="header-actions">
-                    <div class="gps-box">
-                        <i class="fa-solid fa-location-crosshairs text-green"></i>
-                        <div>
-                            <small>Coordenadas Drone</small>
-                            <p id="gps-coords">PR - 25°25'S, 49°16'W</p>
-                        </div>
-                    </div>
-                    <button id="master-btn" class="btn-cyber btn-activate" onclick="alternarSistemas()">
-                        <i class="fa-solid fa-play"></i> INICIAR MISSÃO
-                    </button>
-                </div>
-            </header>
+    <section class="hero">
+        <div class="container">
+            <h2>O que você precisa saber sobre os agrotóxicos</h2>
+            <p>Impactos ambientais, riscos à saúde e preços atuais no mercado.</p>
+        </div>
+    </section>
 
-            <!-- ====== TELA 1: TELEMETRIA ====== -->
-            <div id="tela-telemetria" class="aba-conteudo">
-                <section class="telemetry-grid">
-                    <div class="sensor-card">
-                        <div class="sensor-header"><span>ALTITUDE CRÍTICA</span><i class="fa-solid fa-arrows-up-down text-blue"></i></div>
-                        <div class="sensor-body">
-                            <h2 id="val-altitude">0.00 <small>m</small></h2>
-                            <div class="progress-bar"><div id="bar-altitude" class="progress bg-blue" style="width: 0%"></div></div>
-                        </div>
-                        <div class="sensor-footer" id="lbl-altitude">Aguardando decolagem</div>
-                    </div>
+    <main class="container">
+        <section id="sobre">
+            <h2>Sobre os Agrotóxicos</h2>
+            <p>Agrotóxicos são produtos químicos utilizados na agricultura para proteger plantas de pragas e doenças. Seu uso deve ser controlado para evitar impactos negativos à saúde e ao meio ambiente.</p>
+        </section>
 
-                    <div class="sensor-card">
-                        <div class="sensor-header"><span>VAZÃO EM TEMPO REAL</span><i class="fa-solid fa-faucet-drip text-green"></i></div>
-                        <div class="sensor-body">
-                            <h2 id="val-vazao">0.0 <small>L/min</small></h2>
-                            <div class="progress-bar"><div id="bar-vazao" class="progress bg-green" style="width: 0%"></div></div>
-                        </div>
-                        <div class="sensor-footer" id="lbl-vazao">Válvula estanque</div>
-                    </div>
+        <section id="impactos">
+            <h2>Impactos na Saúde e Meio Ambiente</h2>
+            <ul>
+                <li>Contaminação do solo e água</li>
+                <li>Riscos à saúde humana</li>
+                <li>Perda de biodiversidade</li>
+            </ul>
+        </section>
 
-                    <div class="sensor-card">
-                        <div class="sensor-header"><span>ANEMÔMETRO (VENTO)</span><i class="fa-solid fa-wind text-amber"></i></div>
-                        <div class="sensor-body">
-                            <h2 id="val-vento">0.0 <small>km/h</small></h2>
-                            <div class="progress-bar"><div id="bar-vento" class="progress bg-amber" style="width: 0%"></div></div>
-                        </div>
-                        <div class="sensor-footer" id="lbl-vento">Estável</div>
-                    </div>
+        <section id="precos">
+            <h2>Preços de Agrotóxicos</h2>
+            <input type="text" id="search" placeholder="Buscar produto...">
+            <table id="tabela-precos">
+                <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Preço (R$)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Herbicida A</td><td>55,00</td></tr>
+                    <tr><td>Inseticida B</td><td>120,00</td></tr>
+                    <tr><td>Fungicida C</td><td>95,00</td></tr>
+                    <tr><td>Herbicida D</td><td>80,00</td></tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
 
-                    <div class="sensor-card">
-                        <div class="sensor-header"><span>ÁGUA ECONOMIZADA</span><i class="fa-solid fa-hand-holding-droplet text-purple"></i></div>
-                        <div class="sensor-body">
-                            <h2 id="val-economia">0.0 <small>Litros</small></h2>
-                            <div class="progress-bar"><div id="bar-economia" class="progress bg-purple" style="width: 0%"></div></div>
-                        </div>
-                        <div class="sensor-footer text-green"><i class="fa-solid fa-shield-halved"></i> Impacto ambiental reduzido</div>
-                    </div>
-                </section>
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 - Site Profissional de Agrotóxicos</p>
+        </div>
+    </footer>
 
-                <section class="analysis-area">
-                    <div class="analytics-box graph">
-                        <div class="box-title">
-                            <h3>Oscilação de Voo vs Faixa Segura de Deriva</h3>
-                            <span class="tag-tech">Sinal Telemetria 5G</span>
-                        </div>
-                        <div class="canvas-holder">
-                            <canvas id="liveChart"></canvas>
-                        </div>
-                    </div>
-
-                    <div class="analytics-box terminal">
-                        <div class="box-title">
-                            <h3>Terminal de Eventos do Processador</h3>
-                            <button class="btn-clear" onclick="limparTerminal()">Limpar</button>
-                        </div>
-                        <div class="terminal-screen" id="terminal-output">
-                            <p class="t-sys">[SISTEMA] Aguardando comando de inicialização via Barramento CAN...</p>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <!-- ====== TELA 2: MAPAS DE CALOR ====== -->
-            <div id="tela-mapas" class="aba-conteudo" style="display: none;">
-                <div class="sensor-card" style="text-align: center; padding: 50px; gap: 20px;">
-                    <i class="fa-solid fa-map-pinned" style="font-size: 3.5rem; color: #00d2ff;"></i>
-                    <h2>Mapeamento de Infestação por Satélite (NDVI)</h2>
-                    <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
-                        Esta tela simula a integração com imagens orbitais. O drone lê o mapa gerado para aplicar defensivos biológicos apenas nas manchas vermelhas, onde as pragas atacaram.
-                    </p>
-                    <div style="background: #05070f; border: 2px dashed var(--border-color); height: 250px; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 15px; color: #22c55e;">
-                        <i class="fa-solid fa-satellite" style="font-size: 2rem;"></i>
-                        <p style="font-family: 'JetBrains Mono', monospace;">Camadas SIG do Paraná sincronizadas. Pronto para o voo autônomo.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ====== TELA 3: ECO-MÉTRICAS ====== -->
-            <div id="tela-ecometricas" class="aba-conteudo" style="display: none;">
-                <div class="sensor-card" style="text-align: center; padding: 50px; gap: 20px;">
-                    <i class="fa-solid fa-leaf" style="font-size: 3.5rem; color: #22c55e;"></i>
-                    <h2>Relatório de Impacto Ambiental & Créditos de Carbono</h2>
-                    <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
-                        Ao utilizar energia limpa (baterias de lítio recarregáveis) e precisão cirúrgica de altura, protegemos diretamente o solo do Paraná contra a compactação e contaminações por deriva do vento.
-                    </p>
-                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 20px;">
-                        <div style="background: #05070f; padding: 20px; border-radius: 10px; border: 1px solid var(--border-color);">
-                            <h4 style="color: var(--text-secondary); font-size: 0.8rem; margin-bottom: 5px;">Pesticidas Evitados</h4>
-                            <span style="font-size: 1.5rem; font-weight: bold; color: #22c55e;">-35%</span>
-                        </div>
-                        <div style="background: #05070f; padding: 20px; border-radius: 10px; border: 1px solid var(--border-color);">
-                            <h4 style="color: var(--text-secondary); font-size: 0.8rem; margin-bottom: 5px;">Consumo de Água</h4>
-                            <span style="font-size: 1.5rem; font-weight: bold; color: #00d2ff;">90% Menor</span>
-                        </div>
-                        <div style="background: #05070f; padding: 20px; border-radius: 10px; border: 1px solid var(--border-color);">
+    <script src="main.js"></script>
+</body>
+</html>
