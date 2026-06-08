@@ -1,14 +1,42 @@
-const tabs = document.querySelectorAll(".tab-btn");
-const contents = document.querySelectorAll(".tab-content");
+const themeBtn =
+document.getElementById("theme-btn");
 
-tabs.forEach(tab => {
-  tab.addEventListener("click", () => {
-    // Remove active de todos os botões e conteúdos
-    tabs.forEach(t => t.classList.remove("active"));
-    contents.forEach(c => c.classList.remove("active"));
+themeBtn.addEventListener("click",()=>{
 
-    // Ativa o botão clicado e o conteúdo correspondente
-    tab.classList.add("active");
-    document.getElementById(tab.dataset.tab).classList.add("active");
-  });
+document.body.classList.toggle("dark");
+
+if(document.body.classList.contains("dark")){
+themeBtn.innerHTML="☀️";
+}else{
+themeBtn.innerHTML="🌙";
+}
+
+});
+
+const tabs =
+document.querySelectorAll(".tab-btn");
+
+const contents =
+document.querySelectorAll(".tab-content");
+
+tabs.forEach(tab=>{
+
+tab.addEventListener("click",()=>{
+
+tabs.forEach(btn=>{
+btn.classList.remove("active");
+});
+
+contents.forEach(content=>{
+content.classList.remove("active");
+});
+
+tab.classList.add("active");
+
+document
+.getElementById(tab.dataset.tab)
+.classList.add("active");
+
+});
+
 });
