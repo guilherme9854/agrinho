@@ -8,7 +8,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="style.css">
 </head>
@@ -16,7 +16,6 @@
 
     <header class="navbar">
         <div class="container nav-container">
-            
             <div class="nav-left">
                 <button class="hamburger" aria-label="Abrir menu">
                     <span class="bar"></span>
@@ -27,10 +26,7 @@
             </div>
             
             <div class="nav-center">
-                <div class="agrinho-badge">
-                    <span class="agrinho-dot"></span>
-                    Projeto Agrinho 2026
-                </div>
+                <div class="agrinho-badge">Projeto Agrinho 2026</div>
             </div>
 
             <nav class="nav-menu">
@@ -47,10 +43,7 @@
             </nav>
 
             <div class="nav-right">
-                <button id="theme-toggle" class="theme-btn" aria-label="Mudar tema">
-                    <span class="icon-sun">☀️</span>
-                    <span class="icon-moon" style="display:none;">🌙</span>
-                </button>
+                <button id="theme-toggle" class="theme-btn">☀️</button>
                 <a href="#login" class="btn-login">Entrar</a>
             </div>
         </div>
@@ -78,11 +71,10 @@
                     </button>
                     <div class="accordion-content">
                         <div class="content-flex">
-                            <p>Substâncias químicas focadas no combate e extermínio de pragas e insetos que prejudicam o desenvolvimento saudável das culturas agrícolas, atacando folhas e frutos.</p>
+                            <p>Substâncias químicas focadas no combate e extermínio de pragas que prejudicam o desenvolvimento saudável das culturas.</p>
                         </div>
                     </div>
                 </div>
-
                 <div class="accordion-item">
                     <button class="accordion-header">
                         <span>Herbicidas</span>
@@ -90,11 +82,10 @@
                     </button>
                     <div class="accordion-content">
                         <div class="content-flex">
-                            <p>Compostos desenvolvidos para eliminar plantas invasoras (popularmente conhecidas como ervas daninhas) que competem diretamente por espaço, água e nutrientes essenciais do solo.</p>
+                            <p>Compostos desenvolvidos para eliminar plantas invasoras que competem por espaço e nutrientes do solo.</p>
                         </div>
                     </div>
                 </div>
-
                 <div class="accordion-item">
                     <button class="accordion-header">
                         <span>Fungicidas</span>
@@ -102,7 +93,7 @@
                     </button>
                     <div class="accordion-content">
                         <div class="content-flex">
-                            <p>Defensivos voltados ao controle, prevenção e eliminação de fungos causadores de doenças, bolores e ferrugens que destroem plantações inteiras em poucos dias.</p>
+                            <p>Defensivos voltados ao controle e eliminação de fungos causadores de doenças nas plantações.</p>
                         </div>
                     </div>
                 </div>
@@ -115,12 +106,12 @@
                 <div class="card">
                     <div class="card-badge alert-acute">Curto Prazo</div>
                     <h3>Efeitos Imediatos</h3>
-                    <p>Náuseas, tonturas, crises de dores de cabeça agudas, irritações severas na pele e mucosa cutânea, além de graves quadros de intoxicação e problemas respiratórios provocados pela exposição direta ou manuseio incorreto.</p>
+                    <p>Náuseas, tonturas, dores de cabeça agudas, irritações severas na pele e mucosa cutânea provocados pela exposição direta.</p>
                 </div>
                 <div class="card">
                     <div class="card-badge alert-chronic">Longo Prazo</div>
                     <h3>Efeitos Crônicos</h3>
-                    <p>Consequências tardias acumulativas que podem incluir o desenvolvimento de tumores, neoplasias malignas (câncer), severas alterações e distúrbios hormonais no sistema endócrino e doenças neurológicas degenerativas progressivas.</p>
+                    <p>Consequências tardias acumulativas que podem incluir o desenvolvimento de tumores, alterações hormonais e problemas neurológicos.</p>
                 </div>
             </div>
         </section>
@@ -129,11 +120,11 @@
             <h2>Impactos Ambientais</h2>
             <div class="card list-card">
                 <ul>
-                    <li>Contaminação direta, perda de fertilidade natural e empobrecimento químico severo do solo.</li>
-                    <li>Lixiviação e poluição sistemática de rios, lagos superficiais e grandes lençóis freáticos.</li>
-                    <li>Redução drástica da biodiversidade local de microrganismos benéficos à terra.</li>
-                    <li>Danos críticos, letais e desorientação a polinizadores essenciais para a vida, como as abelhas.</li>
-                    <li>Desequilíbrio ecológico geral por bioacumulação nas cadeias alimentares da fauna silvestre.</li>
+                    <li>Contaminação direta e empobrecimento químico do solo.</li>
+                    <li>Lixiviação e poluição de rios, lagos e lençóis freáticos.</li>
+                    <li>Redução drástica da biodiversidade de pequenos animais.</li>
+                    <li>Danos críticos a polinizadores essenciais como abelhas.</li>
+                    <li>Desequilíbrio ecológico geral nas cadeias alimentares.</li>
                 </ul>
             </div>
         </section>
@@ -142,25 +133,19 @@
             <h2>Alternativas Sustentáveis</h2>
             <div class="cards-grid grid-3">
                 <div class="card premium-card">
-                    <div class="visual-icon bg-green">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 3.5 1 8a7 7 0 0 1-9 10Z"/><path d="M9 22v-4H5v-4H2"/></svg>
-                    </div>
+                    <div class="visual-icon bg-green">🌱</div>
                     <h3>Agricultura Orgânica</h3>
-                    <p>Modelo de produção focado inteiramente na regeneração e equilíbrio natural da terra, sem a utilização de compostos químicos ou sintéticos.</p>
+                    <p>Modelo focado inteiramente na regeneração e equilíbrio natural da terra, livre de químicos sintéticos.</p>
                 </div>
                 <div class="card premium-card">
-                    <div class="visual-icon bg-lime">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 0-10 10c0 5.523 4.477 10 10 10s10-4.477 10-10A10 10 0 0 0 12 2Z"/><path d="M12 6v12"/><path d="M8 10h8"/></svg>
-                    </div>
+                    <div class="visual-icon bg-lime">🐞</div>
                     <h3>Controle Biológico</h3>
-                    <p>Uso estratégico de inimigos naturais — como insetos predadores benéficos e parasitoides — para combater pragas sem intoxicar a produção.</p>
+                    <p>Uso estratégico de inimigos naturais (insetos predadores) para combater pragas sem intoxicar os alimentos.</p>
                 </div>
                 <div class="card premium-card">
-                    <div class="visual-icon bg-emerald">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
-                    </div>
+                    <div class="visual-icon bg-emerald">🔄</div>
                     <h3>Manejo Integrado (MIP)</h3>
-                    <p>Associação dinâmica de técnicas culturais, monitoramento populacional e biologia aplicada para mitigar a dependência de venenos químicos.</p>
+                    <p>Combinação dinâmica de técnicas culturais e físicas para reduzir de forma drástica a dependência de venenos.</p>
                 </div>
             </div>
         </section>
@@ -168,34 +153,30 @@
         <section id="referencias" class="content-section">
             <h2>Referências e Fontes Oficiais</h2>
             <div class="references-list">
-                <p>Organização Mundial da Saúde (OMS) — Diretrizes de Segurança Química</p>
-                <p>Ministério da Saúde — Painel de Vigilância de Populações Expostas a Agrotóxicos</p>
-                <p>Agência Nacional de Vigilância Sanitária (ANVISA) — Programa de Análise de Resíduos de Agrotóxicos em Alimentos (PARA)</p>
-                <p>FAO / ONU — Organização das Nações Unidas para a Alimentação e a Agricultura</p>
+                <p>Organização Mundial da Saúde (OMS)</p>
+                <p>Ministério da Saúde</p>
+                <p>Agência Nacional de Vigilância Sanitária (ANVISA)</p>
+                <p>FAO / ONU — Organização das Nações Unidas para a Alimentação</p>
             </div>
         </section>
 
         <section id="sugestoes" class="content-section">
             <h2>Canal de Sugestões</h2>
             <p class="section-instruction">Contribua com suas observações para enriquecer nosso projeto educacional.</p>
-            
             <div class="card form-card">
-                <form action="https://formspree.io/f/seu-id-aqui" method="POST" class="suggestion-form">
+                <form class="suggestion-form">
                     <div class="form-group">
                         <label for="nome">Nome Completo</label>
-                        <input type="text" id="nome" name="name" placeholder="Ex: João Silva" required>
+                        <input type="text" id="nome" placeholder="Ex: João Silva" required>
                     </div>
-                    
                     <div class="form-group">
-                        <label for="email">E-mail Corporativo ou Estudantil</label>
-                        <input type="email" id="email" name="_replyto" placeholder="exemplo@dominio.com" required>
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" placeholder="exemplo@dominio.com" required>
                     </div>
-                    
                     <div class="form-group">
-                        <label for="mensagem">Mensagem / Feedback Técnico</label>
-                        <textarea id="mensagem" name="message" rows="5" placeholder="Descreva aqui sua contribuição ou sugestão de melhoria..." required></textarea>
+                        <label for="mensagem">Sua Mensagem</label>
+                        <textarea id="mensagem" rows="4" placeholder="Escreva aqui..." required></textarea>
                     </div>
-                    
                     <button type="submit" class="btn-submit">Enviar Feedback</button>
                 </form>
             </div>
@@ -203,30 +184,9 @@
     </main>
 
     <footer class="footer-premium">
-        <div class="container footer-grid">
-            <div class="footer-brand">
-                <div class="logo">Agro<span>Sustentável</span></div>
-                <p>Website educacional focado no fomento à informação científica de qualidade sobre sustentabilidade rural e práticas agroecológicas modernas.</p>
-            </div>
-            <div class="footer-links-col">
-                <h4>Navegação</h4>
-                <ul>
-                    <li><a href="#inicio">Início</a></li>
-                    <li><a href="#o-que-sao">Conceito</a></li>
-                    <li><a href="#saude">Saúde Pública</a></li>
-                    <li><a href="#ambiente">Ecosistemas</a></li>
-                </ul>
-            </div>
-            <div class="footer-links-col">
-                <h4>Iniciativa</h4>
-                <p class="project-info">Desenvolvido em conformidade com as diretrizes do <strong>Projeto Agrinho 2026</strong>. Promovendo a consciência ecológica desde a base escolar.</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <div class="container footer-bottom-flex">
-                <p>&copy; 2026 AgroSustentável. Todos os direitos reservados.</p>
-                <p>Uso estritamente Educacional & Acadêmico.</p>
-            </div>
+        <div class="container footer-bottom-flex">
+            <p>&copy; 2026 AgroSustentável. Projeto Agrinho.</p>
+            <p>Uso estritamente Educacional.</p>
         </div>
     </footer>
 
