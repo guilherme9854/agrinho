@@ -37,6 +37,7 @@
                     <li><a href="#saude">Saúde</a></li>
                     <li><a href="#ambiente">Meio Ambiente</a></li>
                     <li><a href="#alternativas">Alternativas</a></li>
+                    <li><a href="#quiz">Desafio</a></li>
                     <li><a href="#referencias">Referências</a></li>
                     <li><a href="#sugestoes">Sugestões</a></li>
                 </ul>
@@ -51,7 +52,7 @@
 
     <main class="container">
         
-        <section id="inicio" class="hero-section">
+        <section id="inicio" class="hero-section reveal">
             <div class="hero-content">
                 <span class="hero-tag">Consciência Coletiva</span>
                 <h1>A Influência dos Agrotóxicos</h1>
@@ -59,7 +60,7 @@
             </div>
         </section>
 
-        <section class="stats-section">
+        <section class="stats-section reveal">
             <div class="stat-item">
                 <span class="stat-number">3</span>
                 <span class="stat-label">Principais categorias de defensivos químicos</span>
@@ -74,7 +75,7 @@
             </div>
         </section>
 
-        <section class="infographic-section">
+        <section class="infographic-section reveal">
             <h2>A Jornada do Impacto</h2>
             <p class="section-instruction">Clique nas etapas abaixo para entender o ciclo de dispersão no ecossistema:</p>
             
@@ -97,7 +98,7 @@
             </div>
         </section>
 
-        <section id="o-que-sao" class="content-section">
+        <section id="o-que-sao" class="content-section reveal">
             <h2>O que são Agrotóxicos?</h2>
             <p class="section-instruction">Explore as principais categorias de defensivos químicos utilizados no campo:</p>
             
@@ -138,7 +139,7 @@
             </div>
         </section>
 
-        <section id="saude" class="content-section">
+        <section id="saude" class="content-section reveal">
             <h2>Impactos na Saúde</h2>
             <div class="cards-grid grid-2">
                 <div class="card">
@@ -154,33 +155,63 @@
             </div>
         </section>
 
-        <section id="ambiente" class="content-section">
+        <section id="ambiente" class="content-section reveal">
             <h2>Impactos Ambientais</h2>
-            <div class="card list-card">
-                <ul>
-                    <li>Contaminação direta e empobrecimento químico do solo.</li>
-                    <li>Lixiviação e poluição de rios, lagos e lençóis freáticos.</li>
-                    <li>Redução drástica da biodiversidade de pequenos animais e microrganismos.</li>
-                    <li>Danos críticos a polinizadores essenciais como abelhas.</li>
-                    <li>Desequilíbrio ecológico geral nas cadeias alimentares.</li>
-                </ul>
+            <div class="cards-grid grid-2">
+                <div class="card list-card">
+                    <ul>
+                        <li>Contaminação direta e empobrecimento químico do solo.</li>
+                        <li>Lixiviação e poluição de rios, lagos e lençóis freáticos.</li>
+                        <li>Redução drástica da biodiversidade de pequenos animais.</li>
+                        <li>Danos críticos a polinizadores essenciais como abelhas.</li>
+                    </ul>
+                </div>
+                <div class="card chart-card">
+                    <h3>Tempo de Persistência no Solo</h3>
+                    <p class="section-instruction">Comparativo de permanência de resíduos químicos nocivos vs. biológicos:</p>
+                    <div class="chart-container">
+                        <div class="chart-bar-group">
+                            <span class="chart-label">Defensivo Químico Comum</span>
+                            <div class="chart-track">
+                                <div class="chart-fill danger-bar" style="width: 90%;"></div>
+                            </div>
+                            <span class="chart-value">Até 12 meses +</span>
+                        </div>
+                        <div class="chart-bar-group">
+                            <span class="chart-label">Controle Biológico / Natural</span>
+                            <div class="chart-track">
+                                <div class="chart-fill safe-bar" style="width: 15%;"></div>
+                            </div>
+                            <span class="chart-value">Imediato (Dias)</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section id="alternativas" class="content-section">
+        <section id="alternativas" class="content-section reveal">
             <h2>Alternativas Sustentáveis</h2>
-            <div class="cards-grid grid-3">
-                <div class="card premium-card">
+            <p class="section-instruction">Use os botões para filtrar as vertentes ecológicas de manejo:</p>
+            
+            <div class="filter-buttons">
+                <button class="btn-filter active" onclick="filterAlternativas('all')">Ver Todas</button>
+                <button class="btn-filter" onclick="filterAlternativas('organica')">Orgânica</button>
+                <button class="btn-filter" onclick="filterAlternativas('biologico')">Biológico</button>
+                <button class="btn-filter" onclick="filterAlternativas('mip')">MIP</button>
+            </div>
+
+            <div class="cards-grid grid-3 alternativas-container">
+                <div class="card premium-card" data-category="organica">
                     <div class="visual-icon">🌱</div>
                     <h3>Agricultura Orgânica</h3>
                     <p>Modelo focado inteiramente na regeneração e equilíbrio natural da terra, livre de químicos sintéticos.</p>
                 </div>
-                <div class="card premium-card">
+                <div class="card premium-card" data-category="biologico">
                     <div class="visual-icon">🐞</div>
                     <h3>Controle Biológico</h3>
                     <p>Uso estratégico de inimigos naturais para combater pragas sem intoxicar os alimentos.</p>
                 </div>
-                <div class="card premium-card">
+                <div class="card premium-card" data-category="mip">
                     <div class="visual-icon">🔄</div>
                     <h3>Manejo Integrado (MIP)</h3>
                     <p>Combinação dinâmica de técnicas culturais e físicas para reduzir de forma drástica a dependência de venenos.</p>
@@ -188,7 +219,23 @@
             </div>
         </section>
 
-        <section id="referencias" class="content-section">
+        <section id="quiz" class="content-section reveal">
+            <h2>Desafio de Consciência</h2>
+            <p class="section-instruction">Coloque seu conhecimento à prova respondendo à questão abaixo:</p>
+            <div class="card quiz-card">
+                <div class="quiz-body">
+                    <h3>Qual método abaixo visa combater pragas agrícolas utilizando os próprios predadores naturais do ecossistema?</h3>
+                    <div class="quiz-options">
+                        <button class="option-btn" onclick="checkQuiz(false, this)">A) Herbicidas Seletivos</button>
+                        <button class="option-btn" onclick="checkQuiz(true, this)">B) Controle Biológico</button>
+                        <button class="option-btn" onclick="checkQuiz(false, this)">C) Lixiviação Química</button>
+                    </div>
+                    <div id="quiz-feedback" class="quiz-feedback hidden"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="referencias" class="content-section reveal">
             <h2>Referências e Fontes Oficiais</h2>
             <div class="references-list">
                 <p>Organização Mundial da Saúde (OMS) — Diretrizes de Segurança Química</p>
@@ -198,7 +245,7 @@
             </div>
         </section>
 
-        <section id="sugestoes" class="content-section">
+        <section id="sugestoes" class="content-section reveal">
             <h2>Canal de Sugestões</h2>
             <p class="section-instruction">Contribua com suas observações para enriquecer nosso projeto educacional.</p>
             <div class="card form-card">
