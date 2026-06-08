@@ -6,7 +6,7 @@
     --card-bg: #ffffff;
     --text-main: #0f172a;
     --text-muted: #475569;
-    --navbar-bg: rgba(18, 24, 20, 0.95); /* Efeito fosco profissional */
+    --navbar-bg: rgba(18, 24, 20, 0.95);
     --navbar-text: #ffffff;
     --accordion-header: #ffffff;
     --accordion-hover: #f8fafc;
@@ -64,7 +64,7 @@ body {
 
 .container {
     width: 90%;
-    max-width: 1140px;
+    max-width: 1140px; /* Alinha o limite máximo profissional */
     margin: 0 auto;
 }
 
@@ -74,7 +74,7 @@ h1, h2, h3, h4 {
 }
 
 /* ==========================================================================
-   HEADER & NAVBAR PREMIUM
+   HEADER & NAVBAR PREMIUM (LIMITADA PARA NÃO ESTICAR)
    ========================================================================== */
 .navbar {
     background-color: var(--navbar-bg);
@@ -84,7 +84,7 @@ h1, h2, h3, h4 {
     left: 0;
     width: 100%;
     z-index: 1000;
-    backdrop-filter: blur(12px); /* Efeito translúcido do vidro */
+    backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.07);
     transition: background-color var(--speed);
@@ -228,7 +228,6 @@ h1, h2, h3, h4 {
     transform: translateX(5px);
 }
 
-/* Animação Hamburger -> X */
 .hamburger.active .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); background-color: var(--lime-accent); }
 .hamburger.active .bar:nth-child(2) { opacity: 0; }
 .hamburger.active .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); background-color: var(--lime-accent); }
@@ -269,18 +268,16 @@ h1, h2, h3, h4 {
 }
 
 /* ==========================================================================
-   SEÇÃO HERO (ESTILO PORTAL DE NOTÍCIAS)
+   SEÇÃO HERO COMPACTA (CORRIGIDO PROBLEMA DE COMPRIMENTO ESTICADO)
    ========================================================================== */
 .hero-section {
     background: linear-gradient(135deg, #0f1f13 0%, #050a06 100%);
     border-radius: var(--radius-lg);
-    padding: 90px 60px;
-    text-align: left; /* Alinhamento à esquerda confere maior profissionalismo */
+    padding: 80px 40px;
+    text-align: center; /* Centralizado evita a sensação de texto esticado nas laterais */
     color: white;
     margin-bottom: 60px;
     box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-    position: relative;
-    overflow: hidden;
 }
 
 .hero-tag {
@@ -297,18 +294,21 @@ h1, h2, h3, h4 {
 }
 
 .hero-content h1 {
-    font-size: 3.2rem;
+    font-size: 3rem;
     font-weight: 800;
-    line-height: 1.15;
+    line-height: 1.2;
     margin-bottom: 20px;
-    max-width: 800px;
+    max-width: 850px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .hero-content p {
-    max-width: 680px;
-    font-size: 1.1rem;
+    max-width: 650px; /* Mantém as linhas do parágrafo curtas e elegantes */
+    margin: 0 auto;
+    font-size: 1.08rem;
     opacity: 0.75;
-    line-height: 1.6;
+    line-height: 1.65;
 }
 
 /* ==========================================================================
@@ -412,8 +412,8 @@ h1, h2, h3, h4 {
     gap: 24px;
 }
 
-.grid-3 { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
-.grid-2 { grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); }
 
 .card {
     background-color: var(--card-bg);
@@ -680,6 +680,6 @@ h1, h2, h3, h4 {
 
 @media (max-width: 576px) {
     .nav-center {
-        display: none; /* Esconde o badge do agrinho em telas minúsculas para não quebrar layout */
+        display: none;
     }
 }
