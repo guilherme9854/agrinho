@@ -6,7 +6,7 @@
     --card-bg: #ffffff;
     --text-main: #1e293b;
     --text-muted: #64748b;
-    --navbar-bg: #121814; /* Escuro premium igual à foto */
+    --navbar-bg: #121814; /* Tom escuro idêntico à foto do usuário */
     --navbar-text: #ffffff;
     --accordion-header: #ffffff;
     --accordion-hover: #f1f5f9;
@@ -32,9 +32,9 @@
 }
 
 :root {
-    --primary-green: #3f6212; /* Verde musgo das fotos */
+    --primary-green: #3f6212; /* Verde sofisticado das imagens */
     --lime-accent: #84cc16;
-    --radius: 16px; /* Bordas mais arredondadas premium */
+    --radius: 16px;
     --speed: 0.3s;
 }
 
@@ -52,7 +52,7 @@ body {
 
 .container {
     width: 90%;
-    max-width: 1000px; /* Alinhamento mais compacto e elegante */
+    max-width: 1000px;
     margin: 0 auto;
 }
 
@@ -101,7 +101,22 @@ body {
     color: var(--lime-accent);
 }
 
-/* Botão de Alternância de Tema */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--lime-accent);
+    transition: width 0.3s;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Botão de Alternância de Tema (Sol/Lua) */
 .theme-btn {
     background: rgba(255, 255, 255, 0.1);
     border: none;
@@ -213,15 +228,14 @@ body {
     color: var(--primary-green);
 }
 
-/* CORREÇÃO DO CONTEÚDO OCULTO */
 .accordion-content {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease-out; /* Transição suave de descida */
+    transition: max-height 0.3s ease-out;
 }
 
 .accordion-item.active .accordion-content {
-    max-height: 200px; /* Permitir que o bloco expanda */
+    max-height: 200px;
 }
 
 .content-flex {
@@ -325,6 +339,73 @@ body {
     color: var(--text-muted);
     box-shadow: var(--shadow);
     border: var(--border);
+}
+
+/* ==========================================================================
+   FORMULÁRIO DE SUGESTÕES
+   ========================================================================== */
+.form-card {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.suggestion-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: left;
+}
+
+.form-group label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: var(--border);
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--lime-accent);
+    box-shadow: 0 0 0 3px rgba(132, 204, 22, 0.15);
+}
+
+.btn-submit {
+    background-color: var(--primary-green);
+    color: white;
+    border: none;
+    padding: 14px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-submit:hover {
+    background-color: #2d4a0f;
+}
+
+.btn-submit:active {
+    transform: scale(0.98);
 }
 
 /* Rodapé */

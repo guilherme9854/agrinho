@@ -9,7 +9,6 @@
 </head>
 <body class="light-mode">
 
-    <!-- Menu Superior Fixo Premium -->
     <header class="navbar">
         <div class="container nav-container">
             <div class="logo">Agrotóxicos</div>
@@ -21,9 +20,9 @@
                     <li><a href="#ambiente">Meio Ambiente</a></li>
                     <li><a href="#alternativas">Alternativas</a></li>
                     <li><a href="#referencias">Referências</a></li>
+                    <li><a href="#sugestoes">Sugestões</a></li>
                 </ul>
             </nav>
-            <!-- Botão do Alternador de Temas (Claro/Escuro) -->
             <button id="theme-toggle" class="theme-btn" aria-label="Mudar tema">
                 <span class="icon-sun">☀️</span>
                 <span class="icon-moon" style="display:none;">🌙</span>
@@ -31,10 +30,8 @@
         </div>
     </header>
 
-    <!-- Conteúdo Principal -->
     <main class="container">
         
-        <!-- Hero Section -->
         <section id="inicio" class="hero-section">
             <div class="hero-content">
                 <h1>A Influência dos Agrotóxicos</h1>
@@ -42,13 +39,11 @@
             </div>
         </section>
 
-        <!-- O que são (Botões Interativos / Accordions) -->
         <section id="o-que-sao" class="content-section">
             <h2>O que são Agrotóxicos?</h2>
             <p class="section-instruction">Clique nos botões abaixo para explorar as categorias:</p>
             
             <div class="accordion-container">
-                <!-- Item 1 -->
                 <div class="accordion-item">
                     <button class="accordion-header">
                         <span>Inseticidas</span>
@@ -61,7 +56,6 @@
                     </div>
                 </div>
 
-                <!-- Item 2 -->
                 <div class="accordion-item">
                     <button class="accordion-header">
                         <span>Herbicidas</span>
@@ -74,7 +68,6 @@
                     </div>
                 </div>
 
-                <!-- Item 3 -->
                 <div class="accordion-item">
                     <button class="accordion-header">
                         <span>Fungicidas</span>
@@ -89,7 +82,6 @@
             </div>
         </section>
 
-        <!-- Impactos na Saúde -->
         <section id="saude" class="content-section">
             <h2>Impactos na Saúde</h2>
             <div class="cards-grid grid-2">
@@ -106,7 +98,6 @@
             </div>
         </section>
 
-        <!-- Impactos Ambientais (Ocupando a largura total agora) -->
         <section id="ambiente" class="content-section">
             <h2>Impactos Ambientais</h2>
             <div class="card list-card">
@@ -120,7 +111,6 @@
             </div>
         </section>
 
-        <!-- Alternativas Sustentáveis -->
         <section id="alternativas" class="content-section">
             <h2>Alternativas Sustentáveis</h2>
             <div class="cards-grid grid-3">
@@ -142,7 +132,6 @@
             </div>
         </section>
 
-        <!-- Referências -->
         <section id="referencias" class="content-section">
             <h2>Referências</h2>
             <div class="references-list">
@@ -152,9 +141,34 @@
                 <p>FAO - Organização das Nações Unidas para a Alimentação e a Agricultura</p>
             </div>
         </section>
+
+        <section id="sugestoes" class="content-section">
+            <h2>Envie sua Sugestão</h2>
+            <p class="section-instruction">Sua opinião é importante para melhorarmos este projeto educacional.</p>
+            
+            <div class="card form-card">
+                <form action="https://formspree.io/f/seu-id-aqui" method="POST" class="suggestion-form">
+                    <div class="form-group">
+                        <label for="nome">Nome:</label>
+                        <input type="text" id="nome" name="name" placeholder="Seu nome" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">E-mail:</label>
+                        <input type="email" id="email" name="_replyto" placeholder="seu@email.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mensagem">Sugestão ou Mensagem:</label>
+                        <textarea id="mensagem" name="message" rows="5" placeholder="Digite aqui sua sugestão..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn-submit">Enviar Sugestão</button>
+                </form>
+            </div>
+        </section>
     </main>
 
-    <!-- Rodapé -->
     <footer>
         <p>Projeto Educacional — A Influência dos Agrotóxicos</p>
     </footer>
