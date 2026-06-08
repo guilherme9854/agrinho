@@ -224,24 +224,39 @@
             <p class="section-instruction">Coloque seu conhecimento à prova respondendo à questão abaixo:</p>
             <div class="card quiz-card">
                 <div class="quiz-body">
-                    <h3>Qual método abaixo visa combater pragas agrícolas utilizando os próprios predadores naturais do ecossistema?</h3>
-                    <div class="quiz-options">
-                        <button class="option-btn" onclick="checkQuiz(false, this)">A) Herbicidas Seletivos</button>
-                        <button class="option-btn" onclick="checkQuiz(true, this)">B) Controle Biológico</button>
-                        <button class="option-btn" onclick="checkQuiz(false, this)">C) Lixiviação Química</button>
-                    </div>
+                    <h3 id="quiz-question">Carregando pergunta...</h3>
+                    <div id="quiz-options" class="quiz-options"></div>
                     <div id="quiz-feedback" class="quiz-feedback hidden"></div>
+                    <button id="btn-next-quiz" class="btn-submit hidden" style="margin-top: 15px; background: var(--accent);">Tentar Novamente (Próxima Pergunta)</button>
                 </div>
             </div>
         </section>
 
         <section id="referencias" class="content-section reveal">
             <h2>Referências e Fontes Oficiais</h2>
-            <div class="references-list">
-                <p>Organização Mundial da Saúde (OMS) — Diretrizes de Segurança Química</p>
-                <p>Ministério da Saúde — Painel de Vigilância de Populações Expostas</p>
-                <p>Agência Nacional de Vigilância Sanitária (ANVISA) — Programa de Análise de Resíduos</p>
-                <p>FAO / ONU — Organização das Nações Unidas para a Alimentação e a Agricultura</p>
+            <p class="section-instruction">Base científica e diretrizes institucionais que fundamentam este projeto:</p>
+            <div class="references-grid">
+                <div class="ref-item">
+                    <span class="ref-icon">🏛️</span>
+                    <div>
+                        <h4>Organização Mundial da Saúde (OMS)</h4>
+                        <p>Diretrizes internacionais de segurança química e limites de exposição humana.</p>
+                    </div>
+                </div>
+                <div class="ref-item">
+                    <span class="ref-icon">🛡️</span>
+                    <div>
+                        <h4>Ministério da Saúde & ANVISA</h4>
+                        <p>Painel de Vigilância de Populações Expostas e Programa de Análise de Resíduos de Alimentos (PARA).</p>
+                    </div>
+                </div>
+                <div class="ref-item">
+                    <span class="ref-icon">🌱</span>
+                    <div>
+                        <h4>FAO / ONU</h4>
+                        <p>Dados globais sobre segurança alimentar, manejo sustentável e redução do uso de defensivos sintéticos.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -282,54 +297,13 @@
         </div>
     </footer>
 
+    <div id="cookie-banner" class="cookie-banner">
+        <div class="cookie-content">
+            <p>🍪 Este website utiliza cookies educacionais para otimizar sua experiência de navegação e análise de dados do Projeto Agrinho 2026. Ao continuar, você concorda com nossos termos.</p>
+            <button id="cookie-accept-btn" class="btn-cookie">Aceitar e Continuar</button>
+        </div>
+    </div>
+
     <script src="main.js"></script>
-    <section id="quiz" class="content-section reveal">
-    <h2>Desafio de Consciência</h2>
-    <p class="section-instruction">Coloque seu conhecimento à prova respondendo à questão abaixo:</p>
-    <div class="card quiz-card">
-        <div class="quiz-body">
-            <h3 id="quiz-question">Carregando pergunta...</h3>
-            <div id="quiz-options" class="quiz-options">
-                </div>
-            <div id="quiz-feedback" class="quiz-feedback hidden"></div>
-            <button id="btn-next-quiz" class="btn-submit hidden" style="margin-top: 15px; background: var(--accent);">Tentar Novamente (Próxima Pergunta)</button>
-        </div>
-    </div>
-</section>
-
-<section id="referencias" class="content-section reveal">
-    <h2>Referências e Fontes Oficiais</h2>
-    <p class="section-instruction">Base científica e diretrizes institucionais que fundamentam este projeto:</p>
-    <div class="references-grid">
-        <div class="ref-item">
-            <span class="ref-icon">🏛️</span>
-            <div>
-                <h4>Organização Mundial da Saúde (OMS)</h4>
-                <p>Diretrizes internacionais de segurança química e limites de exposição humana.</p>
-            </div>
-        </div>
-        <div class="ref-item">
-            <span class="ref-icon">🛡️</span>
-            <div>
-                <h4>Ministério da Saúde & ANVISA</h4>
-                <p>Painel de Vigilância de Populações Expostas e Programa de Análise de Resíduos de Alimentos (PARA).</p>
-            </div>
-        </div>
-        <div class="ref-item">
-            <span class="ref-icon">🌱</span>
-            <div>
-                <h4>FAO / ONU</h4>
-                <p>Dados globais sobre segurança alimentar, manejo sustentável e redução do uso de defensivos sintéticos.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<div id="cookie-banner" class="cookie-banner">
-    <div class="cookie-content">
-        <p>🍪 Este website utiliza cookies educacionais para otimizar sua experiência de navegação e análise de dados do Projeto Agrinho 2026. Ao continuar, você concorda com nossos termos.</p>
-        <button id="cookie-accept-btn" class="btn-cookie">Aceitar e Continuar</button>
-    </div>
-</div>
 </body>
 </html>
