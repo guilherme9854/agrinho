@@ -3,140 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Influência dos Agrotóxicos</title>
-
+    <title>A Influência dos Agrotóxicos</title>
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-    <nav>
-        <h1>Agrotóxicos</h1>
-
-        <ul>
-            <li><a href="#inicio">Início</a></li>
-            <li><a href="#oque">O que são</a></li>
-            <li><a href="#saude">Saúde</a></li>
-            <li><a href="#ambiente">Meio Ambiente</a></li>
-            <li><a href="#alternativas">Alternativas</a></li>
-            <li><a href="#referencias">Referências</a></li>
-        </ul>
-
-        <button id="theme-btn">🌙</button>
-    </nav>
-</header>
-
-<section id="inicio" class="hero">
-    <h2>A Influência dos Agrotóxicos</h2>
-
-    <p>
-        Os agrotóxicos são amplamente utilizados na agricultura para combater pragas e aumentar a produtividade.
-        Entretanto, seu uso excessivo pode causar impactos significativos à saúde humana e ao meio ambiente.
-    </p>
-</section>
-
-<section id="oque">
-    <h2>O que são Agrotóxicos?</h2>
-
-    <p>
-        Agrotóxicos são substâncias químicas utilizadas para controlar insetos, fungos,
-        ervas daninhas e outras pragas que afetam as plantações.
-    </p>
-
-    <div class="cards">
-        <div class="card">
-            <h3>Inseticidas</h3>
-            <p>Combatem insetos que prejudicam as culturas.</p>
+    <!-- Menu Superior Fixo -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <div class="logo">Agrotóxicos</div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#o-que-sao">O que são</a></li>
+                    <li><a href="#saude">Saúde</a></li>
+                    <li><a href="#ambiente">Meio Ambiente</a></li>
+                    <li><a href="#alternativas">Alternativas</a></li>
+                    <li><a href="#referencias">Referências</a></li>
+                </ul>
+            </nav>
         </div>
+    </header>
 
-        <div class="card">
-            <h3>Herbicidas</h3>
-            <p>Eliminam plantas invasoras.</p>
-        </div>
+    <!-- Conteúdo Principal -->
+    <main class="container">
+        
+        <!-- Seção de Abertura / Hero -->
+        <section id="inicio" class="hero-section">
+            <h1>A Influência dos Agrotóxicos</h1>
+            <p>Os agrotóxicos são amplamente utilizados na agricultura para controlar pragas e aumentar a produtividade. Entretanto, seu uso incorreto pode causar impactos significativos à saúde humana e ao meio ambiente.</p>
+        </section>
 
-        <div class="card">
-            <h3>Fungicidas</h3>
-            <p>Controlam fungos causadores de doenças.</p>
-        </div>
-    </div>
-</section>
+        <!-- O que são -->
+        <section id="o-que-sao" class="content-section">
+            <h2>O que são Agrotóxicos?</h2>
+            <div class="cards-grid grid-3">
+                <div class="card">
+                    <h3>Inseticidas</h3>
+                    <p>Combate insetos que prejudicam as culturas agrícolas.</p>
+                </div>
+                <div class="card">
+                    <h3>Herbicidas</h3>
+                    <p>Elimina plantas invasoras que competem por nutrientes.</p>
+                </div>
+                <div class="card">
+                    <h3>Fungicidas</h3>
+                    <p>Controla fungos causadores de doenças nas plantações.</p>
+                </div>
+            </div>
+        </section>
 
-<section id="saude">
-    <h2>Impactos na Saúde</h2>
+        <!-- Impactos na Saúde -->
+        <section id="saude" class="content-section">
+            <h2>Impactos na Saúde</h2>
+            <div class="cards-grid grid-2">
+                <div class="card highlight">
+                    <h3>Curto Prazo</h3>
+                    <p>Náuseas, tonturas, dores de cabeça, irritações na pele e problemas respiratórios agudos.</p>
+                </div>
+                <div class="card highlight">
+                    <h3>Longo Prazo</h3>
+                    <p>Podem incluir o desenvolvimento de câncer, alterações hormonais crônicas e doenças neurológicas.</p>
+                </div>
+            </div>
+        </section>
 
-    <div class="cards">
+        <!-- Impactos Ambientais -->
+        <section id="ambiente" class="content-section">
+            <h2>Impactos Ambientais</h2>
+            <div class="card list-card">
+                <ul>
+                    <li>Contaminação direta e empobrecimento do solo.</li>
+                    <li>Poluição de rios, lagos e lençóis freáticos subterrâneos.</li>
+                    <li>Redução severa da biodiversidade local.</li>
+                    <li>Danos críticos a polinizadores essenciais, como as abelhas.</li>
+                    <li>Desequilíbrio biológico nos ecossistemas afetados.</li>
+                </ul>
+            </div>
+        </section>
 
-        <div class="card">
-            <h3>Curto Prazo</h3>
-            <p>
-                Náuseas, tontura, dores de cabeça,
-                irritações na pele e problemas respiratórios.
-            </p>
-        </div>
+        <!-- Alternativas Sustentáveis -->
+        <section id="alternativas" class="content-section">
+            <h2>Alternativas Sustentáveis</h2>
+            <div class="cards-grid grid-3">
+                <div class="card">
+                    <h3>Agricultura Orgânica</h3>
+                    <p>Produção focada no equilíbrio natural, sem o uso de agrotóxicos sintéticos.</p>
+                </div>
+                <div class="card">
+                    <h3>Controle Biológico</h3>
+                    <p>Uso estratégico de inimigos naturais (predadores ou parasitas) para combater pragas.</p>
+                </div>
+                <div class="card">
+                    <h3>Manejo Integrado</h3>
+                    <p>Combinação de técnicas culturais, biológicas e físicas para minimizar o uso químico.</p>
+                </div>
+            </div>
+        </section>
 
-        <div class="card">
-            <h3>Longo Prazo</h3>
-            <p>
-                Possível relação com câncer,
-                alterações hormonais e doenças neurológicas.
-            </p>
-        </div>
+        <!-- Referências -->
+        <section id="referencias" class="content-section">
+            <h2>Referências</h2>
+            <div class="references-list">
+                <p>Organização Mundial da Saúde (OMS)</p>
+                <p>Ministério da Saúde</p>
+                <p>Agência Nacional de Vigilância Sanitária (ANVISA)</p>
+                <p>FAO - Organização das Nações Unidas para a Alimentação e a Agricultura</p>
+            </div>
+        </section>
+    </main>
 
-    </div>
-</section>
+    <!-- Rodapé -->
+    <footer>
+        <p>Projeto Educacional - A Influência dos Agrotóxicos</p>
+    </footer>
 
-<section id="ambiente">
-    <h2>Impactos Ambientais</h2>
-
-    <ul class="lista">
-        <li>Contaminação do solo.</li>
-        <li>Poluição de rios e lençóis freáticos.</li>
-        <li>Redução da biodiversidade.</li>
-        <li>Morte de polinizadores como as abelhas.</li>
-        <li>Desequilíbrio dos ecossistemas.</li>
-    </ul>
-</section>
-
-<section id="alternativas">
-    <h2>Alternativas Sustentáveis</h2>
-
-    <div class="cards">
-
-        <div class="card">
-            <h3>Agricultura Orgânica</h3>
-            <p>Produção sem uso de agrotóxicos sintéticos.</p>
-        </div>
-
-        <div class="card">
-            <h3>Controle Biológico</h3>
-            <p>Uso de organismos vivos para combater pragas.</p>
-        </div>
-
-        <div class="card">
-            <h3>Manejo Integrado</h3>
-            <p>Combinação de técnicas para reduzir o uso químico.</p>
-        </div>
-
-    </div>
-</section>
-
-<section id="referencias">
-    <h2>Referências</h2>
-
-    <p>
-        Organização Mundial da Saúde (OMS)<br>
-        Ministério da Saúde<br>
-        Agência Nacional de Vigilância Sanitária (ANVISA)<br>
-        FAO – Organização das Nações Unidas para Alimentação e Agricultura
-    </p>
-</section>
-
-<footer>
-    <p>Projeto Educacional - Influência dos Agrotóxicos</p>
-</footer>
-
-<script src="main.js"></script>
-
+    <script src="main.js"></script>
 </body>
 </html>
