@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="light-mode"> <!-- Classe inicial do tema -->
+<body class="light-mode">
 
-    <!-- Menu Superior Premium -->
+    <!-- Menu Superior Fixo Premium -->
     <header class="navbar">
         <div class="container nav-container">
             <div class="logo">Agrotóxicos</div>
@@ -19,13 +19,11 @@
                     <li><a href="#o-que-sao">O que são</a></li>
                     <li><a href="#saude">Saúde</a></li>
                     <li><a href="#ambiente">Meio Ambiente</a></li>
-                    <li><a href="#estatisticas">Estatísticas</a></li> <!-- Nova Aba -->
-                    <li><a href="#legislacao">Legislação</a></li> <!-- Nova Aba -->
                     <li><a href="#alternativas">Alternativas</a></li>
                     <li><a href="#referencias">Referências</a></li>
                 </ul>
             </nav>
-            <!-- Botão de Alternar Tema -->
+            <!-- Botão do Alternador de Temas -->
             <button id="theme-toggle" class="theme-btn" aria-label="Mudar tema">
                 <span class="icon-sun">☀️</span>
                 <span class="icon-moon" style="display:none;">🌙</span>
@@ -36,27 +34,60 @@
     <!-- Conteúdo Principal -->
     <main class="container">
         
-        <!-- Hero Section -->
+        <!-- Hero Section com Imagem de Fundo -->
         <section id="inicio" class="hero-section">
-            <h1>A Influência dos Agrotóxicos</h1>
-            <p>Os agrotóxicos são amplamente utilizados na agricultura para controlar pragas e aumentar a produtividade. Entretanto, seu uso incorreto pode causar impactos significativos à saúde humana e ao meio ambiente.</p>
+            <div class="hero-content">
+                <h1>A Influência dos Agrotóxicos</h1>
+                <p>Os agrotóxicos são amplamente utilizados na agricultura para controlar pragas e aumentar a produtividade. Entretanto, seu uso incorreto pode causar impactos significativos à saúde humana e ao meio ambiente.</p>
+            </div>
         </section>
 
-        <!-- O que são -->
+        <!-- O que são (Cards Interativos) -->
         <section id="o-que-sao" class="content-section">
             <h2>O que são Agrotóxicos?</h2>
-            <div class="cards-grid grid-3">
-                <div class="card">
-                    <h3>Inseticidas</h3>
-                    <p>Combate insetos que prejudicam as culturas agrícolas.</p>
+            <p class="section-instruction">Clique nos botões abaixo para explorar as categorias:</p>
+            
+            <div class="accordion-container">
+                <!-- Item 1 -->
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Inseticidas</span>
+                        <span class="chevron">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="content-flex">
+                            <p>Combate insetos que prejudicam as culturas agrícolas e atacam as folhas e frutos diretamente.</p>
+                            <img src="https://unsplash.com" alt="Insetos em plantação" class="section-img">
+                        </div>
+                    </div>
                 </div>
-                <div class="card">
-                    <h3>Herbicidas</h3>
-                    <p>Elimina plantas invasoras que competem por nutrientes.</p>
+
+                <!-- Item 2 -->
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Herbicidas</span>
+                        <span class="chevron">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="content-flex">
+                            <p>Elimina plantas invasoras, popularmente conhecidas como ervas daninhas, que competem por nutrientes do solo.</p>
+                            <img src="https://unsplash.com" alt="Trator aplicando herbicida" class="section-img">
+                        </div>
+                    </div>
                 </div>
-                <div class="card">
-                    <h3>Fungicidas</h3>
-                    <p>Controla fungos causadores de doenças nas plantações.</p>
+
+                <!-- Item 3 -->
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Fungicidas</span>
+                        <span class="chevron">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="content-flex">
+                            <p>Controla e elimina fungos causadores de doenças e bolores que destroem plantações inteiras.</p>
+                            <img src="https://unsplash.com" alt="Plantação protegida de fungos" class="section-img">
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -65,13 +96,15 @@
         <section id="saude" class="content-section">
             <h2>Impactos na Saúde</h2>
             <div class="cards-grid grid-2">
-                <div class="card highlight">
-                    <h3>Curto Prazo</h3>
-                    <p>Náuseas, tonturas, dores de cabeça, irritações na pele e problemas respiratórios agudos.</p>
+                <div class="card">
+                    <div class="card-badge alert">Curto Prazo</div>
+                    <h3>Efeitos Imediatos</h3>
+                    <p>Náuseas, tonturas, dores de cabeça agudas, irritações severas na pele e graves problemas respiratórios provocados pela exposição direta.</p>
                 </div>
-                <div class="card highlight">
-                    <h3>Longo Prazo</h3>
-                    <p>Podem incluir o desenvolvimento de câncer, alterações hormonais crônicas e doenças neurológicas.</p>
+                <div class="card">
+                    <div class="card-badge alert">Longo Prazo</div>
+                    <h3>Efeitos Crônicos</h3>
+                    <p>Podem incluir o desenvolvimento progressivo de câncer, severas alterações hormonais no organismo e doenças neurológicas crônicas.</p>
                 </div>
             </div>
         </section>
@@ -79,47 +112,18 @@
         <!-- Impactos Ambientais -->
         <section id="ambiente" class="content-section">
             <h2>Impactos Ambientais</h2>
-            <div class="card list-card">
-                <ul>
-                    <li>Contaminação direta e empobrecimento do solo.</li>
-                    <li>Poluição de rios, lagos e lençóis freáticos subterrâneos.</li>
-                    <li>Redução severa da biodiversidade local.</li>
-                    <li>Danos críticos a polinizadores essenciais, como as abelhas.</li>
-                    <li>Desequilíbrio biológico nos ecossistemas afetados.</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- Nova Aba: Estatísticas -->
-        <section id="estatisticas" class="content-section">
-            <h2>Estatísticas de Consumo</h2>
-            <div class="cards-grid grid-2">
-                <div class="card">
-                    <h3>Uso Global</h3>
-                    <p>O uso global de agrotóxicos aumentou significativamente nas últimas décadas, movimentando bilhões de dólares anualmente no setor agroquímico.</p>
+            <div class="grid-2-dynamic">
+                <div class="card list-card">
+                    <ul>
+                        <li>Contaminação direta e empobrecimento químico do solo.</li>
+                        <li>Poluição de rios, lagos e lençóis freáticos.</li>
+                        <li>Redução severa da biodiversidade de pequenos animais.</li>
+                        <li>Danos críticos a polinizadores essenciais como abelhas.</li>
+                        <li>Desequilíbrio ecológico geral nas cadeias alimentares.</li>
+                    </ul>
                 </div>
-                <div class="card">
-                    <h3>Consumo no Brasil</h3>
-                    <p>O Brasil figura entre os maiores consumidores mundiais de defensivos agrícolas, impulsionado pelas grandes extensões de monoculturas como soja e milho.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Nova Aba: Legislação -->
-        <section id="legislacao" class="content-section">
-            <h2>Legislação e Regulamentação</h2>
-            <div class="cards-grid grid-3">
-                <div class="card">
-                    <h3>Anvisa</h3>
-                    <p>Responsável pela avaliação toxicológica e por determinar os riscos à saúde humana.</p>
-                </div>
-                <div class="card">
-                    <h3>Ibama</h3>
-                    <p>Avalia o potencial de periculosidade ambiental e os impactos ecológicos dos produtos.</p>
-                </div>
-                <div class="card">
-                    <h3>Mapa</h3>
-                    <p>O Ministério da Agricultura realiza o registro oficial e fiscaliza a eficácia agronômica.</p>
+                <div class="image-wrapper">
+                    <img src="https://unsplash.com" alt="Natureza preservada" class="side-img">
                 </div>
             </div>
         </section>
@@ -128,17 +132,20 @@
         <section id="alternativas" class="content-section">
             <h2>Alternativas Sustentáveis</h2>
             <div class="cards-grid grid-3">
-                <div class="card">
+                <div class="card premium-card">
+                    <div class="card-icon">🌱</div>
                     <h3>Agricultura Orgânica</h3>
-                    <p>Produção focada no equilíbrio natural, sem o uso de agrotóxicos sintéticos.</p>
+                    <p>Produção limpa focada inteiramente no equilíbrio da terra, sem o uso de compostos químicos sintéticos.</p>
                 </div>
-                <div class="card">
+                <div class="card premium-card">
+                    <div class="card-icon">🐞</div>
                     <h3>Controle Biológico</h3>
-                    <p>Uso estratégico de inimigos naturais para combater pragas de forma segura.</p>
+                    <p>Uso estratégico de inimigos naturais (insetos predadores) para combater pragas sem intoxicar alimentos.</p>
                 </div>
-                <div class="card">
+                <div class="card premium-card">
+                    <div class="card-icon">🔄</div>
                     <h3>Manejo Integrado</h3>
-                    <p>Combinação de técnicas culturais e físicas para minimizar a dependência química.</p>
+                    <p>Combinação dinâmica de técnicas culturais, físicas e ecológicas para reduzir a dependência dos agrotóxicos.</p>
                 </div>
             </div>
         </section>
@@ -157,7 +164,7 @@
 
     <!-- Rodapé -->
     <footer>
-        <p>Projeto Educacional - A Influência dos Agrotóxicos</p>
+        <p>Projeto Educacional — A Influência dos Agrotóxicos</p>
     </footer>
 
     <script src="main.js"></script>

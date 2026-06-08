@@ -1,51 +1,57 @@
-/* Variáveis para controlar os Temas */
+/* Paleta de Cores Dinâmica (Modo Escuro / Claro) */
 .light-mode {
-    --bg-light: #f8fafc;
+    --bg-main: #f8fafc;
     --card-bg: #ffffff;
     --text-main: #1e293b;
     --text-muted: #64748b;
     --navbar-bg: #1e5631;
     --navbar-text: #ffffff;
-    --shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    --border-card: 1px solid rgba(0,0,0,0.06);
-    --ref-bg: #f1f5f9;
+    --accordion-header: #f1f5f9;
+    --accordion-hover: #e2e8f0;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    --border: 1px solid rgba(0, 0, 0, 0.06);
+    --badge-bg: #fee2e2;
+    --badge-text: #ef4444;
 }
 
 .dark-mode {
-    --bg-light: #0f172a;
+    --bg-main: #0f172a;
     --card-bg: #1e293b;
     --text-main: #f8fafc;
     --text-muted: #94a3b8;
-    --navbar-bg: #0b2e18;
+    --navbar-bg: #092412;
     --navbar-text: #f8fafc;
-    --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    --border-card: 1px solid rgba(255,255,255,0.08);
-    --ref-bg: #334155;
+    --accordion-header: #334155;
+    --accordion-hover: #475569;
+    --shadow: 0 4px 25px rgba(0, 0, 0, 0.35);
+    --border: 1px solid rgba(255, 255, 255, 0.08);
+    --badge-bg: #7f1d1d;
+    --badge-text: #fca5a5;
 }
 
 :root {
-    --primary-color: #2e7d43;
-    --secondary-color: #4c9a2a;
-    --border-radius: 12px;
-    --transition-speed: 0.3s;
+    --primary-green: #2e7d43;
+    --lime-accent: #a3e635;
+    --radius: 12px;
+    --speed: 0.3s;
 }
 
 body {
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    background-color: var(--bg-light);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background-color: var(--bg-main);
     color: var(--text-main);
     line-height: 1.6;
     padding-top: 100px;
-    transition: background-color var(--transition-speed), color var(--transition-speed);
+    transition: background-color var(--speed), color var(--speed);
 }
 
 .container {
-    width: 92%;
-    max-width: 1200px;
+    width: 90%;
+    max-width: 1140px;
     margin: 0 auto;
 }
 
-/* Navbar Corrigida e Espaçada */
+/* Navbar Corrigida */
 .navbar {
     background-color: var(--navbar-bg);
     color: var(--navbar-text);
@@ -54,44 +60,42 @@ body {
     left: 0;
     width: 100%;
     z-index: 1000;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    transition: background-color var(--transition-speed);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: background-color var(--speed);
 }
 
 .nav-container {
     display: flex;
-    justify-content: space-between; /* Afasta o Logo do Menu e do Botão */
-    align-items: center;            /* Alinha tudo perfeitamente no centro vertical */
-    height: 80px;
+    justify-content: space-between;
+    align-items: center;
+    height: 75px;
 }
 
 .logo {
     font-weight: 700;
-    font-size: 1.5rem;
-    letter-spacing: -0.5px;
-    color: #a3e635;
+    font-size: 1.45rem;
+    color: var(--lime-accent);
 }
 
 .nav-links {
     display: flex;
-    gap: 28px; /* Espaço elegante entre os links */
+    gap: 24px;
 }
 
 .nav-links a {
     font-size: 0.95rem;
     font-weight: 500;
     opacity: 0.85;
-    transition: color 0.2s, opacity 0.2s;
-    padding: 6px 0;
     position: relative;
+    padding: 6px 0;
+    transition: color 0.2s, opacity 0.2s;
 }
 
 .nav-links a:hover {
     opacity: 1;
-    color: #a3e635;
+    color: var(--lime-accent);
 }
 
-/* Efeito visual de linha passando embaixo ao passar o mouse */
 .nav-links a::after {
     content: '';
     position: absolute;
@@ -99,142 +103,256 @@ body {
     height: 2px;
     bottom: 0;
     left: 0;
-    background-color: #a3e635;
-    transition: width 0.3s ease;
+    background-color: var(--lime-accent);
+    transition: width 0.3s;
 }
 
 .nav-links a:hover::after {
     width: 100%;
 }
 
-/* Botão de Tema */
+/* Botão de Alternância de Tema */
 .theme-btn {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.12);
     border: none;
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     cursor: pointer;
-    padding: 8px 12px;
-    border-radius: 50px;
-    transition: background 0.2s, transform 0.2s;
+    padding: 8px 14px;
+    border-radius: 30px;
+    transition: background var(--speed), transform 0.2s;
 }
 
 .theme-btn:hover {
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.25);
     transform: scale(1.05);
 }
 
-/* Hero Banner */
+/* Hero Section (Abertura) */
 .hero-section {
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('https://unsplash.com') no-repeat center center/cover;
+    border-radius: var(--radius);
+    padding: 70px 40px;
     text-align: center;
-    padding: 60px 40px;
-    background: linear-gradient(135deg, #1e5631 0%, #347a46 100%);
     color: white;
-    border-radius: var(--border-radius);
     margin-bottom: 50px;
     box-shadow: var(--shadow);
 }
 
-.hero-section h1 {
+.hero-content h1 {
     font-size: 2.8rem;
-    margin-bottom: 18px;
     font-weight: 800;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.4);
 }
 
-.hero-section p {
-    max-width: 850px;
+.hero-content p {
+    max-width: 800px;
     margin: 0 auto;
     font-size: 1.15rem;
-    opacity: 0.9;
+    opacity: 0.95;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.4);
 }
 
-/* Seções de Conteúdo */
+/* Títulos das Seções */
 .content-section {
-    margin-bottom: 60px;
+    margin-bottom: 55px;
     scroll-margin-top: 110px;
 }
 
 .content-section h2 {
-    color: var(--primary-color);
-    font-size: 1.8rem;
+    color: var(--primary-green);
+    font-size: 1.75rem;
     font-weight: 700;
-    margin-bottom: 25px;
-    border-left: 6px solid var(--secondary-color);
-    padding-left: 15px;
+    margin-bottom: 20px;
+    border-left: 5px solid var(--lime-accent);
+    padding-left: 14px;
 }
 
-/* Grid System */
+.section-instruction {
+    color: var(--text-muted);
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+}
+
+/* Botões Interativos (Accordions) */
+.accordion-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.accordion-item {
+    border: var(--border);
+    border-radius: var(--radius);
+    background-color: var(--card-bg);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.accordion-header {
+    width: 100%;
+    background-color: var(--accordion-header);
+    color: var(--text-main);
+    padding: 18px 24px;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.accordion-header:hover {
+    background-color: var(--accordion-hover);
+}
+
+.chevron {
+    font-size: 0.8rem;
+    transition: transform var(--speed);
+    color: var(--primary-green);
+}
+
+.accordion-item.active .chevron {
+    transform: rotate(180deg);
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--speed) cubic-bezier(0, 1, 0, 1);
+}
+
+.accordion-item.active .accordion-content {
+    max-height: 1000px;
+    transition: max-height var(--speed) cubic-bezier(1, 0, 1, 0);
+}
+
+.content-flex {
+    padding: 24px;
+    display: flex;
+    gap: 25px;
+    align-items: center;
+    border-top: var(--border);
+}
+
+.content-flex p {
+    flex: 1;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+}
+
+.section-img {
+    width: 180px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Grids Gerais */
 .cards-grid {
     display: grid;
     gap: 24px;
 }
 
-.grid-3 {
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(460px, 1fr)); }
+
+.grid-2-dynamic {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: stretch;
 }
 
-.grid-2 {
-    grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
-}
-
-/* Cards Premium */
+/* Cards de Impacto */
 .card {
     background-color: var(--card-bg);
     padding: 30px;
-    border-radius: var(--border-radius);
+    border-radius: var(--radius);
     box-shadow: var(--shadow);
-    border: var(--border-card);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color var(--transition-speed);
+    border: var(--border);
+    position: relative;
+    transition: transform 0.25s, box-shadow 0.25s, background-color var(--speed);
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.card-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    background-color: var(--badge-bg);
+    color: var(--badge-text);
 }
 
 .card h3 {
-    color: var(--primary-color);
-    margin-bottom: 14px;
-    font-size: 1.35rem;
-    font-weight: 600;
+    margin-bottom: 12px;
+    font-size: 1.3rem;
 }
 
 .card p {
     color: var(--text-muted);
-    font-size: 1rem;
 }
 
-/* Lista de Impactos */
+/* Lista Ambiental */
 .list-card ul {
-    display: grid;
-    gap: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
 }
 
 .list-card li {
-    padding-left: 30px;
+    padding-left: 28px;
     position: relative;
-    font-size: 1.05rem;
 }
 
 .list-card li::before {
-    content: "✓";
-    color: var(--secondary-color);
+    content: "✕";
+    color: #ef4444;
     font-weight: bold;
-    font-size: 1.2rem;
     position: absolute;
-    left: 5px;
-    top: 0;
+    left: 4px;
+    top: 1px;
 }
 
-/* Referências */
-.references-list p {
-    background-color: var(--ref-bg);
-    padding: 14px 20px;
+.side-img {
+    width: 100%;
+    height: 100%;
+    min-height: 250px;
+    object-fit: cover;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+/* Cards Alternativos Premium */
+.premium-card {
+    text-align: center;
+}
+
+.card-icon {
+    font-size: 2.2rem;
     margin-bottom: 12px;
+}
+
+/* Lista de Referências */
+.references-list p {
+    background-color: var(--accordion-header);
+    padding: 14px 20px;
+    margin-bottom: 10px;
     border-radius: 8px;
-    font-size: 1rem;
+    font-size: 0.95rem;
+    border-left: 4px solid var(--primary-green);
     color: var(--text-muted);
-    border-left: 4px solid var(--secondary-color);
-    transition: background-color var(--transition-speed);
 }
 
 /* Rodapé */
@@ -243,17 +361,16 @@ footer {
     color: var(--navbar-text);
     text-align: center;
     padding: 30px;
-    margin-top: 80px;
+    margin-top: 60px;
     font-size: 0.95rem;
-    transition: background-color var(--transition-speed);
 }
 
-/* Ajuste Responsivo Mobile */
+/* Responsividade de Telas */
 @media (max-width: 992px) {
     .nav-container {
         flex-direction: column;
         height: auto;
-        padding: 20px 0;
+        padding: 15px 0;
         gap: 15px;
     }
     .nav-links {
@@ -261,7 +378,8 @@ footer {
         justify-content: center;
         gap: 16px;
     }
-    body {
-        padding-top: 180px;
-    }
+    body { padding-top: 175px; }
+    .grid-2-dynamic { grid-template-columns: 1fr; }
+    .content-flex { flex-direction: column; text-align: center; }
+    .section-img { width: 100%; height: 160px; }
 }
