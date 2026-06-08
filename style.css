@@ -81,6 +81,29 @@ body {
     color: var(--lime-accent);
 }
 
+/* ==========================================================================
+   MENU HAMBÚRGUER (ESTILO E GAVETA COMPLETA)
+   ========================================================================== */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+.hamburger .bar {
+    width: 100%;
+    height: 2px;
+    background-color: var(--navbar-text);
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
 .nav-links {
     display: flex;
     gap: 24px;
@@ -101,28 +124,7 @@ body {
     color: var(--lime-accent);
 }
 
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: var(--lime-accent);
-    transition: width 0.3s;
-}
-
-.nav-links a:hover::after {
-    width: 100%;
-}
-
-/* Área de controles à direita */
-.nav-controls {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
+/* Botão de Alternância de Tema */
 .theme-btn {
     background: rgba(255, 255, 255, 0.1);
     border: none;
@@ -131,29 +133,12 @@ body {
     padding: 8px 14px;
     border-radius: 30px;
     transition: background var(--speed), transform 0.2s;
+    z-index: 1100;
 }
 
 .theme-btn:hover {
     background: rgba(255, 255, 255, 0.2);
     transform: scale(1.05);
-}
-
-/* Botão de Login Enfeite */
-.login-btn {
-    background-color: var(--lime-accent);
-    color: #121814;
-    border: none;
-    font-size: 0.9rem;
-    font-weight: 700;
-    padding: 8px 18px;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: background-color 0.2s, transform 0.1s;
-}
-
-.login-btn:hover {
-    background-color: #a3e635;
-    transform: translateY(-1px);
 }
 
 /* ==========================================================================
@@ -428,10 +413,6 @@ body {
     background-color: #2d4a0f;
 }
 
-.btn-submit:active {
-    transform: scale(0.98);
-}
-
 /* Rodapé */
 footer {
     background-color: var(--navbar-bg);
@@ -443,17 +424,45 @@ footer {
     opacity: 0.9;
 }
 
-/* Responsividade */
+/* ==========================================================================
+   RESPONSIVIDADE E TRANSIÇÃO DO MENU MOBILE
+   ========================================================================== */
 @media (max-width: 992px) {
-    .nav-container {
+    .hamburger {
+        display: flex; /* Exibe o botão de 3 risquinhos na tela menor */
+    }
+
+    /* Transformando a lista em uma gaveta escondida no lado direito */
+    .nav-menu {
+        position: fixed;
+        right: -100%;
+        top: 0;
         flex-direction: column;
-        height: auto;
-        padding: 15px 0;
-        gap: 15px;
+        background-color: var(--navbar-bg);
+        width: 70%;
+        max-width: 300px;
+        height: 100vh;
+        padding: 100px 30px;
+        gap: 30px;
+        box-shadow: -4px 0 15px rgba(0,0,0,0.2);
+        transition: right 0.4s cubic-bezier(0.1, 1, 0.1, 1);
+        align-items: flex-start;
     }
-    .nav-controls {
-        width: 100%;
-        justify-content: center;
+
+    .nav-menu.active {
+        right: 0; /* Desliza para dentro da tela quando ativo */
     }
-    body { padding-top: 195px; }
+
+    /* Efeito de rotação dos 3 risquinhos virando um "X" */
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    body { padding-top: 90px; }
 }

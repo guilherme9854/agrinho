@@ -12,8 +12,15 @@
     <header class="navbar">
         <div class="container nav-container">
             <div class="logo">Agrotóxicos</div>
+            
             <nav>
-                <ul class="nav-links">
+                <button class="hamburger" aria-label="Abrir menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+
+                <ul class="nav-links nav-menu">
                     <li><a href="#inicio">Início</a></li>
                     <li><a href="#o-que-sao">O que são</a></li>
                     <li><a href="#saude">Saúde</a></li>
@@ -23,16 +30,11 @@
                     <li><a href="#sugestoes">Sugestões</a></li>
                 </ul>
             </nav>
-            
-            <div class="nav-controls">
-                <button id="theme-toggle" class="theme-btn" aria-label="Mudar tema">
-                    <span class="icon-sun">☀️</span>
-                    <span class="icon-moon" style="display:none;">🌙</span>
-                </button>
-                <button class="login-btn" onclick="alert('Área de login demonstrativa! Sistema de contas desativado neste ambiente educacional.')">
-                    Entrar
-                </button>
-            </div>
+
+            <button id="theme-toggle" class="theme-btn" aria-label="Mudar tema">
+                <span class="icon-sun">☀️</span>
+                <span class="icon-moon" style="display:none;">🌙</span>
+            </button>
         </div>
     </header>
 
