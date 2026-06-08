@@ -116,25 +116,6 @@ body {
     width: 100%;
 }
 
-/* Botão de Destaque no Menu (Link para outra página) */
-.nav-links .nav-btn-highlight {
-    background-color: var(--lime-accent);
-    color: #1e5631 !important;
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-weight: bold;
-    transition: transform 0.2s, background-color 0.2s;
-}
-
-.nav-links .nav-btn-highlight:hover {
-    transform: scale(1.05);
-    background-color: #ffffff;
-}
-
-.nav-links .nav-btn-highlight::after {
-    display: none;
-}
-
 /* Botão de Alternância de Tema (Sol/Lua) */
 .theme-btn {
     background: rgba(255, 255, 255, 0.12);
@@ -155,8 +136,7 @@ body {
    CONTEÚDO E SEÇÕES PRINCIPAIS
    ========================================================================== */
 .hero-section {
-    /* Imagem pública estável e livre de bloqueios */
-    background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.55)), url('https://picsum.photos') no-repeat center center/cover;
+    background: linear-gradient(135deg, #1e5631 0%, #092412 100%);
     border-radius: var(--radius);
     padding: 70px 40px;
     text-align: center;
@@ -169,7 +149,7 @@ body {
     font-size: 2.8rem;
     font-weight: 800;
     margin-bottom: 15px;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    text-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
 .hero-content p {
@@ -177,7 +157,6 @@ body {
     margin: 0 auto;
     font-size: 1.15rem;
     opacity: 0.95;
-    text-shadow: 0 1px 4px rgba(0,0,0,0.4);
 }
 
 .content-section {
@@ -261,8 +240,6 @@ body {
 .content-flex {
     padding: 24px;
     display: flex;
-    gap: 25px;
-    align-items: center;
     border-top: var(--border);
 }
 
@@ -270,14 +247,6 @@ body {
     flex: 1;
     color: var(--text-muted);
     font-size: 1.05rem;
-}
-
-.section-img {
-    width: 180px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 8px;
-    background-color: #eaeaea;
 }
 
 /* ==========================================================================
@@ -290,13 +259,6 @@ body {
 
 .grid-3 { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
 .grid-2 { grid-template-columns: repeat(auto-fit, minmax(460px, 1fr)); }
-
-.grid-2-dynamic {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    align-items: stretch;
-}
 
 .card {
     background-color: var(--card-bg);
@@ -334,7 +296,7 @@ body {
     color: var(--text-muted);
 }
 
-/* Customização de Listas e Imagens Laterais */
+/* Customização de Listas */
 .list-card ul {
     display: flex;
     flex-direction: column;
@@ -353,16 +315,6 @@ body {
     position: absolute;
     left: 4px;
     top: 1px;
-}
-
-.side-img {
-    width: 100%;
-    height: 100%;
-    min-height: 250px;
-    object-fit: cover;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    background-color: #eaeaea;
 }
 
 .premium-card {
@@ -396,70 +348,20 @@ footer {
 }
 
 /* ==========================================================================
-   ESTILOS DA SEGUNDA PÁGINA (SAIBA-MAIS.HTML)
+   RESPONSIVIDADE (TELA MOBILE / TABLET)
    ========================================================================== */
-.page-padding {
-    padding-top: 30px;
+@media (max-width: 992px) {
+    .nav-container {
+        flex-direction: column;
+        height: auto;
+        padding: 15px 0;
+        gap: 15px;
+    }
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px;
+    }
+    body { padding-top: 175px; }
+    .content-flex { text-align: center; }
 }
-
-.more-info-header {
-    text-align: center;
-    margin-bottom: 50px;
-}
-
-.more-info-header h1 {
-    font-size: 2.5rem;
-    color: var(--primary-green);
-    margin-bottom: 10px;
-}
-
-.info-text h2 {
-    color: var(--primary-green);
-    font-size: 1.8rem;
-    margin-bottom: 15px;
-}
-
-.info-text p {
-    margin-bottom: 15px;
-    color: var(--text-muted);
-}
-
-.gallery-section {
-    margin-top: 60px;
-}
-
-.gallery-card {
-    background-color: var(--card-bg);
-    border-radius: var(--radius);
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    border: var(--border);
-    transition: transform var(--speed);
-}
-
-.gallery-card:hover {
-    transform: translateY(-6px);
-}
-
-.gallery-card img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    background-color: #eaeaea;
-}
-
-.gallery-desc {
-    padding: 20px;
-}
-
-.gallery-desc h3 {
-    font-size: 1.2rem;
-    color: var(--primary-green);
-    margin-bottom: 8px;
-}
-
-.gallery-desc p {
-    font-size: 0.95rem;
-    color: var(--text-muted);
-}
-
