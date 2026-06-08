@@ -6,7 +6,7 @@
     --card-bg: #ffffff;
     --text-main: #1e293b;
     --text-muted: #64748b;
-    --navbar-bg: #121814; /* Tom escuro idêntico à foto do usuário */
+    --navbar-bg: #121814;
     --navbar-text: #ffffff;
     --accordion-header: #ffffff;
     --accordion-hover: #f1f5f9;
@@ -32,7 +32,7 @@
 }
 
 :root {
-    --primary-green: #3f6212; /* Verde sofisticado das imagens */
+    --primary-green: #3f6212;
     --lime-accent: #84cc16;
     --radius: 16px;
     --speed: 0.3s;
@@ -116,7 +116,13 @@ body {
     width: 100%;
 }
 
-/* Botão de Alternância de Tema (Sol/Lua) */
+/* Área de controles à direita */
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
 .theme-btn {
     background: rgba(255, 255, 255, 0.1);
     border: none;
@@ -130,6 +136,24 @@ body {
 .theme-btn:hover {
     background: rgba(255, 255, 255, 0.2);
     transform: scale(1.05);
+}
+
+/* Botão de Login Enfeite */
+.login-btn {
+    background-color: var(--lime-accent);
+    color: #121814;
+    border: none;
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 8px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.login-btn:hover {
+    background-color: #a3e635;
+    transform: translateY(-1px);
 }
 
 /* ==========================================================================
@@ -180,7 +204,7 @@ body {
 }
 
 /* ==========================================================================
-   SISTEMA DE ACCORDIONS (CORRIGIDO)
+   SISTEMA DE ACCORDIONS
    ========================================================================== */
 .accordion-container {
     display: flex;
@@ -427,5 +451,9 @@ footer {
         padding: 15px 0;
         gap: 15px;
     }
-    body { padding-top: 175px; }
+    .nav-controls {
+        width: 100%;
+        justify-content: center;
+    }
+    body { padding-top: 195px; }
 }
