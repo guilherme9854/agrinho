@@ -45,7 +45,7 @@ const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 
 hamburger.addEventListener('click', (e) => {
-    e.stopPropagation(); // Evita bugs de clique fantasma
+    e.stopPropagation(); // Previne travamento de cliques cruzados
     hamburger.classList.toggle('active');
     navMenu.classList.toggle('active');
 });
@@ -72,7 +72,7 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 // Fechar a gaveta se o usuário clicar em qualquer lugar fora dela
 document.addEventListener('click', (e) => {
     if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
-        hamburger.remove('active');
+        hamburger.classList.remove('active');
         navMenu.classList.remove('active');
     }
 });

@@ -80,12 +80,50 @@ body {
     display: flex;
     align-items: center;
     gap: 20px;
+    flex: 1;
+}
+
+.nav-right {
+    justify-content: flex-end;
+}
+
+.nav-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
 }
 
 .logo {
     font-weight: 700;
     font-size: 1.45rem;
     color: var(--lime-accent);
+}
+
+/* Selo de Destaque Agrinho */
+.agrinho-badge {
+    background: rgba(132, 204, 22, 0.12);
+    border: 1px solid rgba(132, 204, 22, 0.3);
+    color: var(--lime-accent);
+    padding: 6px 16px;
+    border-radius: 30px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
+}
+
+.agrinho-dot {
+    width: 7px;
+    height: 7px;
+    background-color: var(--lime-accent);
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 8px var(--lime-accent);
 }
 
 /* ==========================================================================
@@ -100,7 +138,7 @@ body {
     background: transparent;
     border: none;
     cursor: pointer;
-    z-index: 1200; /* Garante clique total por cima de tudo */
+    z-index: 1200;
 }
 
 .hamburger .bar {
@@ -111,7 +149,7 @@ body {
     transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s;
 }
 
-/* Gaveta Oculta saindo pela ESQUERDA (-100%) */
+/* Gaveta Oculta saindo pela ESQUERDA */
 .nav-menu {
     position: fixed;
     left: -100%; 
@@ -126,7 +164,6 @@ body {
     z-index: 1100;
 }
 
-/* Quando ativo, desliza para a tela */
 .nav-menu.active {
     left: 0;
 }
@@ -153,7 +190,7 @@ body {
     padding-left: 6px;
 }
 
-/* Animação dos 3 risquinhos virando "X" */
+/* Animação do X */
 .hamburger.active .bar:nth-child(1) {
     transform: translateY(8px) rotate(45deg);
     background-color: var(--lime-accent);
@@ -480,4 +517,11 @@ footer {
     margin-top: 80px;
     font-size: 0.9rem;
     opacity: 0.9;
+}
+
+/* Responsividade celular */
+@media (max-width: 576px) {
+    .nav-center {
+        display: none;
+    }
 }
