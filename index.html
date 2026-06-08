@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="light-mode"> <!-- Classe inicial do tema -->
 
-    <!-- Menu Superior Fixo -->
+    <!-- Menu Superior Premium -->
     <header class="navbar">
         <div class="container nav-container">
             <div class="logo">Agrotóxicos</div>
@@ -19,17 +19,24 @@
                     <li><a href="#o-que-sao">O que são</a></li>
                     <li><a href="#saude">Saúde</a></li>
                     <li><a href="#ambiente">Meio Ambiente</a></li>
+                    <li><a href="#estatisticas">Estatísticas</a></li> <!-- Nova Aba -->
+                    <li><a href="#legislacao">Legislação</a></li> <!-- Nova Aba -->
                     <li><a href="#alternativas">Alternativas</a></li>
                     <li><a href="#referencias">Referências</a></li>
                 </ul>
             </nav>
+            <!-- Botão de Alternar Tema -->
+            <button id="theme-toggle" class="theme-btn" aria-label="Mudar tema">
+                <span class="icon-sun">☀️</span>
+                <span class="icon-moon" style="display:none;">🌙</span>
+            </button>
         </div>
     </header>
 
     <!-- Conteúdo Principal -->
     <main class="container">
         
-        <!-- Seção de Abertura / Hero -->
+        <!-- Hero Section -->
         <section id="inicio" class="hero-section">
             <h1>A Influência dos Agrotóxicos</h1>
             <p>Os agrotóxicos são amplamente utilizados na agricultura para controlar pragas e aumentar a produtividade. Entretanto, seu uso incorreto pode causar impactos significativos à saúde humana e ao meio ambiente.</p>
@@ -83,6 +90,40 @@
             </div>
         </section>
 
+        <!-- Nova Aba: Estatísticas -->
+        <section id="estatisticas" class="content-section">
+            <h2>Estatísticas de Consumo</h2>
+            <div class="cards-grid grid-2">
+                <div class="card">
+                    <h3>Uso Global</h3>
+                    <p>O uso global de agrotóxicos aumentou significativamente nas últimas décadas, movimentando bilhões de dólares anualmente no setor agroquímico.</p>
+                </div>
+                <div class="card">
+                    <h3>Consumo no Brasil</h3>
+                    <p>O Brasil figura entre os maiores consumidores mundiais de defensivos agrícolas, impulsionado pelas grandes extensões de monoculturas como soja e milho.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nova Aba: Legislação -->
+        <section id="legislacao" class="content-section">
+            <h2>Legislação e Regulamentação</h2>
+            <div class="cards-grid grid-3">
+                <div class="card">
+                    <h3>Anvisa</h3>
+                    <p>Responsável pela avaliação toxicológica e por determinar os riscos à saúde humana.</p>
+                </div>
+                <div class="card">
+                    <h3>Ibama</h3>
+                    <p>Avalia o potencial de periculosidade ambiental e os impactos ecológicos dos produtos.</p>
+                </div>
+                <div class="card">
+                    <h3>Mapa</h3>
+                    <p>O Ministério da Agricultura realiza o registro oficial e fiscaliza a eficácia agronômica.</p>
+                </div>
+            </div>
+        </section>
+
         <!-- Alternativas Sustentáveis -->
         <section id="alternativas" class="content-section">
             <h2>Alternativas Sustentáveis</h2>
@@ -93,11 +134,11 @@
                 </div>
                 <div class="card">
                     <h3>Controle Biológico</h3>
-                    <p>Uso estratégico de inimigos naturais (predadores ou parasitas) para combater pragas.</p>
+                    <p>Uso estratégico de inimigos naturais para combater pragas de forma segura.</p>
                 </div>
                 <div class="card">
                     <h3>Manejo Integrado</h3>
-                    <p>Combinação de técnicas culturais, biológicas e físicas para minimizar o uso químico.</p>
+                    <p>Combinação de técnicas culturais e físicas para minimizar a dependência química.</p>
                 </div>
             </div>
         </section>

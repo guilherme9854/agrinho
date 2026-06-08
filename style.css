@@ -1,64 +1,89 @@
-/* style.css */
-:root {
-    --primary-color: #1e5631;
-    --secondary-color: #4c9a2a;
-    --bg-light: #f9fbf7;
+/* Variáveis para controlar os Temas */
+.light-mode {
+    --bg-light: #f8fafc;
     --card-bg: #ffffff;
-    --text-main: #2c3e50;
-    --text-muted: #5a6c7d;
-    --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    --border-radius: 8px;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --navbar-bg: #1e5631;
+    --navbar-text: #ffffff;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    --border-card: 1px solid rgba(0,0,0,0.06);
+    --ref-bg: #f1f5f9;
+}
+
+.dark-mode {
+    --bg-light: #0f172a;
+    --card-bg: #1e293b;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --navbar-bg: #0b2e18;
+    --navbar-text: #f8fafc;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    --border-card: 1px solid rgba(255,255,255,0.08);
+    --ref-bg: #334155;
+}
+
+:root {
+    --primary-color: #2e7d43;
+    --secondary-color: #4c9a2a;
+    --border-radius: 12px;
+    --transition-speed: 0.3s;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     background-color: var(--bg-light);
     color: var(--text-main);
     line-height: 1.6;
-    padding-top: 90px; /* Evita que o menu fixo cubra o conteúdo */
+    padding-top: 100px;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
 }
 
-/* Limitador de largura centralizado */
 .container {
-    width: 90%;
-    max-width: 1100px;
+    width: 92%;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
-/* Menu Superior (Navbar) */
+/* Navbar Corrigida e Espaçada */
 .navbar {
-    background-color: var(--primary-color);
-    color: white;
+    background-color: var(--navbar-bg);
+    color: var(--navbar-text);
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: background-color var(--transition-speed);
 }
 
 .nav-container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 70px;
+    justify-content: space-between; /* Afasta o Logo do Menu e do Botão */
+    align-items: center;            /* Alinha tudo perfeitamente no centro vertical */
+    height: 80px;
 }
 
 .logo {
-    font-weight: bold;
-    font-size: 1.4rem;
-    letter-spacing: 0.5px;
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: -0.5px;
+    color: #a3e635;
 }
 
 .nav-links {
     display: flex;
-    gap: 24px;
+    gap: 28px; /* Espaço elegante entre os links */
 }
 
 .nav-links a {
     font-size: 0.95rem;
-    transition: color 0.3s, opacity 0.3s;
+    font-weight: 500;
     opacity: 0.85;
+    transition: color 0.2s, opacity 0.2s;
+    padding: 6px 0;
+    position: relative;
 }
 
 .nav-links a:hover {
@@ -66,147 +91,177 @@ body {
     color: #a3e635;
 }
 
-/* Banner Principal (Hero) */
+/* Efeito visual de linha passando embaixo ao passar o mouse */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #a3e635;
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Botão de Tema */
+.theme-btn {
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 50px;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.theme-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+/* Hero Banner */
 .hero-section {
     text-align: center;
-    padding: 50px 30px;
-    background: linear-gradient(135deg, #1e5631 0%, #2e7d43 100%);
+    padding: 60px 40px;
+    background: linear-gradient(135deg, #1e5631 0%, #347a46 100%);
     color: white;
     border-radius: var(--border-radius);
-    margin-bottom: 45px;
+    margin-bottom: 50px;
     box-shadow: var(--shadow);
 }
 
 .hero-section h1 {
-    font-size: 2.4rem;
-    margin-bottom: 15px;
-    font-weight: 700;
+    font-size: 2.8rem;
+    margin-bottom: 18px;
+    font-weight: 800;
 }
 
 .hero-section p {
-    max-width: 800px;
+    max-width: 850px;
     margin: 0 auto;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     opacity: 0.9;
 }
 
-/* Configuração de Títulos das Seções */
+/* Seções de Conteúdo */
 .content-section {
-    margin-bottom: 50px;
-    scroll-margin-top: 100px; /* Ajusta a rolagem do clique do menu */
+    margin-bottom: 60px;
+    scroll-margin-top: 110px;
 }
 
 .content-section h2 {
     color: var(--primary-color);
-    font-size: 1.7rem;
-    margin-bottom: 22px;
-    border-left: 5px solid var(--secondary-color);
-    padding-left: 12px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    border-left: 6px solid var(--secondary-color);
+    padding-left: 15px;
 }
 
-/* Grids Dinâmicos (Responsivos) */
+/* Grid System */
 .cards-grid {
     display: grid;
-    gap: 20px;
+    gap: 24px;
 }
 
 .grid-3 {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 }
 
 .grid-2 {
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
 }
 
-/* Cards Visuais */
+/* Cards Premium */
 .card {
     background-color: var(--card-bg);
-    padding: 24px;
+    padding: 30px;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
-    border: 1px solid rgba(0,0,0,0.02);
-    transition: transform 0.3s, box-shadow 0.3s;
+    border: var(--border-card);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color var(--transition-speed);
 }
 
 .card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
 }
 
 .card h3 {
     color: var(--primary-color);
-    margin-bottom: 12px;
-    font-size: 1.25rem;
+    margin-bottom: 14px;
+    font-size: 1.35rem;
+    font-weight: 600;
 }
 
 .card p {
     color: var(--text-muted);
-    font-size: 0.95rem;
-}
-
-/* Customização dos Impactos Ambientais */
-.list-card ul {
-    display: grid;
-    gap: 14px;
-}
-
-.list-card li {
-    padding-left: 25px;
-    position: relative;
     font-size: 1rem;
 }
 
-.list-card li::before {
-    content: "•";
-    color: var(--secondary-color);
-    font-weight: bold;
-    font-size: 1.6rem;
-    position: absolute;
-    left: 5px;
-    top: -5px;
+/* Lista de Impactos */
+.list-card ul {
+    display: grid;
+    gap: 16px;
 }
 
-/* Lista de Referências */
+.list-card li {
+    padding-left: 30px;
+    position: relative;
+    font-size: 1.05rem;
+}
+
+.list-card li::before {
+    content: "✓";
+    color: var(--secondary-color);
+    font-weight: bold;
+    font-size: 1.2rem;
+    position: absolute;
+    left: 5px;
+    top: 0;
+}
+
+/* Referências */
 .references-list p {
-    background-color: #f1f5f0;
-    padding: 12px 16px;
-    margin-bottom: 10px;
-    border-radius: 6px;
-    font-size: 0.95rem;
+    background-color: var(--ref-bg);
+    padding: 14px 20px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    font-size: 1rem;
     color: var(--text-muted);
-    border-left: 4px solid #cbd5e1;
+    border-left: 4px solid var(--secondary-color);
+    transition: background-color var(--transition-speed);
 }
 
 /* Rodapé */
 footer {
-    background-color: var(--primary-color);
-    color: white;
+    background-color: var(--navbar-bg);
+    color: var(--navbar-text);
     text-align: center;
-    padding: 25px 20px;
-    margin-top: 60px;
-    font-size: 0.9rem;
+    padding: 30px;
+    margin-top: 80px;
+    font-size: 0.95rem;
+    transition: background-color var(--transition-speed);
 }
 
-/* Ajustes para Telas de Celular (Mobile) */
-@media (max-width: 768px) {
+/* Ajuste Responsivo Mobile */
+@media (max-width: 992px) {
     .nav-container {
         flex-direction: column;
         height: auto;
-        padding: 15px 0;
-        gap: 12px;
+        padding: 20px 0;
+        gap: 15px;
     }
     .nav-links {
         flex-wrap: wrap;
         justify-content: center;
-        gap: 14px;
+        gap: 16px;
     }
     body {
-        padding-top: 140px;
-    }
-    .hero-section h1 {
-        font-size: 1.8rem;
-    }
-    .grid-2 {
-        grid-template-columns: 1fr;
+        padding-top: 180px;
     }
 }
