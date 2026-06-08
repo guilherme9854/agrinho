@@ -155,7 +155,8 @@ body {
    CONTEÚDO E SEÇÕES PRINCIPAIS
    ========================================================================== */
 .hero-section {
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('https://workers.dev') no-repeat center center/cover;
+    /* Imagem pública estável e livre de bloqueios */
+    background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.55)), url('https://picsum.photos') no-repeat center center/cover;
     border-radius: var(--radius);
     padding: 70px 40px;
     text-align: center;
@@ -276,6 +277,7 @@ body {
     height: 120px;
     object-fit: cover;
     border-radius: 8px;
+    background-color: #eaeaea;
 }
 
 /* ==========================================================================
@@ -360,6 +362,7 @@ body {
     object-fit: cover;
     border-radius: var(--radius);
     box-shadow: var(--shadow);
+    background-color: #eaeaea;
 }
 
 .premium-card {
@@ -442,6 +445,7 @@ footer {
     width: 100%;
     height: 220px;
     object-fit: cover;
+    background-color: #eaeaea;
 }
 
 .gallery-desc {
@@ -459,5 +463,3 @@ footer {
     color: var(--text-muted);
 }
 
-/* ==========================================================================
-   RESPONSIVIDADE (TELA MOBILE / TABLET)
