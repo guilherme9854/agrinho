@@ -3,7 +3,6 @@ const themeToggleBtn = document.getElementById('theme-toggle');
 const sunIcon = document.querySelector('.icon-sun');
 const moonIcon = document.querySelector('.icon-moon');
 
-// Resgata o tema previamente salvo pelo usuário
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme === 'dark') {
     document.body.classList.remove('light-mode');
@@ -31,22 +30,33 @@ document.querySelectorAll('.accordion-header').forEach(button => {
     button.addEventListener('click', () => {
         const currentItem = button.parentElement;
         
-        // Fecha outros itens abertos se o usuário clicar em um novo (Opcional, estilo sanfona)
         document.querySelectorAll('.accordion-item').forEach(item => {
             if (item !== currentItem) {
                 item.classList.remove('active');
             }
         });
 
-        // Alterna o estado de ativo do item clicado
         currentItem.classList.toggle('active');
     });
 });
 
-// 3. Rolagem Suave dos Links da Barra de Navegação
+// 3. Sistema do Menu Hambúrguer (Abrir/Fechar Gaveta)
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('.nav-menu');
+
+hamburger.addEventListener('click', (e) => {
+    e.stopPropagation(); // Evita bugs de clique fantasma
+    hamburger.classList.toggle('active');
+    navMenu.classList.toggle('active');
+});
+
+// 4. Rolagem Suave e Fechamento Automático do Menu
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', function(e) {
         e.preventDefault();
+        
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
         
         const targetId = this.getAttribute('href');
         const targetSection = document.querySelector(targetId);
@@ -57,4 +67,12 @@ document.querySelectorAll('.nav-links a').forEach(link => {
             });
         }
     });
+});
+
+// Fechar a gaveta se o usuário clicar em qualquer lugar fora dela
+document.addEventListener('click', (e) => {
+    if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+        hamburger.remove('active');
+        navMenu.classList.remove('active');
+    }
 });

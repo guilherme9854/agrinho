@@ -11,16 +11,18 @@
 
     <header class="navbar">
         <div class="container nav-container">
-            <div class="logo">Agrotóxicos</div>
             
-            <nav>
+            <div class="nav-left">
                 <button class="hamburger" aria-label="Abrir menu">
                     <span class="bar"></span>
                     <span class="bar"></span>
                     <span class="bar"></span>
                 </button>
-
-                <ul class="nav-links nav-menu">
+                <div class="logo">Agrotóxicos</div>
+            </div>
+            
+            <nav class="nav-menu">
+                <ul class="nav-links">
                     <li><a href="#inicio">Início</a></li>
                     <li><a href="#o-que-sao">O que são</a></li>
                     <li><a href="#saude">Saúde</a></li>
@@ -31,10 +33,13 @@
                 </ul>
             </nav>
 
-            <button id="theme-toggle" class="theme-btn" aria-label="Mudar tema">
-                <span class="icon-sun">☀️</span>
-                <span class="icon-moon" style="display:none;">🌙</span>
-            </button>
+            <div class="nav-right">
+                <button id="theme-toggle" class="theme-btn" aria-label="Mudar tema">
+                    <span class="icon-sun">☀️</span>
+                    <span class="icon-moon" style="display:none;">🌙</span>
+                </button>
+                <a href="#login" class="btn-login">Entrar</a>
+            </div>
         </div>
     </header>
 

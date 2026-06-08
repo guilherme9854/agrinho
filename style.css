@@ -75,20 +75,21 @@ body {
     height: 75px;
 }
 
+/* Blocos de Alinhamento do Topo */
+.nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
 .logo {
     font-weight: 700;
     font-size: 1.45rem;
     color: var(--lime-accent);
 }
 
-nav {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
 /* ==========================================================================
-   MENU HAMBÚRGUER FORÇADO PARA TODAS AS TELAS
+   MENU HAMBÚRGUER & GAVETA ESQUERDA (CORRIGIDO)
    ========================================================================== */
 .hamburger {
     display: flex;
@@ -99,7 +100,7 @@ nav {
     background: transparent;
     border: none;
     cursor: pointer;
-    z-index: 1200; /* Fica acima da gaveta */
+    z-index: 1200; /* Garante clique total por cima de tudo */
 }
 
 .hamburger .bar {
@@ -110,27 +111,31 @@ nav {
     transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s;
 }
 
-/* Estilização da Gaveta (Menu que surge) */
+/* Gaveta Oculta saindo pela ESQUERDA (-100%) */
 .nav-menu {
     position: fixed;
-    right: -100%; /* Totalmente escondido para a direita */
+    left: -100%; 
     top: 0;
-    flex-direction: column;
     background-color: var(--navbar-bg);
     width: 320px;
     height: 100vh;
     padding: 120px 40px;
-    gap: 25px;
-    box-shadow: -5px 0 25px rgba(0, 0, 0, 0.3);
-    transition: right 0.4s cubic-bezier(0.1, 1, 0.1, 1);
+    box-shadow: 5px 0 25px rgba(0, 0, 0, 0.3);
+    transition: left 0.4s cubic-bezier(0.1, 1, 0.1, 1);
     display: flex;
-    align-items: flex-start;
     z-index: 1100;
 }
 
-/* Quando o menu ganha a classe .active via JS, ele desliza para a tela */
+/* Quando ativo, desliza para a tela */
 .nav-menu.active {
-    right: 0;
+    left: 0;
+}
+
+.nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: flex-start;
 }
 
 .nav-links a {
@@ -145,10 +150,10 @@ nav {
 .nav-links a:hover {
     opacity: 1;
     color: var(--lime-accent);
-    padding-left: 6px; /* Efeito sutil ao passar o mouse */
+    padding-left: 6px;
 }
 
-/* Efeito de rotação: 3 risquinhos virando "X" */
+/* Animação dos 3 risquinhos virando "X" */
 .hamburger.active .bar:nth-child(1) {
     transform: translateY(8px) rotate(45deg);
     background-color: var(--lime-accent);
@@ -161,7 +166,7 @@ nav {
     background-color: var(--lime-accent);
 }
 
-/* Botão de Alternância de Tema */
+/* Botões da Direita */
 .theme-btn {
     background: rgba(255, 255, 255, 0.1);
     border: none;
@@ -170,12 +175,28 @@ nav {
     padding: 8px 14px;
     border-radius: 30px;
     transition: background var(--speed), transform 0.2s;
-    z-index: 1200;
 }
 
 .theme-btn:hover {
     background: rgba(255, 255, 255, 0.2);
     transform: scale(1.05);
+}
+
+.btn-login {
+    background-color: var(--primary-green);
+    color: white;
+    text-decoration: none;
+    padding: 8px 20px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 30px;
+    border: 1px solid var(--lime-accent);
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-login:hover {
+    background-color: #2d4a0f;
+    transform: scale(1.03);
 }
 
 /* ==========================================================================
