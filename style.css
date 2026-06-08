@@ -52,7 +52,7 @@
 }
 
 html {
-    scroll-behavior: smooth; /* Transição linda e suave ao rolar pelos IDs */
+    scroll-behavior: smooth; /* Transição linda e fluida ao navegar pelos IDs */
 }
 
 body {
@@ -67,7 +67,7 @@ body {
 
 .container {
     width: 90%;
-    max-width: 960px; /* Trava o layout para não ficar esticado em monitores gigantes */
+    max-width: 960px; /* Trava o layout para não esticar em monitores imensos */
     margin: 0 auto;
 }
 
@@ -296,7 +296,7 @@ h1, h2, h3, h4 {
 .btn-submit { background: var(--primary); color: white; border: none; padding: 12px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: background 0.2s; text-align: center; }
 .btn-submit:hover { background: #14532d; }
 
-/* Rodapé */
+/* Rodapé Geral */
 .footer-premium { border-top: var(--border); padding: 40px 0 25px 0; margin-top: 60px; font-size: 0.85rem; color: var(--text-muted); background-color: var(--card-bg); }
 .footer-content-wrap { display: flex; flex-direction: column; gap: 24px; }
 .footer-desc { margin-top: 10px; font-size: 0.9rem; max-width: 550px; line-height: 1.6; }
@@ -304,11 +304,11 @@ h1, h2, h3, h4 {
 .footer-bottom-flex { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
 
 /* ==========================================================================
-   RODAPÉ FIXO DE COOKIES
+   RODAPÉ FIXO DE COOKIES (LAYOUT COMPLETO COM OPÇÃO DE RECUSAR)
    ========================================================================== */
 .cookie-banner {
     position: fixed;
-    bottom: -120px;
+    bottom: -150px; /* Começa oculto na parte inferior */
     left: 0;
     width: 100%;
     background-color: var(--card-bg);
@@ -321,13 +321,19 @@ h1, h2, h3, h4 {
 .cookie-banner.show { bottom: 0; }
 .cookie-content { width: 90%; max-width: 960px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
 .cookie-content p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.4; }
-.btn-cookie { background-color: var(--primary); color: white; border: none; padding: 8px 18px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; cursor: pointer; white-space: nowrap; transition: background var(--speed); }
-.btn-cookie:hover { background-color: var(--accent); }
+.cookie-actions { display: flex; gap: 8px; }
+
+.btn-cookie { border: none; padding: 8px 20px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+.btn-cookie-accept { background-color: var(--primary); color: white; }
+.btn-cookie-accept:hover { background-color: var(--accent); }
+.btn-cookie-decline { background-color: var(--badge-bg); color: var(--badge-text); border: var(--border); }
+.btn-cookie-decline:hover { background-color: #ef4444; color: white; border-color: #ef4444; }
 
 @media(max-width: 768px) {
     .grid-2, .grid-3, .infographic-steps { grid-template-columns: 1fr; }
     .footer-bottom-flex { flex-direction: column; text-align: center; }
     .nav-center { display: none; }
-    .cookie-content { flex-direction: column; text-align: center; }
-    .btn-cookie { width: 100%; }
+    .cookie-content { flex-direction: column; text-align: center; gap: 14px; }
+    .cookie-actions { width: 100%; justify-content: center; }
+    .btn-cookie { flex: 1; text-align: center; }
 }

@@ -1,5 +1,5 @@
 // ==========================================================================
-// 1. BANCO DE PERGUNTAS DO QUIZ (Muda rotativamente a cada erro)
+// 1. BANCO DE PERGUNTAS DO QUIZ (Com comportamento dinâmico e inteligente)
 // ==========================================================================
 const quizData = [
     {
@@ -30,8 +30,9 @@ function loadQuizQuestion() {
     const feedbackEl = document.getElementById('quiz-feedback');
     const nextBtn = document.getElementById('btn-next-quiz');
 
+    // Reseta o estado visual de forma limpa
     feedbackEl.classList.add('hidden');
-    nextBtn.classList.add('hidden');
+    nextBtn.classList.add('hidden'); // O botão NUNCA aparece de início
     optionsContainer.innerHTML = '';
 
     const currentQuiz = quizData[currentQuestionIndex];
@@ -52,23 +53,29 @@ function checkQuizAnswer(selectedIndex, clickedButton) {
     const nextBtn = document.getElementById('btn-next-quiz');
     const buttons = document.querySelectorAll('.option-btn');
 
+    // Trava os botões para não clicar duas vezes
     buttons.forEach(btn => btn.disabled = true);
 
     if (selectedIndex === currentQuiz.correct) {
+        // Se o usuário acertou em cheio
         clickedButton.classList.add('correct');
         feedbackEl.textContent = currentQuiz.explanation;
         feedbackEl.className = "quiz-feedback success";
+        nextBtn.classList.add('hidden'); // Garante que fica escondido se acertou
     } else {
+        // Se o usuário errou
         clickedButton.classList.add('wrong');
-        feedbackEl.textContent = `Incorreto. A resposta certa era outra. Vamos tentar de novo com uma questão diferente?`;
+        feedbackEl.textContent = `Incorreto. A resposta certa era outra. Vamos tentar novamente com uma questão diferente?`;
         feedbackEl.className = "quiz-feedback error";
         
+        // Revela a correta de apoio e SÓ AGORA exibe o botão de tentar novamente
         buttons[currentQuiz.correct].classList.add('correct');
         nextBtn.classList.remove('hidden');
     }
     feedbackEl.classList.remove('hidden');
 }
 
+// Passa a pergunta rotativamente apenas após o clique de erro
 document.getElementById('btn-next-quiz').addEventListener('click', () => {
     currentQuestionIndex = (currentQuestionIndex + 1) % quizData.length;
     loadQuizQuestion();
@@ -78,24 +85,31 @@ document.addEventListener('DOMContentLoaded', loadQuizQuestion);
 
 
 // ==========================================================================
-// 2. SISTEMA INTERATIVO DE AVISO DE COOKIES
+// 2. SISTEMA INTERATIVO E DEMOCRÁTICO DE COOKIES (ACEITAR OU RECUSAR)
 // ==========================================================================
 window.addEventListener('load', () => {
     const cookieBanner = document.getElementById('cookie-banner');
     const acceptBtn = document.getElementById('cookie-accept-btn');
+    const declineBtn = document.getElementById('cookie-decline-btn');
 
+    // Desliza suavemente na tela após 1.2 segundos
     setTimeout(() => {
         cookieBanner.classList.add('show');
     }, 1200);
 
+    // Ambas as opções fecham o banner respeitando a escolha do usuário
     acceptBtn.addEventListener('click', () => {
+        cookieBanner.classList.remove('show');
+    });
+
+    declineBtn.addEventListener('click', () => {
         cookieBanner.classList.remove('show');
     });
 });
 
 
 // ==========================================================================
-// 3. CONTROLE DE TEMA (SOL E LUA)
+// 3. CONTROLE DE TEMA (SOL E LUA CORRIGIDO)
 // ==========================================================================
 const themeToggleBtn = document.getElementById('theme-toggle');
 themeToggleBtn.addEventListener('click', () => {
@@ -133,7 +147,7 @@ document.addEventListener('click', (e) => {
 
 
 // ==========================================================================
-// 5. FILTROS E OUTROS RECURSOS
+// 5. FILTROS DA SEÇÃO DE ALTERNATIVAS
 // ==========================================================================
 function filterAlternativas(category) {
     const buttons = document.querySelectorAll('.btn-filter');
