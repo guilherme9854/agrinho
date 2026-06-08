@@ -1,11 +1,19 @@
-// 1. Controle Inteligente do Modo Escuro / Claro
+// 1. Controle Absoluto do Modo Escuro / Claro (Sol / Lua Corrigido)
 const themeToggleBtn = document.getElementById('theme-toggle');
+
+// Checa o tema salvo para iniciar com o emoji correto
+if (document.body.classList.contains('dark-mode')) {
+    themeToggleBtn.textContent = '🌙';
+} else {
+    themeToggleBtn.textContent = '☀️';
+}
+
 themeToggleBtn.addEventListener('click', () => {
     document.body.classList.toggle('light-mode');
     document.body.classList.toggle('dark-mode');
     
-    // Altera o emoji dinamicamente para combinar com o modo ativo
-    if(document.body.classList.contains('dark-mode')) {
+    // CORREÇÃO: Altera o ícone cirurgicamente dependendo da classe atual
+    if (document.body.classList.contains('dark-mode')) {
         themeToggleBtn.textContent = '🌙';
     } else {
         themeToggleBtn.textContent = '☀️';
@@ -29,7 +37,6 @@ document.querySelectorAll('.accordion-header').forEach(button => {
     button.addEventListener('click', () => {
         const currentItem = button.parentElement;
         
-        // Opcional: Fecha outros accordions abertos ao clicar em um novo
         document.querySelectorAll('.accordion-item').forEach(item => {
             if (item !== currentItem) {
                 item.classList.remove('active');
@@ -40,25 +47,29 @@ document.querySelectorAll('.accordion-header').forEach(button => {
     });
 });
 
-// 4. Controle de Abertura/Fechamento do Menu Hambúrguer Lateral
+// 4. Controle Corrigido do Menu Hambúrguer (Fechamento e Retorno Garantidos)
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 
+// Clicar no botão abre ou fecha alternadamente e muda o visual para X
 hamburger.addEventListener('click', (e) => {
-    e.stopPropagation(); // Evita conflitos de clique com o documento
+    e.stopPropagation(); 
+    hamburger.classList.toggle('active');
     navMenu.classList.toggle('active');
 });
 
-// Fecha a gaveta lateral automaticamente ao clicar em um link interno
+// CORREÇÃO: Fechar o menu e voltar o hamburger ao estado normal quando clicar em abas internas
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
         navMenu.classList.remove('active');
     });
 });
 
-// Fecha a gaveta se o usuário clicar fora do menu lateral
+// CORREÇÃO: Se clicar em qualquer outra parte vazia da tela, o menu fecha e o hamburger volta ao normal
 document.addEventListener('click', (e) => {
     if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+        hamburger.classList.remove('active');
         navMenu.classList.remove('active');
     }
 });
