@@ -1,9 +1,14 @@
-document.getElementById('search').addEventListener('keyup', function() {
-    const query = this.value.toLowerCase();
-    const rows = document.querySelectorAll('#tabela-precos tbody tr');
+const tabs = document.querySelectorAll(".tab-btn");
+const contents = document.querySelectorAll(".tab-content");
 
-    rows.forEach(row => {
-        const produto = row.cells[0].textContent.toLowerCase();
-        row.style.display = produto.includes(query) ? '' : 'none';
-    });
+tabs.forEach(tab => {
+  tab.addEventListener("click", () => {
+    // Remove active de todos os botões e conteúdos
+    tabs.forEach(t => t.classList.remove("active"));
+    contents.forEach(c => c.classList.remove("active"));
+
+    // Ativa o botão clicado e o conteúdo correspondente
+    tab.classList.add("active");
+    document.getElementById(tab.dataset.tab).classList.add("active");
+  });
 });

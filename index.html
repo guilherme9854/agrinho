@@ -1,74 +1,28 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Influência dos Agrotóxicos</title>
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header>
-        <div class="container">
-            <h1>Influência dos Agrotóxicos</h1>
-            <nav>
-                <ul>
-                    <li><a href="#sobre">Sobre</a></li>
-                    <li><a href="#impactos">Impactos</a></li>
-                    <li><a href="#precos">Preços</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+<section id="tabs">
+  <h2>Informações sobre Agrotóxicos</h2>
 
-    <section class="hero">
-        <div class="container">
-            <h2>O que você precisa saber sobre os agrotóxicos</h2>
-            <p>Impactos ambientais, riscos à saúde e preços atuais no mercado.</p>
-        </div>
-    </section>
+  <div class="tab-buttons">
+    <button class="tab-btn active" data-tab="sobre">Sobre</button>
+    <button class="tab-btn" data-tab="impactos">Impactos</button>
+    <button class="tab-btn" data-tab="precos">Preços</button>
+  </div>
 
-    <main class="container">
-        <section id="sobre">
-            <h2>Sobre os Agrotóxicos</h2>
-            <p>Agrotóxicos são produtos químicos utilizados na agricultura para proteger plantas de pragas e doenças. Seu uso deve ser controlado para evitar impactos negativos à saúde e ao meio ambiente.</p>
-        </section>
+  <div class="tab-content active" id="sobre">
+    <h3>Sobre os Agrotóxicos</h3>
+    <p>Os agrotóxicos são produtos químicos usados na agricultura...</p>
+  </div>
 
-        <section id="impactos">
-            <h2>Impactos na Saúde e Meio Ambiente</h2>
-            <ul>
-                <li>Contaminação do solo e água</li>
-                <li>Riscos à saúde humana</li>
-                <li>Perda de biodiversidade</li>
-            </ul>
-        </section>
+  <div class="tab-content" id="impactos">
+    <h3>Impactos</h3>
+    <p>O uso de agrotóxicos pode afetar a saúde e o meio ambiente...</p>
+  </div>
 
-        <section id="precos">
-            <h2>Preços de Agrotóxicos</h2>
-            <input type="text" id="search" placeholder="Buscar produto...">
-            <table id="tabela-precos">
-                <thead>
-                    <tr>
-                        <th>Produto</th>
-                        <th>Preço (R$)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>Herbicida A</td><td>55,00</td></tr>
-                    <tr><td>Inseticida B</td><td>120,00</td></tr>
-                    <tr><td>Fungicida C</td><td>95,00</td></tr>
-                    <tr><td>Herbicida D</td><td>80,00</td></tr>
-                </tbody>
-            </table>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 - Site Profissional de Agrotóxicos</p>
-        </div>
-    </footer>
-
-    <script src="main.js"></script>
-</body>
-</html>
+  <div class="tab-content" id="precos">
+    <h3>Preços</h3>
+    <table>
+      <tr><th>Produto</th><th>Preço (R$)</th></tr>
+      <tr><td>Produto A</td><td>50</td></tr>
+      <tr><td>Produto B</td><td>120</td></tr>
+    </table>
+  </div>
+</section>
