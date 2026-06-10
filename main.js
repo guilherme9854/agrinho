@@ -1,30 +1,32 @@
 // ==========================================================================
-// 1. BANCO DE PERGUNTAS DO QUIZ (Com comportamento dinâmico e inteligente)
+// 1. QUIZ GAMIFICADO E INTELIGENTE (COM SISTEMA DE PONTUAÇÃO)
 // ==========================================================================
 const quizData = [
     {
         question: "Qual método abaixo visa combater pragas agrícolas utilizando os próprios predadores naturais do ecossistema?",
         options: ["A) Herbicidas Seletivos", "B) Controle Biológico", "C) Lixiviação Química"],
         correct: 1,
-        explanation: "Excelente! O Controle Biológico utiliza predadores naturais (como joaninhas para combater pulgões), eliminando pragas de maneira ecológica e sem resíduos químicos."
+        explanation: "Excelente! O Controle Biológico utiliza predadores naturais, eliminando pragas de maneira ecológica e sem resíduos químicos."
     },
     {
         question: "O acúmulo de substâncias químicas em tecidos vivos ao longo do tempo através da cadeia alimentar é chamado de:",
         options: ["A) Bioacumulação", "B) Fitossanidade", "C) Transgênese"],
         correct: 0,
-        explanation: "Correto! A bioacumulação faz com que resíduos de defensivos fiquem retidos no organismo de animais e humanos de forma progressiva e cumulativa."
+        explanation: "Correto! A bioacumulação faz com que resíduos de defensivos fiquem retidos no organismo de forma progressiva."
     },
     {
         question: "Qual é o principal foco da técnica conhecida como MIP (Manejo Integrado de Pragas)?",
         options: ["A) Erradicar 100% dos insetos com químicos rápidos", "B) Associar métodos biológicos, culturais e químicos de forma equilibrada", "C) Substituir a irrigação por defensivos líquidos"],
         correct: 1,
-        explanation: "Perfeito! O MIP integra ferramentas preventivas, genéticas e biológicas para reduzir ao máximo a dependência exclusiva de defensivos sintéticos."
+        explanation: "Perfeito! O MIP integra ferramentas preventivas e biológicas para reduzir a dependência exclusiva de defensivos sintéticos."
     }
 ];
 
 let currentQuestionIndex = 0;
+let userScore = 0;
 
 function loadQuizQuestion() {
+    const progressEl = document.getElementById('quiz-progress');
     const questionEl = document.getElementById('quiz-question');
     const optionsContainer = document.getElementById('quiz-options');
     const feedbackEl = document.getElementById('quiz-feedback');
@@ -34,16 +36,30 @@ function loadQuizQuestion() {
     nextBtn.classList.add('hidden'); 
     optionsContainer.innerHTML = '';
 
-    const currentQuiz = quizData[currentQuestionIndex];
-    questionEl.textContent = currentQuiz.question;
+    if (currentQuestionIndex < quizData.length) {
+        progressEl.textContent = `Pergunta ${currentQuestionIndex + 1} de ${quizData.length}`;
+        const currentQuiz = quizData[currentQuestionIndex];
+        questionEl.textContent = currentQuiz.question;
 
-    currentQuiz.options.forEach((option, index) => {
-        const button = document.createElement('button');
-        button.className = 'option-btn';
-        button.textContent = option;
-        button.onclick = () => checkQuizAnswer(index, button);
-        optionsContainer.appendChild(button);
-    });
+        currentQuiz.options.forEach((option, index) => {
+            const button = document.createElement('button');
+            button.className = 'option-btn';
+            button.textContent = option;
+            button.onclick = () => checkQuizAnswer(index, button);
+            optionsContainer.appendChild(button);
+        });
+    } else {
+        // Fim do Quiz - Tela de Resultado Final Dinâmica
+        progressEl.textContent = "Desafio Concluído!";
+        questionEl.textContent = `Você terminou o quiz! Pontuação final: ${userScore} de ${quizData.length} acertos.`;
+        
+        const retryBtn = document.createElement('button');
+        retryBtn.className = 'btn-submit';
+        retryBtn.style.width = '100%';
+        retryBtn.textContent = "Reiniciar Desafio";
+        retryBtn.onclick = restartQuiz;
+        optionsContainer.appendChild(retryBtn);
+    }
 }
 
 function checkQuizAnswer(selectedIndex, clickedButton) {
@@ -58,28 +74,63 @@ function checkQuizAnswer(selectedIndex, clickedButton) {
         clickedButton.classList.add('correct');
         feedbackEl.textContent = currentQuiz.explanation;
         feedbackEl.className = "quiz-feedback success";
-        nextBtn.classList.add('hidden'); 
+        userScore++;
     } else {
         clickedButton.classList.add('wrong');
-        feedbackEl.textContent = `Incorreto. A resposta certa era outra. Vamos tentar novamente com uma questão diferente?`;
-        feedbackEl.className = "quiz-feedback error";
-        
         buttons[currentQuiz.correct].classList.add('correct');
-        nextBtn.classList.remove('hidden');
+        feedbackEl.textContent = "Resposta incorreta. Estude as alternativas sustentáveis para gabaritar o teste!";
+        feedbackEl.className = "quiz-feedback error";
     }
+    
     feedbackEl.classList.remove('hidden');
+    nextBtn.classList.remove('hidden');
+    
+    if (currentQuestionIndex === quizData.length - 1) {
+        nextBtn.textContent = "Ver Resultado Final";
+    } else {
+        nextBtn.textContent = "Próxima Pergunta";
+    }
 }
 
 document.getElementById('btn-next-quiz').addEventListener('click', () => {
-    currentQuestionIndex = (currentQuestionIndex + 1) % quizData.length;
+    currentQuestionIndex++;
     loadQuizQuestion();
 });
+
+function restartQuiz() {
+    currentQuestionIndex = 0;
+    userScore = 0;
+    document.getElementById('btn-next-quiz').textContent = "Próxima Pergunta";
+    loadQuizQuestion();
+}
 
 document.addEventListener('DOMContentLoaded', loadQuizQuestion);
 
 
 // ==========================================================================
-// 2. COOKIES E AJUSTE DINÂMICO DE ALTURA DO WIDGET DE FEEDBACK
+// 2. INTERCEPTAÇÃO DO FORMULÁRIO DE SUGESTÕES (FEEDBACK VISUAL LIMPO)
+// ==========================================================================
+document.getElementById('form-sugestoes').addEventListener('submit', function(e) {
+    e.preventDefault(); // Impede o reload da página
+    
+    const form = this;
+    const successMsg = document.getElementById('form-success-msg');
+    
+    // Esconde o formulário devagar e mostra o alerta premium de sucesso
+    form.style.display = 'none';
+    successMsg.classList.remove('hidden');
+    
+    // Reseta o formulário após 4 segundos caso queira abrir de novo
+    setTimeout(() => {
+        form.reset();
+        form.style.display = 'flex';
+        successMsg.classList.add('hidden');
+    }, 4500);
+});
+
+
+// ==========================================================================
+// 3. COOKIES E AJUSTE DINÂMICO DE ALTURA DO WIDGET DE FEEDBACK
 // ==========================================================================
 window.addEventListener('load', () => {
     const cookieBanner = document.getElementById('cookie-banner');
@@ -87,12 +138,10 @@ window.addEventListener('load', () => {
     const declineBtn = document.getElementById('cookie-decline-btn');
     const feedbackWidget = document.getElementById('emoji-feedback-widget');
 
-    // Mostra os cookies e mantém o feedback flutuando por cima dele
     setTimeout(() => {
         cookieBanner.classList.add('show');
     }, 1200);
 
-    // Esconde o banner e faz o widget de feedback descer para o canto inferor
     function hideCookieBanner() {
         cookieBanner.classList.remove('show');
         feedbackWidget.classList.remove('cookie-above');
@@ -105,7 +154,7 @@ window.addEventListener('load', () => {
 
 
 // ==========================================================================
-// 3. CONTROLE DE IDIOMA (PT / EN)
+// 4. CONTROLE DE IDIOMA (PT / EN)
 // ==========================================================================
 let currentLang = 'pt';
 const langToggleBtn = document.getElementById('lang-toggle');
@@ -121,7 +170,7 @@ langToggleBtn.addEventListener('click', () => {
 
 
 // ==========================================================================
-// 4. WIDGET DE FEEDBACK POR EMOJIS (INTERAÇÃO E AUTO-FECHAMENTO)
+// 5. WIDGET DE FEEDBACK POR EMOJIS (INTERAÇÃO E AUTO-FECHAMENTO)
 // ==========================================================================
 const feedbackTrigger = document.getElementById('feedback-trigger-btn');
 const feedbackCard = document.getElementById('feedback-card');
@@ -140,7 +189,6 @@ feedbackClose.addEventListener('click', () => {
 
 emojiButtons.forEach(btn => {
     btn.addEventListener('click', () => {
-        const rating = btn.getAttribute('data-rating');
         feedbackEmojisContainer.style.display = 'none';
         feedbackThanks.classList.remove('hidden');
         
@@ -156,7 +204,7 @@ emojiButtons.forEach(btn => {
 
 
 // ==========================================================================
-// 5. CONTROLE DE TEMA (SOL E LUA)
+// 6. CONTROLE DE TEMA (SOL E LUA)
 // ==========================================================================
 const themeToggleBtn = document.getElementById('theme-toggle');
 themeToggleBtn.addEventListener('click', () => {
@@ -167,7 +215,7 @@ themeToggleBtn.addEventListener('click', () => {
 
 
 // ==========================================================================
-// 6. HAMBÚRGUER COM SUPORTE MOBILE COMPLETO
+// 7. HAMBÚRGUER COM SUPORTE MOBILE COMPLETO
 // ==========================================================================
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
@@ -194,7 +242,7 @@ document.addEventListener('click', (e) => {
 
 
 // ==========================================================================
-// 7. FILTROS E COMPONENTES AUXILIARES
+// 8. FILTROS E COMPONENTES AUXILIARES
 // ==========================================================================
 function filterAlternativas(category) {
     const buttons = document.querySelectorAll('.btn-filter');
