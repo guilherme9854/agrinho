@@ -1,15 +1,17 @@
 // ==========================================================================
-// CONFIGURAÇÕES GLOBAIS E ESTADO DA APLICAÇÃO
+// CENTRAL DE TRADUÇÃO DO QUIZ
 // ==========================================================================
 let currentLang = 'pt';
 
-// Banco de dados do Quiz Traduzido (Português, Inglês e Espanhol)
 const quizData = [
     {
         question: {
             pt: "Qual é o principal objetivo do Controle Biológico na agricultura sustentável?",
             en: "What is the main objective of Biological Control in sustainable agriculture?",
-            es: "¿Cuál es el objetivo principal del Control Biológico en la agricultura sostenible?"
+            es: "¿Cuál es el objetivo principal del Control Biológico en la agricultura sostenible?",
+            fr: "Quel est l'objectif principal du contrôle biologique?",
+            de: "Was ist das Hauptziel der biologischen Schädlingsbekämpfung?",
+            it: "Qual è l'obiettivo principale del controllo biologico?"
         },
         options: {
             pt: [
@@ -26,110 +28,83 @@ const quizData = [
             ],
             es: [
                 "Eliminar toda la biodiversidad local para proteger las plantas.",
-                "Utilizar enemigos naturales (como insectos benéficos) para controlar plagas.",
-                "Aumentar el uso de herbicidas sintéticos en el cultivo.",
-                "Reemplazar el riego por productos químicos concentrados."
+                "Utilizar enemigos naturales para controlar plagas.",
+                "Aumentar el uso de herbicidas sintéticos.",
+                "Reemplazar el riego por produtos químicos."
+            ],
+            fr: [
+                "Éliminer toute la biodiversité locale.",
+                "Utiliser des ennemis naturels pour lutter contre les bioagresseurs.",
+                "Augmenter l'utilisation d'herbicides.",
+                "Remplacer l'irrigation por des produits chimiques."
+            ],
+            de: [
+                "Die gesamte lokale Artenvielfalt vernichten.",
+                "Natürliche Feinde zur Schädlingsbekämpfung einsetzen.",
+                "Den Einsatz synthetischer Herbizide erhöhen.",
+                "Die Bewässerung durch Chemikalien ersetzen."
+            ],
+            it: [
+                "Eliminare tutta la biodiversità locale.",
+                "Utilizzare nemici naturali per controllare i parassiti.",
+                "Aumentare l'uso di erbicidi sintetici.",
+                "Sostituire l'irrigazione con prodotti chimici."
             ]
         },
         correct: 1
-    },
-    {
-        question: {
-            pt: "Qual dessas alternativas NÃO é considerada um impacto ambiental do uso excessivo de agrotóxicos?",
-            en: "Which of these alternatives is NOT considered an environmental impact of excessive pesticide use?",
-            es: "¿Cuál de estas alternativas NO se considera un impacto ambiental del uso excesivo de pesticidas?"
-        },
-        options: {
-            pt: [
-                "Poluição de lençóis freáticos e rios.",
-                "Intoxicação de polinizadores essenciais como abelhas.",
-                "Fortalecimento natural dos nutrientes originais do solo.",
-                "Acúmulo de resíduos químicos na cadeia alimentar."
-            ],
-            en: [
-                "Pollution of groundwater and rivers.",
-                "Intoxication of essential pollinators like bees.",
-                "Natural strengthening of original soil nutrients.",
-                "Accumulation of chemical residues in the food chain."
-            ],
-            es: [
-                "Contaminación de capas freáticas y ríos.",
-                "Intoxicación de polinizadores esenciales como las abejas.",
-                "Fortalecimiento natural de los nutrientes originales del suelo.",
-                "Acumulación de residuos químicos en la cadena alimentaria."
-            ]
-        },
-        correct: 2
     }
 ];
 
 let currentQuestionIndex = 0;
 
-// ==========================================================================
-// INICIALIZAÇÃO DO SISTEMA
-// ==========================================================================
+// INICIALIZAÇÃO
 document.addEventListener("DOMContentLoaded", () => {
     initTheme();
     initMenuLateral();
-    initLanguageDropdown();
-    initInfografico();
-    initScrollReveal();
-    initQuiz();
+    initLanguageSystem();
+    initQuizSystem();
     initFeedbackWidget();
     initCookies();
+    initScrollReveal();
 });
 
-// ==========================================================================
-// SISTEMA DE IDIOMAS (MENU HAMBÚRGUER / DROPDOWN DE IDIOMAS)
-// ==========================================================================
-function initLanguageDropdown() {
+// SISTEMA MULTI-IDIOMAS GLOBAL
+function initLanguageSystem() {
     const btn = document.getElementById('lang-dropdown-btn');
     const dropdown = document.querySelector('.lang-dropdown');
     const options = document.querySelectorAll('[data-lang-select]');
 
-    // Abre e fecha o menu de idiomas ao clicar no botão global
+    if (!btn || !dropdown) return;
+
     btn.addEventListener('click', (e) => {
         e.stopPropagation();
         dropdown.classList.toggle('active');
     });
 
-    // Fecha o menu se clicar em qualquer outro lugar da tela
-    document.addEventListener('click', () => {
-        dropdown.classList.remove('active');
-    });
+    document.addEventListener('click', () => dropdown.classList.remove('active'));
 
-    // Captura a troca de idioma ao clicar em uma opção
     options.forEach(opt => {
         opt.addEventListener('click', () => {
             const selectedLang = opt.getAttribute('data-lang-select');
-            changeLanguage(selectedLang);
+            currentLang = selectedLang;
             
-            // Atualiza o texto visual do botão do menu principal
-            const flags = { pt: '🇧🇷 PT', en: '🇺🇸 EN', es: '🇪🇸 ES' };
-            btn.textContent = `🌐 ${flags[selectedLang].split(' ')[1]}`;
-            dropdown.classList.remove('active');
+            const labelMap = { pt: 'PT', en: 'EN', es: 'ES', fr: 'FR', de: 'DE', it: 'IT' };
+            btn.textContent = `🌐 ${labelMap[selectedLang]}`;
+            
+            document.querySelectorAll(`[data-lang-${selectedLang}]`).forEach(el => {
+                el.textContent = el.getAttribute(`data-lang-${selectedLang}`);
+            });
+
+            renderQuizQuestion();
         });
     });
 }
 
-function changeLanguage(lang) {
-    currentLang = lang;
-    document.documentElement.lang = lang === 'pt' ? 'pt-BR' : lang;
-
-    // Traduz todos os elementos estáticos que possuem os atributos customizados
-    document.querySelectorAll(`[data-lang-${lang}]`).forEach(el => {
-        el.textContent = el.getAttribute(`data-lang-${lang}`);
-    });
-
-    // Recarrega a pergunta atual do quiz com o novo idioma aplicado
-    renderQuizQuestion();
-}
-
-// ==========================================================================
-// RENDERIZAÇÃO DO QUIZ (CORRIGIDO PARA SUPORTAR IDIOMAS DIRETAMENTE)
-// ==========================================================================
-function initQuiz() {
+// SISTEMA DO QUIZ INTERATIVO
+function initQuizSystem() {
     const nextBtn = document.getElementById('btn-next-quiz');
+    if (!nextBtn) return;
+
     nextBtn.addEventListener('click', () => {
         currentQuestionIndex++;
         if (currentQuestionIndex < quizData.length) {
@@ -147,6 +122,8 @@ function renderQuizQuestion() {
     const feedbackEl = document.getElementById('quiz-feedback');
     const nextBtn = document.getElementById('btn-next-quiz');
 
+    if (!questionEl || !optionsContainer) return;
+
     feedbackEl.classList.add('hidden');
     nextBtn.classList.add('hidden');
     optionsContainer.innerHTML = '';
@@ -163,161 +140,119 @@ function renderQuizQuestion() {
         const button = document.createElement('button');
         button.className = 'option-btn';
         button.textContent = optionText;
-        button.addEventListener('click', () => selectQuizOption(index, button));
+        button.addEventListener('click', () => {
+            const buttons = optionsContainer.querySelectorAll('.option-btn');
+            buttons.forEach(b => b.disabled = true);
+
+            if (index === currentQuiz.correct) {
+                button.classList.add('correct');
+                feedbackEl.className = "quiz-feedback success";
+                const msg = { pt: "Correto! 🌿", en: "Correct! 🌿", es: "¡Correcto! 🌿", fr: "Correct! 🌿", de: "Richtig! 🌿", it: "Corretto! 🌿" };
+                feedbackEl.textContent = msg[currentLang];
+            } else {
+                button.classList.add('wrong');
+                buttons[currentQuiz.correct].classList.add('correct');
+                feedbackEl.className = "quiz-feedback error";
+                const msg = { pt: "Incorreto.", en: "Incorrect.", es: "Incorrecto.", fr: "Incorrect.", de: "Falsch.", it: "Incorretto." };
+                feedbackEl.textContent = msg[currentLang];
+            }
+            feedbackEl.classList.remove('hidden');
+            nextBtn.classList.remove('hidden');
+        });
         optionsContainer.appendChild(button);
     });
-}
-
-function selectQuizOption(selectedIndex, clickedButton) {
-    const currentQuiz = quizData[currentQuestionIndex];
-    const optionsContainer = document.getElementById('quiz-options');
-    const feedbackEl = document.getElementById('quiz-feedback');
-    const nextBtn = document.getElementById('btn-next-quiz');
-
-    // Desativa todos os botões para impedir múltiplos cliques
-    const buttons = optionsContainer.querySelectorAll('.option-btn');
-    buttons.forEach(btn => btn.disabled = true);
-
-    if (selectedIndex === currentQuiz.correct) {
-        clickedButton.classList.add('correct');
-        feedbackEl.className = "quiz-feedback success";
-        
-        const msgs = { pt: "Parabéns! Resposta correta. 🌿", en: "Congratulations! Correct answer. 🌿", es: "¡Felicitaciones! Respuesta correcta. 🌿" };
-        feedbackEl.textContent = msgs[currentLang];
-    } else {
-        clickedButton.classList.add('wrong');
-        buttons[currentQuiz.correct].classList.add('correct');
-        feedbackEl.className = "quiz-feedback error";
-
-        const msgs = { pt: "Resposta incorreta. Estude mais as alternativas biológicas!", en: "Incorrect answer. Learn more about biological alternatives!", es: "Respuesta incorrecta. ¡Estudie más as alternativas biológicas!" };
-        feedbackEl.textContent = msgs[currentLang];
-    }
-
-    feedbackEl.classList.remove('hidden');
-    nextBtn.classList.remove('hidden');
 }
 
 function showQuizFinished() {
     const questionEl = document.getElementById('quiz-question');
     const optionsContainer = document.getElementById('quiz-options');
-    const feedbackEl = document.getElementById('quiz-feedback');
-    const nextBtn = document.getElementById('btn-next-quiz');
-
+    if (!questionEl) return;
+    const msgs = { pt: "Desafio Concluído!", en: "Challenge Completed!", es: "¡Desafío Completado!", fr: "Défi Terminé!", de: "Herausforderung Abgeschlossen!", it: "Sfida Completata!" };
+    questionEl.textContent = msgs[currentLang];
     optionsContainer.innerHTML = '';
-    feedbackEl.classList.add('hidden');
-    nextBtn.classList.add('hidden');
-
-    const titles = { pt: "Desafio Concluído!", en: "Challenge Completed!", es: "¡Desafío Completado!" };
-    const messages = { 
-        pt: "Obrigado por participar do Quiz do Projeto Agrinho 2026. Você concluiu sua análise crítica com sucesso!", 
-        en: "Thank you for participating in the Agrinho Project 2026 Quiz. You have successfully completed your critical analysis!", 
-        es: "Gracias por participar en el Quiz del Proyecto Agrinho 2026. ¡Ha completado su análisis crítico con éxito!" 
-    };
-
-    questionEl.textContent = titles[currentLang];
-    const p = document.createElement('p');
-    p.style.marginTop = "10px";
-    p.textContent = messages[currentLang];
-    optionsContainer.appendChild(p);
 }
 
-// ==========================================================================
-// CORREÇÃO DO WIDGET DE AVALIAÇÃO (E BOTÃO DE FECHAR "X")
-// ==========================================================================
+// CONTROLADOR DO WIDGET DE AVALIAÇÃO RÍGIDO
 function initFeedbackWidget() {
-    const triggerBtn = document.getElementById('feedback-trigger-btn');
+    const trigger = document.getElementById('feedback-trigger-btn');
     const card = document.getElementById('feedback-card');
-    const closeBtn = document.getElementById('feedback-close-btn');
-    const emojisContainer = document.getElementById('feedback-emojis');
-    const thanksMsg = document.getElementById('feedback-thanks');
+    const closeButtons = document.querySelectorAll('.close-widget-action');
+    const screenVoting = document.getElementById('feedback-screen-voting');
+    const screenThanks = document.getElementById('feedback-screen-thanks');
+    const emojis = document.querySelectorAll('.feedback-emojis .emoji-btn');
 
-    // Abre e fecha o card de feedback ao clicar no botão flutuante
-    triggerBtn.addEventListener('click', () => {
+    if (!trigger || !card) return;
+
+    // Abre/Fecha ao carregar no botão principal
+    trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
         card.classList.toggle('hidden');
     });
 
-    // Fecha o card ao clicar no botão "X"
-    closeBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        card.classList.add('hidden');
+    // Fechar pelo botão X (funciona sempre)
+    closeButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            card.classList.add('hidden');
+        });
     });
 
-    // Gerencia o clique nos emojis para salvar e exibir o agradecimento da forma certa
-    const emojiButtons = emojisContainer.querySelectorAll('.emoji-btn');
-    emojiButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const rating = btn.getAttribute('data-rating');
-            localStorage.setItem('agro_feedback_rating', rating);
+    // Clique nos Emojis de Voto
+    emojis.forEach(emoji => {
+        emoji.addEventListener('click', (e) => {
+            e.stopPropagation();
+            localStorage.setItem('agro_voto', emoji.getAttribute('data-rating'));
 
-            // Esconde os emojis para dar lugar à mensagem de sucesso de forma limpa
-            emojisContainer.classList.add('hidden');
-            thanksMsg.classList.remove('hidden');
+            // Alternar de ecrãs de imediato
+            screenVoting.classList.add('hidden');
+            screenThanks.classList.remove('hidden');
 
-            // Fecha o card automaticamente após 2.5 segundos
+            // Fecho automático limpo após 2.5s
             setTimeout(() => {
                 card.classList.add('hidden');
-                // Reseta o estado interno do card caso ele seja reaberto futuramente
+                // Repor estrutura invisível em segundo plano
                 setTimeout(() => {
-                    emojisContainer.classList.remove('hidden');
-                    thanksMsg.classList.add('hidden');
-                }, 400);
+                    screenVoting.classList.remove('hidden');
+                    screenThanks.classList.add('hidden');
+                }, 300);
             }, 2500);
         });
     });
 }
 
-// ==========================================================================
-// CONTROLE DO TEMA (LIGHT / DARK)
-// ==========================================================================
+// TEMA ESCURO/CLARO
 function initTheme() {
     const toggle = document.getElementById('theme-toggle');
-    const savedTheme = localStorage.getItem('theme') || 'light-mode';
-    document.body.className = savedTheme;
-    toggle.textContent = savedTheme === 'light-mode' ? '🌙' : '☀️';
-
+    if (!toggle) return;
     toggle.addEventListener('click', () => {
         if (document.body.classList.contains('light-mode')) {
             document.body.className = 'dark-mode';
             toggle.textContent = '☀️';
-            localStorage.setItem('theme', 'dark-mode');
         } else {
             document.body.className = 'light-mode';
             toggle.textContent = '🌙';
-            localStorage.setItem('theme', 'light-mode');
         }
     });
 }
 
-// ==========================================================================
-// MENU GAVETA LATERAL (RESPONSIVO)
-// ==========================================================================
+// MENU HAMBÚRGUER
 function initMenuLateral() {
-    const hamburger = document.querySelector('.hamburger');
+    const burger = document.querySelector('.hamburger');
     const menu = document.querySelector('.nav-menu');
-    const links = document.querySelectorAll('.nav-links a');
-
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
+    if (!burger || !menu) return;
+    burger.addEventListener('click', () => {
+        burger.classList.toggle('active');
         menu.classList.toggle('active');
-    });
-
-    links.forEach(link => {
-        link.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            menu.classList.remove('active');
-        });
     });
 }
 
-// ==========================================================================
-// FILTROS DAS ALTERNATIVAS SUSTENTÁVEIS
-// ==========================================================================
+// FILTRAGEM DE CARDS
 function filterAlternativas(category) {
     const cards = document.querySelectorAll('.alternativas-container .card');
     const buttons = document.querySelectorAll('.filter-buttons .btn-filter');
-
-    buttons.forEach(btn => btn.classList.remove('active'));
-    event.currentTarget.classList.add('active');
+    
+    buttons.forEach(b => b.classList.remove('active'));
+    if (event) event.currentTarget.classList.add('active');
 
     cards.forEach(card => {
         if (category === 'all' || card.getAttribute('data-category') === category) {
@@ -328,60 +263,49 @@ function filterAlternativas(category) {
     });
 }
 
-// ==========================================================================
-// INFOGRÁFICO INTERATIVO (PASSOS)
-// ==========================================================================
-function switchStep(stepNumber) {
+// PASSOS DO INFOGRÁFICO
+function switchStep(step) {
     const cards = document.querySelectorAll('.infographic-steps .step-card');
-    cards.forEach((card, index) => {
-        if (index + 1 === stepNumber) {
-            card.classList.add('active');
-        } else {
-            card.classList.remove('active');
-        }
+    cards.forEach((c, idx) => {
+        if (idx + 1 === step) c.classList.add('active');
+        else c.classList.remove('active');
     });
 }
 
-// ==========================================================================
-// COOKIES BANNER
-// ==========================================================================
+// CONTROLADOR DE COOKIES
 function initCookies() {
     const banner = document.getElementById('cookie-banner');
-    const accept = document.getElementById('cookie-accept-btn');
-    const decline = document.getElementById('cookie-decline-btn');
     const widget = document.getElementById('emoji-feedback-widget');
+    if (!banner) return;
 
-    if (!localStorage.getItem('agro_cookies_accepted')) {
-        setTimeout(() => banner.classList.add('show'), 600);
-    } else {
+    if (!localStorage.getItem('cookies_ok')) {
+        banner.classList.add('show');
+    } else if (widget) {
         widget.className = "feedback-widget cookie-hidden";
     }
 
-    accept.addEventListener('click', () => {
-        localStorage.setItem('agro_cookies_accepted', 'true');
+    document.getElementById('cookie-accept-btn').addEventListener('click', () => {
+        localStorage.setItem('cookies_ok', true);
         banner.classList.remove('show');
-        widget.className = "feedback-widget cookie-hidden";
+        if (widget) widget.className = "feedback-widget cookie-hidden";
     });
 
-    decline.addEventListener('click', () => {
+    document.getElementById('cookie-decline-btn').addEventListener('click', () => {
         banner.classList.remove('show');
-        widget.className = "feedback-widget cookie-hidden";
+        if (widget) widget.className = "feedback-widget cookie-hidden";
     });
 }
 
-// ==========================================================================
-// ANIMACAO SCROLL REVEAL (OTIMIZADA COM INTERSECTION OBSERVER)
-// ==========================================================================
+// ANIMAÇÃO DE SCROLL (REVEAL)
 function initScrollReveal() {
-    const elements = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
+    const els = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.classList.add('visible');
+                obs.unobserve(e.target);
             }
         });
-    }, { threshold: 0.1 });
-
-    elements.forEach(el => observer.observe(el));
+    }, { threshold: 0.05 });
+    els.forEach(el => obs.observe(el));
 }
