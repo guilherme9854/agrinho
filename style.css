@@ -52,7 +52,7 @@
 }
 
 html {
-    scroll-behavior: smooth; /* Transição linda e fluida ao navegar pelos IDs */
+    scroll-behavior: smooth;
 }
 
 body {
@@ -67,7 +67,7 @@ body {
 
 .container {
     width: 90%;
-    max-width: 960px; /* Trava o layout para não esticar em monitores imensos */
+    max-width: 960px;
     margin: 0 auto;
 }
 
@@ -77,7 +77,6 @@ h1, h2, h3, h4 {
     letter-spacing: -0.02em;
 }
 
-/* Animação Scroll Reveal (Surgimento na rolagem) */
 .reveal {
     opacity: 0;
     transform: translateY(20px);
@@ -89,7 +88,7 @@ h1, h2, h3, h4 {
 }
 
 /* ==========================================================================
-   NAVBAR & HAMBURGER (VISUAL TRANSICIONADO EM X)
+   NAVBAR MODIFICADA (BOTÕES DE AUTENTICAÇÃO E IDIOMA)
    ========================================================================== */
 .navbar {
     background-color: var(--navbar-bg);
@@ -115,7 +114,7 @@ h1, h2, h3, h4 {
 .nav-left, .nav-right {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 14px;
 }
 
 .logo {
@@ -189,15 +188,28 @@ h1, h2, h3, h4 {
 .nav-links a { color: var(--text-main); text-decoration: none; font-weight: 500; font-size: 1.05rem; transition: color 0.2s, padding-left 0.2s; }
 .nav-links a:hover { color: var(--accent); padding-left: 6px; }
 
-.theme-btn { background: transparent; border: none; cursor: pointer; font-size: 1.1rem; padding: 4px; }
+.theme-btn, .lang-btn { background: transparent; border: none; cursor: pointer; font-size: 1rem; padding: 4px; color: var(--text-main); font-weight: 600; font-family: inherit; }
+
+/* Grupo de botões integrados */
+.nav-auth-buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
 .btn-login {
     border: 1px solid var(--text-main); color: var(--text-main); text-decoration: none;
-    padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; transition: all 0.2s;
+    padding: 6px 14px; border-radius: 20px; font-size: 0.82rem; font-weight: 600; transition: all 0.2s;
 }
 .btn-login:hover { background: var(--text-main); color: var(--card-bg); }
 
+.btn-register {
+    background-color: var(--primary); color: white; text-decoration: none;
+    padding: 6px 14px; border-radius: 20px; font-size: 0.82rem; font-weight: 600; transition: background var(--speed);
+}
+.btn-register:hover { background-color: var(--accent); }
+
 /* ==========================================================================
-   HERO SECTION & CARDS GRID
+   HERO & SECTIONS
    ========================================================================== */
 .hero-section {
     background: linear-gradient(135deg, #0f1f15 0%, #0f172a 100%);
@@ -212,7 +224,6 @@ h1, h2, h3, h4 {
 .stat-number { display: block; font-family: var(--font-heading); font-size: 2.3rem; font-weight: 300; color: var(--accent); margin-bottom: 4px; }
 .stat-label { font-size: 0.82rem; color: var(--text-muted); }
 
-/* Infográfico */
 .infographic-section { margin-bottom: 45px; }
 .infographic-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
 .step-card { background: var(--card-bg); border: var(--border); border-radius: var(--radius); padding: 20px; cursor: pointer; opacity: 0.6; }
@@ -220,7 +231,6 @@ h1, h2, h3, h4 {
 .step-card.active { opacity: 1; border-color: var(--accent); box-shadow: var(--shadow); }
 .step-num { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
 
-/* Grids Gerais */
 .content-section { margin-bottom: 50px; scroll-margin-top: 90px; }
 .content-section h2 { font-size: 1.6rem; margin-bottom: 6px; }
 .section-instruction { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px; }
@@ -279,7 +289,7 @@ h1, h2, h3, h4 {
 .quiz-feedback.error { background-color: rgba(239, 68, 68, 0.05); color: #991b1b; border: 1px solid rgba(239, 68, 68, 0.1); }
 
 /* ==========================================================================
-   REFERÊNCIAS MODERNIZADAS PREMIUM
+   REFERÊNCIAS & FORMULÁRIOS
    ========================================================================== */
 .references-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 15px; }
 .ref-item { background: var(--card-bg); border: var(--border); border-radius: var(--radius); padding: 20px; display: flex; gap: 14px; align-items: flex-start; transition: transform var(--speed), border-color var(--speed); }
@@ -288,7 +298,6 @@ h1, h2, h3, h4 {
 .ref-item h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 4px; color: var(--text-main); }
 .ref-item p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.4; }
 
-/* Formulário e Sugestões */
 .form-card { max-width: 500px; margin: 0 auto; }
 .suggestion-form { display: flex; flex-direction: column; gap: 14px; }
 .form-group { display: flex; flex-direction: column; gap: 6px; font-size: 0.85rem; font-weight: 600; }
@@ -296,7 +305,6 @@ h1, h2, h3, h4 {
 .btn-submit { background: var(--primary); color: white; border: none; padding: 12px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: background 0.2s; text-align: center; }
 .btn-submit:hover { background: #14532d; }
 
-/* Rodapé Geral */
 .footer-premium { border-top: var(--border); padding: 40px 0 25px 0; margin-top: 60px; font-size: 0.85rem; color: var(--text-muted); background-color: var(--card-bg); }
 .footer-content-wrap { display: flex; flex-direction: column; gap: 24px; }
 .footer-desc { margin-top: 10px; font-size: 0.9rem; max-width: 550px; line-height: 1.6; }
@@ -304,11 +312,11 @@ h1, h2, h3, h4 {
 .footer-bottom-flex { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
 
 /* ==========================================================================
-   RODAPÉ FIXO DE COOKIES (LAYOUT COMPLETO COM OPÇÃO DE RECUSAR)
+   RODAPÉ FIXO DE COOKIES
    ========================================================================== */
 .cookie-banner {
     position: fixed;
-    bottom: -150px; /* Começa oculto na parte inferior */
+    bottom: -150px;
     left: 0;
     width: 100%;
     background-color: var(--card-bg);
@@ -329,6 +337,93 @@ h1, h2, h3, h4 {
 .btn-cookie-decline { background-color: var(--badge-bg); color: var(--badge-text); border: var(--border); }
 .btn-cookie-decline:hover { background-color: #ef4444; color: white; border-color: #ef4444; }
 
+/* ==========================================================================
+   WIDGET DE FEEDBACK INTERATIVO POR EMOJIS (CANTO INFERIOR DIREITO)
+   ========================================================================== */
+.feedback-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 3000;
+    font-family: var(--font-body);
+}
+
+.feedback-trigger {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 0.88rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: background var(--speed), transform var(--speed);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.feedback-trigger:hover {
+    background-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.feedback-card {
+    position: absolute;
+    bottom: 55px;
+    right: 0;
+    width: 280px;
+    background-color: var(--card-bg);
+    border: var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.feedback-card.hidden { display: none; }
+
+.feedback-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.feedback-header h4 { font-size: 0.9rem; color: var(--text-main); }
+.feedback-close {
+    background: transparent; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-muted); line-height: 1;
+}
+
+.feedback-emojis {
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+}
+.emoji-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.6rem;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+    padding: 4px;
+}
+.emoji-btn:hover {
+    transform: scale(1.25);
+}
+
+.feedback-thanks {
+    font-size: 0.85rem;
+    text-align: center;
+    color: var(--accent);
+    font-weight: 600;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; } to { opacity: 1; }
+}
+
+/* Responsividade Ajustada */
 @media(max-width: 768px) {
     .grid-2, .grid-3, .infographic-steps { grid-template-columns: 1fr; }
     .footer-bottom-flex { flex-direction: column; text-align: center; }
@@ -336,4 +431,5 @@ h1, h2, h3, h4 {
     .cookie-content { flex-direction: column; text-align: center; gap: 14px; }
     .cookie-actions { width: 100%; justify-content: center; }
     .btn-cookie { flex: 1; text-align: center; }
+    .nav-auth-buttons { display: none; } /* Oculta na barra principal mobile para evitar estouro */
 }

@@ -30,9 +30,8 @@ function loadQuizQuestion() {
     const feedbackEl = document.getElementById('quiz-feedback');
     const nextBtn = document.getElementById('btn-next-quiz');
 
-    // Reseta o estado visual de forma limpa
     feedbackEl.classList.add('hidden');
-    nextBtn.classList.add('hidden'); // O botão NUNCA aparece de início
+    nextBtn.classList.add('hidden'); 
     optionsContainer.innerHTML = '';
 
     const currentQuiz = quizData[currentQuestionIndex];
@@ -53,29 +52,24 @@ function checkQuizAnswer(selectedIndex, clickedButton) {
     const nextBtn = document.getElementById('btn-next-quiz');
     const buttons = document.querySelectorAll('.option-btn');
 
-    // Trava os botões para não clicar duas vezes
     buttons.forEach(btn => btn.disabled = true);
 
     if (selectedIndex === currentQuiz.correct) {
-        // Se o usuário acertou em cheio
         clickedButton.classList.add('correct');
         feedbackEl.textContent = currentQuiz.explanation;
         feedbackEl.className = "quiz-feedback success";
-        nextBtn.classList.add('hidden'); // Garante que fica escondido se acertou
+        nextBtn.classList.add('hidden'); 
     } else {
-        // Se o usuário errou
         clickedButton.classList.add('wrong');
         feedbackEl.textContent = `Incorreto. A resposta certa era outra. Vamos tentar novamente com uma questão diferente?`;
         feedbackEl.className = "quiz-feedback error";
         
-        // Revela a correta de apoio e SÓ AGORA exibe o botão de tentar novamente
         buttons[currentQuiz.correct].classList.add('correct');
         nextBtn.classList.remove('hidden');
     }
     feedbackEl.classList.remove('hidden');
 }
 
-// Passa a pergunta rotativamente apenas após o clique de erro
 document.getElementById('btn-next-quiz').addEventListener('click', () => {
     currentQuestionIndex = (currentQuestionIndex + 1) % quizData.length;
     loadQuizQuestion();
@@ -85,31 +79,78 @@ document.addEventListener('DOMContentLoaded', loadQuizQuestion);
 
 
 // ==========================================================================
-// 2. SISTEMA INTERATIVO E DEMOCRÁTICO DE COOKIES (ACEITAR OU RECUSAR)
+// 2. SISTEMA INTERATIVO DE AVISO DE COOKIES (DEMOCRÁTICO)
 // ==========================================================================
 window.addEventListener('load', () => {
     const cookieBanner = document.getElementById('cookie-banner');
     const acceptBtn = document.getElementById('cookie-accept-btn');
     const declineBtn = document.getElementById('cookie-decline-btn');
 
-    // Desliza suavemente na tela após 1.2 segundos
     setTimeout(() => {
         cookieBanner.classList.add('show');
     }, 1200);
 
-    // Ambas as opções fecham o banner respeitando a escolha do usuário
-    acceptBtn.addEventListener('click', () => {
-        cookieBanner.classList.remove('show');
-    });
+    acceptBtn.addEventListener('click', () => cookieBanner.classList.remove('show'));
+    declineBtn.addEventListener('click', () => cookieBanner.classList.remove('show'));
+});
 
-    declineBtn.addEventListener('click', () => {
-        cookieBanner.classList.remove('show');
+
+// ==========================================================================
+// 3. CONTROLE DE IDIOMA (PT / EN)
+// ==========================================================================
+let currentLang = 'pt';
+const langToggleBtn = document.getElementById('lang-toggle');
+
+langToggleBtn.addEventListener('click', () => {
+    currentLang = currentLang === 'pt' ? 'en' : 'pt';
+    langToggleBtn.textContent = currentLang === 'pt' ? '🌐 PT' : '🌐 EN';
+    
+    document.querySelectorAll('[data-lang-pt]').forEach(el => {
+        el.textContent = el.getAttribute(`data-lang-${currentLang}`);
     });
 });
 
 
 // ==========================================================================
-// 3. CONTROLE DE TEMA (SOL E LUA CORRIGIDO)
+// 4. WIDGET DE FEEDBACK POR EMOJIS (LOGICA DE INTERAÇÃO)
+// ==========================================================================
+const feedbackTrigger = document.getElementById('feedback-trigger-btn');
+const feedbackCard = document.getElementById('feedback-card');
+const feedbackClose = document.getElementById('feedback-close-btn');
+const emojiButtons = document.querySelectorAll('.emoji-btn');
+const feedbackThanks = document.getElementById('feedback-thanks');
+const feedbackEmojisContainer = document.getElementById('feedback-emojis');
+
+feedbackTrigger.addEventListener('click', () => {
+    feedbackCard.classList.toggle('hidden');
+});
+
+feedbackClose.addEventListener('click', () => {
+    feedbackCard.classList.add('hidden');
+});
+
+emojiButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const rating = btn.getAttribute('data-rating');
+        // Esconde os emojis e mostra agradecimento técnico elegante
+        feedbackEmojisContainer.style.display = 'none';
+        feedbackThanks.classList.remove('hidden');
+        
+        // Auto-fecha a caixinha de feedback após 2 segundos
+        setTimeout(() => {
+            feedbackCard.classList.add('hidden');
+            // Reseta o estado para uma próxima abertura
+            setTimeout(() => {
+                feedbackEmojisContainer.style.display = 'flex';
+                feedbackThanks.classList.add('hidden');
+            }, 400);
+        }, 2000);
+    });
+});
+
+
+// ==========================================================================
+// 5. CONTROLE DE TEMA (SOL E LUA)
 // ==========================================================================
 const themeToggleBtn = document.getElementById('theme-toggle');
 themeToggleBtn.addEventListener('click', () => {
@@ -120,7 +161,7 @@ themeToggleBtn.addEventListener('click', () => {
 
 
 // ==========================================================================
-// 4. HAMBÚRGUER CORRIGIDO COM RETORNO
+// 6. HAMBÚRGUER COM TRANSIÇÃO E CORREÇÃO DE DIRECIONAMENTO
 // ==========================================================================
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
@@ -147,7 +188,7 @@ document.addEventListener('click', (e) => {
 
 
 // ==========================================================================
-// 5. FILTROS DA SEÇÃO DE ALTERNATIVAS
+// 7. FILTROS E COMPONENTES AUXILIARES
 // ==========================================================================
 function filterAlternativas(category) {
     const buttons = document.querySelectorAll('.btn-filter');
