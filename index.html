@@ -1,265 +1,348 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agrinho 2026 - Práticas Sustentáveis</title>
+    <title>A Influência dos Agrotóxicos — Projeto Agrinho 2026</title>
+    <link rel="stylesheet" href="reset.css">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="light-mode">
 
-    <nav class="navbar">
+    <header class="navbar">
         <div class="container nav-container">
             <div class="nav-left">
-                <button class="hamburger" aria-label="Menu">
+                <button class="hamburger" aria-label="Abrir menu">
                     <span class="bar"></span>
                     <span class="bar"></span>
                     <span class="bar"></span>
                 </button>
                 <div class="logo">Agro<span>Sustentável</span></div>
-                <span class="agrinho-badge" data-lang-pt="Agrinho 2026" data-lang-en="Agrinho 2026" data-lang-es="Agrinho 2026" data-lang-fr="Agrinho 2026" data-lang-de="Agrinho 2026" data-lang-it="Agrinho 2026">Agrinho 2026</span>
             </div>
-
-            <div class="nav-menu">
-                <div class="menu-header" data-lang-pt="Navegação" data-lang-en="Navigation" data-lang-es="Navegación" data-lang-fr="Navigation" data-lang-de="Navigation" data-lang-it="Navigazione">Navegação</div>
-                <ul class="nav-links">
-                    <li><a href="#inicio" data-lang-pt="Início" data-lang-en="Home" data-lang-es="Inicio" data-lang-fr="Accueil" data-lang-de="Startseite" data-lang-it="Home">Início</a></li>
-                    <li><a href="#estatisticas" data-lang-pt="Dados Gerais" data-lang-en="General Data" data-lang-es="Datos Generales" data-lang-fr="Données Générales" data-lang-de="Allgemeine Daten" data-lang-it="Dati Generali">Dados Gerais</a></li>
-                    <li><a href="#infografico" data-lang-pt="Passo a Passo" data-lang-en="Step by Step" data-lang-es="Paso a Paso" data-lang-fr="Étape par Étape" data-lang-de="Schritt für Schritt" data-lang-it="Passo dopo Passo">Passo a Passo</a></li>
-                    <li><a href="#alternativas" data-lang-pt="Práticas Práticas" data-lang-en="Practical Practices" data-lang-es="Prácticas Prácticas" data-lang-fr="Pratiques Pratiques" data-lang-de="Praktische Praktiken" data-lang-it="Pratiche Pratiche">Práticas Práticas</a></li>
-                    <li><a href="#desafio" data-lang-pt="Quiz Educativo" data-lang-en="Educational Quiz" data-lang-es="Quiz Educativo" data-lang-fr="Quiz Éducatif" data-lang-de="Bildungsquiz" data-lang-it="Quiz Educativo">Quiz Educativo</a></li>
-                    <li><a href="#sobre" data-lang-pt="Sobre o Projeto" data-lang-en="About Project" data-lang-es="Sobre el Proyecto" data-lang-fr="À Propos" data-lang-de="Über das Projekt" data-lang-it="Sul Progetto">Sobre o Projeto</a></li>
-                    <li><a href="#fontes" data-lang-pt="Referências" data-lang-en="References" data-lang-es="Referencias" data-lang-fr="Références" data-lang-de="Referenzen" data-lang-it="Riferimenti">Referências</a></li>
-                </ul>
-            </div>
-
+            
             <div class="nav-center">
-                <div class="lang-dropdown">
-                    <button class="lang-btn" id="lang-dropdown-btn">🌐 PT</button>
-                    <div class="lang-dropdown-content">
-                        <button data-lang-select="pt">Português</button>
-                        <button data-lang-select="en">English</button>
-                        <button data-lang-select="es">Español</button>
-                        <button data-lang-select="fr">Français</button>
-                        <button data-lang-select="de">Deutsch</button>
-                        <button data-lang-select="it">Italiano</button>
+                <div class="agrinho-badge">Projeto Agrinho 2026</div>
+            </div>
+
+            <nav class="nav-menu">
+                <div class="menu-header" data-lang-pt="Navegação" data-lang-en="Navigation">Navegação</div>
+                <ul class="nav-links">
+                    <li><a href="#inicio" data-lang-pt="Início" data-lang-en="Home">Início</a></li>
+                    <li><a href="#o-que-sao" data-lang-pt="O que são" data-lang-en="What they are">O que são</a></li>
+                    <li><a href="#saude" data-lang-pt="Saúde" data-lang-en="Health">Saúde</a></li>
+                    <li><a href="#ambiente" data-lang-pt="Meio Ambiente" data-lang-en="Environment">Meio Ambiente</a></li>
+                    <li><a href="#alternativas" data-lang-pt="Alternativas" data-lang-en="Alternatives">Alternativas</a></li>
+                    <li><a href="#quiz" data-lang-pt="Desafio" data-lang-en="Challenge">Desafio</a></li>
+                    <li><a href="#referencias" data-lang-pt="Referências" data-lang-en="References">Referências</a></li>
+                    <li><a href="#sugestoes" data-lang-pt="Sugestões" data-lang-en="Suggestions">Sugestões</a></li>
+                </ul>
+
+                <div class="menu-contact-section">
+                    <div class="menu-header" data-lang-pt="Contato" data-lang-en="Contact">Contato</div>
+                    <div class="menu-social-icons">
+                        <a href="https://wa.me/SEUNUMERO" target="_blank" class="social-icon-btn whatsapp" aria-label="WhatsApp">
+                            <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.717-1.456L0 24zm6.59-4.846c1.66.986 3.288 1.448 4.805 1.449 5.417 0 9.825-4.41 9.828-9.83.001-2.625-1.013-5.093-2.858-6.94C16.521 1.986 14.06 1.01 11.513 1.01c-5.424 0-9.832 4.411-9.835 9.833-.001 1.768.478 3.427 1.387 4.917l-.952 3.478 3.534-.926zm10.225-4.665c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
+                        </a>
+                        <a href="https://instagram.com/SEUUSUARIO" target="_blank" class="social-icon-btn instagram" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                        </a>
                     </div>
                 </div>
-            </div>
+            </nav>
 
             <div class="nav-right">
-                <button class="theme-btn" id="theme-toggle" aria-label="Mudar Tema">🌙</button>
+                <button id="lang-toggle" class="lang-btn" aria-label="Mudar idioma">🌐 PT</button>
+                <button id="theme-toggle" class="theme-btn" aria-label="Mudar tema">☀️</button>
                 <div class="nav-auth-buttons">
-                    <a href="https://accounts.google.com/signup" target="_blank" class="btn-register" data-lang-pt="Criar conta" data-lang-en="Sign Up" data-lang-es="Registrarse" data-lang-fr="S'inscrire" data-lang-de="Registrieren" data-lang-it="Registrati">Criar conta</a>
-                    <a href="https://accounts.google.com/v3/signin/identifier" target="_blank" class="btn-login" data-lang-pt="Entrar" data-lang-en="Sign In" data-lang-es="Iniciar Sesión" data-lang-fr="Connexion" data-lang-de="Anmelden" data-lang-it="Accedi">Entrar</a>
+                    <a href="#cadastro" class="btn-register" data-lang-pt="Criar conta" data-lang-en="Sign Up">Criar conta</a>
+                    <a href="#login" class="btn-login" data-lang-pt="Entrar" data-lang-en="Sign In">Entrar</a>
                 </div>
             </div>
         </div>
-    </nav>
+    </header>
 
     <main class="container">
-
-        <header id="inicio" class="hero-section reveal">
+        
+        <section id="inicio" class="hero-section reveal">
             <div class="hero-content">
-                <span class="hero-tag" data-lang-pt="Sustentabilidade Racional" data-lang-en="Rational Sustainability" data-lang-es="Sustentabilidad Racional" data-lang-fr="Durabilité Rationnelle" data-lang-de="Rationale Nachhaltigkeit" data-lang-it="Sostenibilità Razionale">Sustentabilidade Racional</span>
-                <h1 data-lang-pt="O Futuro do Campo com Manejo Biológico" data-lang-en="The Future of the Field with Biological Management" data-lang-es="El Futuro del Campo con Manejo Biológico" data-lang-fr="L'Avenir du Champ avec la Gestion Biologique" data-lang-de="Die Zukunft des Feldes mit biologischem Management" data-lang-it="Il Futuro del Campo con Gestione Biologica">O Futuro do Campo com Manejo Biológico</h1>
-                <p data-lang-pt="Uma análise científica sobre como a substituição de defensivos químicos por defensores naturais protege a biodiversidade, reduz custos e garante alimentos mais saudáveis." data-lang-en="A scientific analysis on how replacing chemical pesticides with natural defenders protects biodiversity, reduces costs, and ensures healthier food." data-lang-es="Un análisis científico sobre cómo la sustitución de pesticidas químicos por defensores naturales protege la biodiversidad, reduce costos y garantiza alimentos más saludables." data-lang-fr="Une analyse scientifique sur la façon dont le remplacement des pesticides chimiques par des défenseurs naturels protège la biodiversité, réduit les coûts et garantit des aliments plus sains." data-lang-de="Eine wissenschaftliche Analyse darüber, wie der Ersatz chemischer Pestizide durch natürliche Schützer die Artenvielfalt schützt, Kosten senkt und gesündere Lebensmittel garantiert." data-lang-it="Un'analisi scientifica su come la sostituzione dei pesticidi chimici con difensori naturali protegga la biodiversità, riduca i costi e garantisca alimenti più sani.">Uma análise científica sobre como a substituição de defensivos químicos por defensores naturais protege a biodiversidade, reduz custos e garante alimentos mais saudáveis.</p>
-            </div>
-        </header>
-
-        <section id="estatisticas" class="stats-section reveal">
-            <div class="stat-item">
-                <span class="stat-number">40%</span>
-                <span class="stat-label" data-lang-pt="Redução média nos custos de manejo" data-lang-en="Average reduction in management costs" data-lang-es="Reducción promedio en costos de manejo" data-lang-fr="Réduction moyenne des coûts de gestion" data-lang-de="Durchschnittliche Senkung der Managementkosten" data-lang-it="Riduzione media dei costi di gestione">Redução média nos custos de manejo</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number">2x</span>
-                <span class="stat-label" data-lang-pt="Mais preservação de polinizadores" data-lang-en="More pollinator preservation" data-lang-es="Más preservación de polinizadores" data-lang-fr="Plus de préservation des pollinisateurs" data-lang-de="Mehr Schutz von Bestäubern" data-lang-it="Maggiore preservazione degli impollinatori">Mais preservação de polinizadores</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number">0%</span>
-                <span class="stat-label" data-lang-pt="Resíduos tóxicos no produto final" data-lang-en="Toxic residues in the final product" data-lang-es="Residuos tóxicos en el producto final" data-lang-fr="Résidus toxiques dans le produit final" data-lang-de="Toxische Rückstände im Endprodukt" data-lang-it="Residui toxicologici nel prodotto finale">0% Resíduos tóxicos no produto final</span>
+                <span class="hero-tag" data-lang-pt="Consciência Coletiva" data-lang-en="Collective Awareness">Consciência Coletiva</span>
+                <h1 data-lang-pt="A Influência dos Agrotóxicos" data-lang-en="The Influence of Pesticides">A Influência dos Agrotóxicos</h1>
+                <p data-lang-pt="Uma análise profunda sobre o uso de defensivos agrícolas na produção de alimentos, avaliando criticamente os impactos gerados na saúde humana, na biodiversidade e as soluções para um futuro sustentável." data-lang-en="A profound analysis of the use of agricultural pesticides in food production, critically evaluating the impacts on human health, biodiversity, and solutions for a sustainable future.">Uma análise profunda sobre o uso de defensivos agrícolas na produção de alimentos, avaliando criticamente os impactos gerados na saúde humana, na biodiversidade e as soluções para um futuro sustentável.</p>
             </div>
         </section>
 
-        <section id="infografico" class="content-section reveal">
-            <h2 data-lang-pt="Como Funciona a Transição Sustentável?" data-lang-en="How Does the Sustainable Transition Work?" data-lang-es="¿Cómo Funciona la Transición Sostenible?" data-lang-fr="Comment fonctionne la transition durable ?" data-lang-de="Wie funktioniert der nachhaltige Übergang?" data-lang-it="Come Funziona la Transizione Sostenibile?">Como Funciona a Transição Sustentável?</h2>
-            <p class="section-instruction" data-lang-pt="Clique nos cartões abaixo para visualizar cada etapa do processo no ecossistema:" data-lang-en="Click on the cards below to view each stage of the process in the ecosystem:" data-lang-es="Haga clic en las tarjetas a continuación para ver cada etapa del proceso en el ecosistema:" data-lang-fr="Cliquez sur les cartes ci-dessous pour voir chaque étape du processus dans l'écosystème :" data-lang-de="Klicken Sie auf die folgenden Karten, um jede Phase des Prozesses im Ökosystem anzuzeigen:" data-lang-it="Clicca sulle schede sottostanti per visualizzare ogni fase del processo nell'ecosistema:">Clique nos cartões abaixo para visualizar cada etapa do processo no ecossistema:</p>
+        <section class="stats-section reveal">
+            <div class="stat-item">
+                <span class="stat-number">3</span>
+                <span class="stat-label" data-lang-pt="Principais categorias de defensivos químicos" data-lang-en="Main categories of chemical pesticides">Principais categorias de defensivos químicos</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">1º</span>
+                <span class="stat-label" data-lang-pt="Setor focado em alternativas biológicas" data-lang-en="Sector focused on biological alternatives">Setor focado em alternativas biológicas</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">2026</span>
+                <span class="stat-label" data-lang-pt="Foco em metas globais sustentáveis" data-lang-en="Focus on global sustainable goals">Foco em metas globais sustentáveis</span>
+            </div>
+        </section>
+
+        <section class="infographic-section reveal">
+            <h2 data-lang-pt="A Jornada do Impacto" data-lang-en="The Journey of Impact">A Jornada do Impacto</h2>
+            <p class="section-instruction" data-lang-pt="Clique nas etapas abaixo para entender o ciclo de dispersão no ecossistema:" data-lang-en="Click on the steps below to understand the dispersion cycle in the ecosystem:">Clique nas etapas abaixo para entender o ciclo de dispersão no ecossistema:</p>
             
             <div class="infographic-steps">
                 <div class="step-card active" onclick="switchStep(1)">
-                    <span class="step-num">01</span>
-                    <h3 data-lang-pt="Monitoramento" data-lang-en="Monitoring" data-lang-es="Monitoreo" data-lang-fr="Suivi" data-lang-de="Überwachung" data-lang-it="Monitoraggio">Monitoramento</h3>
-                    <p data-lang-pt="Identificação precisa dos focos de pragas antes de agir." data-lang-en="Precise identification of pest outbreaks before acting." data-lang-es="Identificación precisa de brotes de plagas antes de actuar." data-lang-fr="Identification précise des foyers de bioagresseurs avant d'agir." data-lang-de="Präzise Identifizierung von Schädlingsherden vor dem Handeln." data-lang-it="Identificazione precisa dei focolai di parassiti prima di agire.">Identificação precisa dos focos de pragas antes de agir.</p>
+                    <div class="step-num">01</div>
+                    <h3 data-lang-pt="Aplicação Direta" data-lang-en="Direct Application">Aplicação Direta</h3>
+                    <p data-lang-pt="Ocorre a dispersão aérea ou tratorizada sobre a lavoura protetora." data-lang-en="Aerial or tractor dispersion occurs over the target crop.">Ocorre a dispersão aérea ou tratorizada sobre a lavoura protetora.</p>
                 </div>
                 <div class="step-card" onclick="switchStep(2)">
-                    <span class="step-num">02</span>
-                    <h3 data-lang-pt="Introdução" data-lang-en="Introduction" data-lang-es="Introducción" data-lang-fr="Introduction" data-lang-de="Einführung" data-lang-it="Introduzione">Introdução</h3>
-                    <p data-lang-pt="Liberação controlada de inimigos naturais específicos." data-lang-en="Controlled release of specific natural enemies." data-lang-es="Liberación controlada de enemigos naturales específicos." data-lang-fr="Lâcher contrôlé d'ennemis naturels spécifiques." data-lang-de="Gezielte Freisetzung spezifischer natürlicher Feinde." data-lang-it="Rilascio controllato di nemici naturali specifici.">Liberação controlada de inimigos naturais específicos.</p>
+                    <div class="step-num">02</div>
+                    <h3 data-lang-pt="Escoamento & Solo" data-lang-en="Runoff & Soil">Escoamento & Solo</h3>
+                    <p data-lang-pt="A chuva lava as folhas e carrega os resíduos para o subsolo e rios." data-lang-en="Rain washes the leaves and carries residues into the subsoil and rivers.">A chuva lava as folhas e carrega os resíduos para o subsolo e rios.</p>
                 </div>
                 <div class="step-card" onclick="switchStep(3)">
-                    <span class="step-num">03</span>
-                    <h3 data-lang-pt="Equilíbrio" data-lang-en="Balance" data-lang-es="Equilibrio" data-lang-fr="Équilibre" data-lang-de="Gleichgewicht" data-lang-it="Equilibrio">Equilíbrio</h3>
-                    <p data-lang-pt="A própria natureza controla a população de pragas." data-lang-en="Nature itself controls the pest population." data-lang-es="La naturaleza misma controla la población de plagas." data-lang-fr="La nature elle-même régule la population de bioagresseurs." data-lang-de="Die Natur selbst reguliert die Schädlingspopulation." data-lang-it="La natura stessa controlla la popolazione di parassiti.">A própria natureza controla a população de pragas.</p>
+                    <div class="step-num">03</div>
+                    <h3 data-lang-pt="Cadeia Alimentar" data-lang-en="Food Chain">Cadeia Alimentar</h3>
+                    <p data-lang-pt="Animais e humanos absorvem os compostos químicos de forma cumulativa." data-lang-en="Animals and humans absorb the chemical compounds cumulatively.">Animais e humanos absorvem os compostos químicos de forma cumulativa.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="o-que-sao" class="content-section reveal">
+            <h2 data-lang-pt="O que são Agrotóxicos?" data-lang-en="What are Pesticides?">O que são Agrotóxicos?</h2>
+            <p class="section-instruction" data-lang-pt="Explore as principais categorias de defensivos químicos utilizados no campo:" data-lang-en="Explore the main categories of chemical defenses used in the field:">Explore as principais categorias de defensivos químicos utilizados no campo:</p>
+            
+            <div class="accordion-container">
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span data-lang-pt="Inseticidas" data-lang-en="Insecticides">Inseticidas</span>
+                        <span class="chevron">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="content-flex">
+                            <p data-lang-pt="Substâncias químicas focadas no combate e extermínio de pragas que prejudicam o desenvolvimento saudável das culturas." data-lang-en="Chemical substances focused on combating and exterminating pests that harm the healthy development of crops.">Substâncias químicas focadas no combate e extermínio de pragas que prejudicam o desenvolvimento saudável das culturas.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span data-lang-pt="Herbicidas" data-lang-en="Herbicides">Herbicidas</span>
+                        <span class="chevron">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="content-flex">
+                            <p data-lang-pt="Compostos desenvolvidos para eliminar plantas invasoras que competem por espaço e nutrientes do solo." data-lang-en="Compounds developed to eliminate invasive plants that compete for space and soil nutrients.">Compostos desenvolvidos para eliminar plantas invasoras que competem por espaço e nutrientes do solo.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span data-lang-pt="Fungicidas" data-lang-en="Fungicides">Fungicidas</span>
+                        <span class="chevron">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="content-flex">
+                            <p data-lang-pt="Defensivos voltados ao controle e eliminação de fungos causadores de doenças nas plantações." data-lang-en="Defensive inputs aimed at controlling and eliminating disease-causing fungi in plantations.">Defensivos voltados ao controle e eliminação de fungos causadores de doenças nas plantações.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="saude" class="content-section reveal">
+            <h2 data-lang-pt="Impactos na Saúde" data-lang-en="Health Impacts">Impactos na Saúde</h2>
+            <div class="cards-grid grid-2">
+                <div class="card">
+                    <div class="card-badge" data-lang-pt="Curto Prazo" data-lang-en="Short Term">Curto Prazo</div>
+                    <h3 data-lang-pt="Efeitos Imediatos" data-lang-en="Immediate Effects">Efeitos Imediatos</h3>
+                    <p data-lang-pt="Náuseas, tonturas, dores de cabeça agudas, irritações severas na pele e mucosa cutânea provocados pela exposição direta." data-lang-en="Nausea, dizziness, acute headaches, severe skin and mucosal irritation caused by direct exposure.">Náuseas, tonturas, dores de cabeça agudas, irritações severas na pele e mucosa cutânea provocados pela exposição direta.</p>
+                </div>
+                <div class="card">
+                    <div class="card-badge" data-lang-pt="Longo Prazo" data-lang-en="Long Term">Longo Prazo</div>
+                    <h3 data-lang-pt="Efeitos Crônicos" data-lang-en="Chronic Effects">Efeitos Crônicos</h3>
+                    <p data-lang-pt="Consequências tardias acumulativas que podem incluir o desenvolvimento de tumores, alterações hormonais e problemas neurológicos crônicos." data-lang-en="Late cumulative consequences that may include tumor development, hormonal alterations, and chronic neurological issues.">Consequências tardias acumulativas que podem incluir o desenvolvimento de tumores, alterações hormonais e problemas neurológicos crônicos.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="ambiente" class="content-section reveal">
+            <h2 data-lang-pt="Impactos Ambientais" data-lang-en="Environmental Impacts">Impactos Ambientais</h2>
+            <div class="cards-grid grid-2">
+                <div class="card list-card">
+                    <ul>
+                        <li data-lang-pt="Contaminação direta e empobrecimento químico do solo." data-lang-en="Direct contamination and chemical depletion of the soil.">Contaminação direta e empobrecimento químico do solo.</li>
+                        <li data-lang-pt="Lixiviação e poluição de rios, lagos e lençóis freáticos." data-lang-en="Leaching and pollution of rivers, lakes, and groundwater tables.">Lixiviação e poluição de rios, lagos e lençóis freáticos.</li>
+                        <li data-lang-pt="Redução drástica da biodiversidade de pequenos animais." data-lang-en="Drastic reduction in small animal biodiversity.">Redução drástica da biodiversidade de pequenos animais.</li>
+                        <li data-lang-pt="Danos críticos a polinizadores essenciais como abelhas." data-lang-en="Critical damage to essential pollinators like bees.">Danos críticos a polinizadores essenciais como abelhas.</li>
+                    </ul>
+                </div>
+                <div class="card chart-card">
+                    <h3 data-lang-pt="Tempo de Persistência no Solo" data-lang-en="Soil Persistence Time">Tempo de Persistência no Solo</h3>
+                    <div class="chart-container">
+                        <div class="chart-bar-group">
+                            <span class="chart-label" data-lang-pt="Defensivo Químico Comum" data-lang-en="Common Chemical Pesticide">Defensivo Químico Comum</span>
+                            <div class="chart-track">
+                                <div class="chart-fill danger-bar" style="width: 90%;"></div>
+                            </div>
+                            <span class="chart-value" data-lang-pt="Até 12 meses +" data-lang-en="Up to 12+ months">Até 12 meses +</span>
+                        </div>
+                        <div class="chart-bar-group">
+                            <span class="chart-label" data-lang-pt="Controle Biológico / Natural" data-lang-en="Biological / Natural Control">Controle Biológico / Natural</span>
+                            <div class="chart-track">
+                                <div class="chart-fill safe-bar" style="width: 15%;"></div>
+                            </div>
+                            <span class="chart-value" data-lang-pt="Imediato (Dias)" data-lang-en="Immediate (Days)">Imediato (Dias)</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="alternativas" class="content-section reveal">
-            <h2 data-lang-pt="Substituições Inteligentes no Campo" data-lang-en="Smart Replacements in the Field" data-lang-es="Sustituciones Inteligentes en el Campo" data-lang-fr="Substitutions Intelligentes au Champ" data-lang-de="Intelligenter Ersatz auf dem Feld" data-lang-it="Sostituzioni Intelligenti sul Campo">Substituições Inteligentes no Campo</h2>
-            
+            <h2 data-lang-pt="Alternativas Sustentáveis" data-lang-en="Sustainable Alternatives">Alternativas Sustentáveis</h2>
             <div class="filter-buttons">
-                <button class="btn-filter active" onclick="filterAlternativas('all')" data-lang-pt="Ver Tudo" data-lang-en="View All" data-lang-es="Ver Todo" data-lang-fr="Voir Tout" data-lang-de="Alles anzeigen" data-lang-it="Mostra Tutto">Ver Tudo</button>
-                <button class="btn-filter" onclick="filterAlternativas('biologico')" data-lang-pt="Manejo Biológico" data-lang-en="Biological Management" data-lang-es="Manejo Biológico" data-lang-fr="Gestion Biologique" data-lang-de="Biologisches Management" data-lang-it="Gestione Biologica">Manejo Biológico</button>
-                <button class="btn-filter" onclick="filterAlternativas('quimico')" data-lang-pt="Riscos Químicos" data-lang-en="Chemical Risks" data-lang-es="Riesgos Químicos" data-lang-fr="Risques Chimiques" data-lang-de="Chemische Risiken" data-lang-it="Rischi Chimici">Riscos Químicos</button>
+                <button class="btn-filter active" onclick="filterAlternativas('all')" data-lang-pt="Ver Todas" data-lang-en="View All">Ver Todas</button>
+                <button class="btn-filter" onclick="filterAlternativas('organica')" data-lang-pt="Orgânica" data-lang-en="Organic">Orgânica</button>
+                <button class="btn-filter" onclick="filterAlternativas('biologico')" data-lang-pt="Biológico" data-lang-en="Biological">Biológico</button>
+                <button class="btn-filter" onclick="filterAlternativas('mip')" data-lang-pt="MIP" data-lang-en="IPM">MIP</button>
             </div>
 
-            <div class="cards-grid grid-2 alternativas-container">
-                <div class="card premium-card" data-category="quimico">
-                    <span class="card-badge" data-lang-pt="Impacto Convencional" data-lang-en="Conventional Impact" data-lang-es="Impacto Convencional" data-lang-fr="Impact Conventionnel" data-lang-de="Konventionelle Auswirkungen" data-lang-it="Impatto Convenzionale">Impacto Convencional</span>
-                    <h3 data-lang-pt="Defensivos Químicos Pesados" data-lang-en="Heavy Chemical Pesticides" data-lang-es="Pesticidas Químicos Pesados" data-lang-fr="Pesticides Chimiques Lourds" data-lang-de="Schwere chemische Pestizide" data-lang-it="Pesticidi Chimici Pesanti">Defensivos Químicos Pesados</h3>
-                    <div class="chart-container">
-                        <div class="chart-bar-group">
-                            <span class="chart-label" data-lang-pt="Degradação do Solo" data-lang-en="Soil Degradation" data-lang-es="Degradación del Suelo" data-lang-fr="Dégradation du Sol" data-lang-de="Bodendegradation" data-lang-it="Degradazione del Suolo">Degradação do Solo</span>
-                            <div class="chart-track"><div class="chart-fill danger-bar" style="width: 85%;"></div></div>
-                            <span class="chart-value">85%</span>
-                        </div>
-                    </div>
+            <div class="cards-grid grid-3 alternativas-container">
+                <div class="card premium-card" data-category="organica">
+                    <div class="visual-icon">🌱</div>
+                    <h3 data-lang-pt="Agricultura Orgânica" data-lang-en="Organic Agriculture">Agricultura Orgânica</h3>
+                    <p data-lang-pt="Modelo focado inteiramente na regeneração e equilíbrio natural da terra, livre de químicos sintéticos." data-lang-en="Model entirely focused on the regeneration and natural balance of the earth, free of synthetic chemicals.">Modelo focado inteiramente na regeneração e equilíbrio natural da terra, livre de químicos sintéticos.</p>
                 </div>
                 <div class="card premium-card" data-category="biologico">
-                    <span class="card-badge" data-lang-pt="Alternativa Ecológica" data-lang-en="Ecological Alternative" data-lang-es="Alternativa Ecológica" data-lang-fr="Alternative Écologique" data-lang-de="Ökologische Alternative" data-lang-it="Alternativa Ecologica">Alternativa Ecológica</span>
-                    <h3 data-lang-pt="Macrobiológicos (Joaninhas)" data-lang-en="Macrobiologicals (Ladybugs)" data-lang-es="Macrobiológicos (Mariquitas)" data-lang-fr="Macrobiologiques (Coccinelles)" data-lang-de="Makrobiologische (Marienkäfer)" data-lang-it="Macrobiologici (Coccinelle)">Macrobiológicos (Joaninhas)</h3>
-                    <div class="chart-container">
-                        <div class="chart-bar-group">
-                            <span class="chart-label" data-lang-pt="Preservação de Água" data-lang-en="Water Preservation" data-lang-es="Preservación del Agua" data-lang-fr="Préservation de l'Eau" data-lang-de="Wasserschutz" data-lang-it="Tutela dell'Acqua">Preservação de Água</span>
-                            <div class="chart-track"><div class="chart-fill safe-bar" style="width: 95%;"></div></div>
-                            <span class="chart-value">95%</span>
-                        </div>
-                    </div>
+                    <div class="visual-icon">🐞</div>
+                    <h3 data-lang-pt="Controle Biológico" data-lang-en="Biological Control">Controle Biológico</h3>
+                    <p data-lang-pt="Uso estratégico de inimigos naturais para combater pragas sem intoxicar os alimentos." data-lang-en="Strategic use of natural enemies to combat pests without contaminating food.">Uso estratégico de inimigos naturais para combater pragas sem intoxicar os alimentos.</p>
+                </div>
+                <div class="card premium-card" data-category="mip">
+                    <div class="visual-icon">🔄</div>
+                    <h3 data-lang-pt="Manejo Integrado (MIP)" data-lang-en="Integrated Management (IPM)">Manejo Integrado (MIP)</h3>
+                    <p data-lang-pt="Combinação dinâmica de técnicas culturais e físicas para reduzir de forma drástica a dependência de venenos." data-lang-en="Dynamic combination of cultural and physical techniques to drastically reduce dependence on toxins.">Combinação dinâmica de técnicas culturais e físicas para reduzir de forma drástica a dependência de venenos.</p>
                 </div>
             </div>
         </section>
 
-        <section id="desafio" class="content-section reveal">
-            <div class="card">
-                <h2 data-lang-pt="Desafio do Conhecimento" data-lang-en="Knowledge Challenge" data-lang-es="Desafío del Conocimiento" data-lang-fr="Défi des Connaissances" data-lang-de="Wissensherausforderung" data-lang-it="Sfida della Conoscenza">Desafio do Conhecimento</h2>
-                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px;" data-lang-pt="Teste seus conhecimentos sobre o impacto das práticas agroecológicas no campo:" data-lang-en="Test your knowledge about the impact of agroecological practices in the field:" data-lang-es="Pon a prueba tus conocimientos sobre el impacto de las prácticas agroecológicas:" data-lang-fr="Testez vos connaissances sur l'impact des pratiques agroécologiques :" data-lang-de="Testen Sie Ihr Wissen über die Auswirkungen agroökologischer Praktiken:" data-lang-it="Metti alla prova le tue conoscenze sull'impatto delle pratiche agroecologiche:">Teste seus conhecimentos sobre o impacto das práticas agroecológicas no campo:</p>
-                
-                <div id="quiz-container">
-                    <h3 id="quiz-question" style="font-size: 1rem; margin-bottom: 12px;">--</h3>
+        <section id="quiz" class="content-section reveal">
+            <h2 data-lang-pt="Desafio de Consciência" data-lang-en="Awareness Challenge">Desafio de Consciência</h2>
+            <div class="card quiz-card">
+                <div class="quiz-body">
+                    <h3 id="quiz-question">Carregando pergunta...</h3>
                     <div id="quiz-options" class="quiz-options"></div>
                     <div id="quiz-feedback" class="quiz-feedback hidden"></div>
-                    <button id="btn-next-quiz" class="btn-submit hidden" style="margin-top: 15px; width: auto;" data-lang-pt="Avançar" data-lang-en="Next" data-lang-es="Avanzar" data-lang-fr="Suivant" data-lang-de="Weiter" data-lang-it="Avanti">Avançar</button>
+                    <button id="btn-next-quiz" class="btn-submit hidden" style="margin-top: 15px; background: var(--accent);" data-lang-pt="Tentar Novamente" data-lang-en="Try Again">Tentar Novamente</button>
                 </div>
             </div>
         </section>
 
-        <section id="sobre" class="content-section reveal">
-            <h2 data-lang-pt="Sobre o Projeto" data-lang-en="About the Project" data-lang-es="Sobre el Proyecto" data-lang-fr="À Propos du Projet" data-lang-de="Über das Projekt" data-lang-it="Sul Progetto">Sobre o Projeto</h2>
-            <p class="section-instruction" data-lang-pt="Informações de autoria corporativa e acadêmica do website:" data-lang-en="Corporate and academic authorship information of the website:" data-lang-es="Información de autoría corporativa y académica del sitio web:" data-lang-fr="Informations sur l'auteur corporatif et académique du site web :" data-lang-de="Informationen zur Unternehmens- und akademischen Urheberschaft der Website:" data-lang-it="Informazioni d'autore aziendali e accademiche del sito web:">Informações de autoria corporativa e acadêmica do website:</p>
-            
-            <div class="project-table-container">
-                <table class="project-table">
-                    <thead>
-                        <tr>
-                            <th data-lang-pt="DESENVOLVEDOR PRINCIPAL" data-lang-en="MAIN DEVELOPER" data-lang-es="DESARROLLADOR PRINCIPAL" data-lang-fr="DÉVELOPPEUR PRINCIPAL" data-lang-de="HAUPTENTWICKLER" data-lang-it="SVILUPPATORE PRINCIPALE">DESENVOLVEDOR PRINCIPAL</th>
-                            <th data-lang-pt="INSTITUIÇÃO DE ENSINO" data-lang-en="EDUCATIONAL INSTITUTION" data-lang-es="INSTITUCIÓN EDUCATIVA" data-lang-fr="ÉTABLISSEMENT D'ENSEIGNEMENT" data-lang-de="BILDUNGSINSTITUTION" data-lang-it="ISTITUTO SCOLASTICO">INSTITUIÇÃO DE ENSINO</th>
-                            <th data-lang-pt="ORIENTAÇÃO TÉCNICO-PEDAGÓGICA" data-lang-en="TECHNICAL-PEDAGOGICAL GUIDANCE" data-lang-es="ORIENTACIÓN TÉCNICO-PEDAGÓGICA" data-lang-fr="GUIDANCE TECHNIQUE ET PÉDAGOGIQUE" data-lang-de="TECHNISCH-PÄDAGOGISCHE LEITUNG" data-lang-it="GUIDA TECNICO-PEDAGOGICA">ORIENTAÇÃO TÉCNICO-PEDAGÓGICA</th>
-                            <th data-lang-pt="INICIATIVA VINCULADA" data-lang-en="LINKED INITIATIVE" data-lang-es="INICIATIVA VINCULADA" data-lang-fr="INITIATIVE LIÉE" data-lang-de="ZUGEHÖRIGE INITIATIVE" data-lang-it="INIZIATIVA CORRELATA">INICIATIVA VINCULADA</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Luiz Felipe Pedracoli</strong></td>
-                            <td data-lang-pt="Sua Escola / Colégio" data-lang-en="Your School / College" data-lang-es="Su Escuela / Colegio" data-lang-fr="Votre École / Collège" data-lang-de="Ihre Schule / Hochschule" data-lang-it="La Tua Scuola / Collegio">Sua Escola / Colégio</td>
-                            <td data-lang-pt="Nome do Professor(a)" data-lang-en="Teacher's Name" data-lang-es="Nombre del Profesor(a)" data-lang-fr="Nom de l'Enseignant(e)" data-lang-de="Name des Lehrers" data-lang-it="Nome del Professore/essa">Nome do Professor(a)</td>
-                            <td><strong data-lang-pt="Programa Agrinho — 2026" data-lang-en="Agrinho Program — 2026" data-lang-es="Programa Agrinho — 2026" data-lang-fr="Programme Agrinho — 2026" data-lang-de="Agrinho-Programm — 2026" data-lang-it="Programma Agrinho — 2026">Programa Agrinho — 2026</strong></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <section id="fontes" class="content-section reveal">
-            <h2 data-lang-pt="Referências e Fontes Oficiais" data-lang-en="References and Official Sources" data-lang-es="Referencias y Fuentes Oficiales" data-lang-fr="Références et Sources Officielles" data-lang-de="Referenzen und offizielle Quellen" data-lang-it="Riferimenti e Fonti Ufficiali">Referências e Fontes Oficiais</h2>
-            <p class="section-instruction" data-lang-pt="Base científica e diretrizes institucionais que fundamentam este projeto:" data-lang-en="Scientific basis and institutional guidelines underpinning this project:" data-lang-es="Base científica y directrices institucionales que fundamentan este proyecto:" data-lang-fr="Bases scientifiques et directives institutionnelles qui sous-tendent ce projet :" data-lang-de="Wissenschaftliche Grundlagen und institutionelle Richtlinien, auf denen dieses Projekt basiert:" data-lang-it="Base scientifica e linee guida istituzionali su cui si fonda questo progetto:">Base científica e diretrizes institucionais que fundamentam este projeto:</p>
+        <section id="referencias" class="content-section reveal">
+            <h2 data-lang-pt="Referências e Fontes Oficiais" data-lang-en="References and Official Sources">Referências e Fontes Oficiais</h2>
             <div class="references-grid">
                 <div class="ref-item">
-                    <div class="ref-icon">📊</div>
+                    <span class="ref-icon">🏛️</span>
                     <div>
-                        <h4>EMBRAPA</h4>
-                        <p data-lang-pt="Diretrizes Nacionais para o Manejo Integrado de Pragas (MIP)." data-lang-en="National Guidelines for Integrated Pest Management (IPM).">Diretrizes Nacionais para o Manejo Integrado de Pragas (MIP).</p>
+                        <h4 data-lang-pt="Organização Mundial da Saúde (OMS)" data-lang-en="World Health Organization (WHO)">Organização Mundial da Saúde (OMS)</h4>
+                        <p data-lang-pt="Diretrizes internacionais de segurança química e limites de exposição humana." data-lang-en="International chemical safety guidelines and human exposure limits.">Diretrizes internacionais de segurança química e limites de exposição humana.</p>
                     </div>
                 </div>
                 <div class="ref-item">
-                    <div class="ref-icon">🌿</div>
+                    <span class="ref-icon">🛡️</span>
                     <div>
-                        <h4>FAO Organização</h4>
-                        <p data-lang-pt="Relatórios globais sobre o uso seguro de insumos biológicos na lavoura." data-lang-en="Global reports on the safe use of biological inputs in farming.">Relatórios globais sobre o uso seguro de insumos biológicos na lavoura.</p>
+                        <h4 data-lang-pt="Ministério da Saúde & ANVISA" data-lang-en="Ministry of Health & ANVISA">Ministério da Saúde & ANVISA</h4>
+                        <p data-lang-pt="Painel de Vigilância de Populações Expostas e Programa de Análise de Resíduos de Alimentos (PARA)." data-lang-en="Surveillance Panel of Exposed Populations and Food Residue Analysis Program (PARA).">Painel de Vigilância de Populações Expostas e Programa de Análise de Resíduos de Alimentos (PARA).</p>
+                    </div>
+                </div>
+                <div class="ref-item">
+                    <span class="ref-icon">🌱</span>
+                    <div>
+                        <h4 data-lang-pt="FAO / ONU" data-lang-en="FAO / UN">FAO / ONU</h4>
+                        <p data-lang-pt="Dados globais sobre segurança alimentar, manejo sustentável e redução do uso de defensivos sintéticos." data-lang-en="Global data on food security, sustainable management, and synthetic pesticide reduction.">Dados globais sobre segurança alimentar, manejo sustentável e redução do uso de defensivos sintéticos.</p>
                     </div>
                 </div>
             </div>
         </section>
 
+        <section id="sugestoes" class="content-section reveal">
+            <h2 data-lang-pt="Canal de Sugestões" data-lang-en="Suggestions Channel">Canal de Sugestões</h2>
+            <div class="card form-card">
+                <form class="suggestion-form">
+                    <div class="form-group">
+                        <label for="nome" data-lang-pt="Nome Completo" data-lang-en="Full Name">Nome Completo</label>
+                        <input type="text" id="nome" placeholder="Ex: Luiz Felipe Pedracoli" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" data-lang-pt="E-mail" data-lang-en="Email">E-mail</label>
+                        <input type="email" id="email" placeholder="exemplo@dominio.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mensagem" data-lang-pt="Sua Mensagem" data-lang-en="Your Message">Sua Mensagem</label>
+                        <textarea id="mensagem" rows="4" placeholder="Escreva sua sugestão técnico-educacional..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit" data-lang-pt="Enviar Feedback" data-lang-en="Submit Feedback">Enviar Feedback</button>
+                </form>
+            </div>
+        </section>
     </main>
 
     <footer class="footer-premium">
         <div class="container footer-content-wrap">
             <div class="footer-top-layout">
                 <div class="footer-brand">
-                    <div class="logo" style="font-size: 1rem;">Agro<span>Sustentável</span></div>
-                    <p style="font-size: 0.75rem; margin-top: 4px;" data-lang-pt="Desenvolvido para o Concurso Agrinho focado na disseminação da ecologia aplicada." data-lang-en="Developed for the Agrinho Contest focused on spreading applied ecology.">Desenvolvido para o Concurso Agrinho focado na disseminação da ecologia aplicada.</p>
+                    <div class="logo">Agro<span>Sustentável</span></div>
+                    <p class="footer-desc" data-lang-pt="Website educacional focado no fomento à informação científica de qualidade sobre sustentabilidade rural e práticas agroecológicas modernas." data-lang-en="Educational website focused on promoting quality scientific information about rural sustainability and modern agroecological practices.">Website educacional focado no fomento à informação científica de qualidade sobre sustentabilidade rural e práticas agroecológicas modernas.</p>
                 </div>
+                
                 <div class="footer-academic-meta">
-                    <div><span class="academic-tag" data-lang-pt="Categoria:" data-lang-en="Category:">Categoria:</span> <span data-lang-pt="Práticas Agrícolas Sustentáveis" data-lang-en="Sustainable Agricultural Practices">Práticas Agrícolas Sustentáveis</span></div>
-                    <div><span class="academic-tag" data-lang-pt="Foco ODS:" data-lang-en="SDG Focus:">Foco ODS:</span> ODS 12 & ODS 15 - ONU</div>
+                    <div class="meta-item"><strong>Desenvolvedor Principal:</strong> <span>Guilherme Gomes Santana</span></div>
+                    <div class="meta-item"><strong>Instituição:</strong> <span>Colégio Villanueva</span></div>
+                    <div class="meta-item"><strong>Orientação:</strong> <span>Profª. Viviane</span></div>
                 </div>
             </div>
+            
             <hr class="footer-divider">
             <div class="footer-bottom-flex">
-                <p>&copy; 2026 AgroSustentável. <span data-lang-pt="Todos os direitos reservados aos autores." data-lang-en="All rights reserved to the authors.">Todos os direitos reservados aos autores.</span></p>
+                <p data-lang-pt="&copy; 2026 AgroSustentável. Todos os direitos reservados ao Projeto Agrinho." data-lang-en="&copy; 2026 AgroSustentável. All rights reserved to the Agrinho Project.">&copy; 2026 AgroSustentável. Todos os direitos reservados ao Projeto Agrinho.</p>
+                <p class="academic-tag" data-lang-pt="Iniciativa Vinculada — Programa Agrinho 2026" data-lang-en="Linked Initiative — Agrinho Program 2026">Iniciativa Vinculada — Programa Agrinho 2026</p>
             </div>
         </div>
     </footer>
 
     <div id="cookie-banner" class="cookie-banner">
         <div class="cookie-content">
-            <p data-lang-pt="Utilizamos cookies para otimizar e aprimorar sua experiência de navegação acadêmica no portal do projeto." data-lang-en="We use cookies to optimize and enhance your academic browsing experience.">Utilizamos cookies para otimizar e aprimorar sua experiência de navegação acadêmica no portal do projeto.</p>
+            <p data-lang-pt="🍪 Este website utiliza cookies educacionais para otimizar sua experiência de navegação e análise de dados do Projeto Agrinho 2026. Você concorda com o uso de cookies?" data-lang-en="🍪 This website uses educational cookies to optimize your browsing experience and data analysis for the Agrinho Project 2026. Do you agree to the use of cookies?">🍪 Este website utiliza cookies educacionais para otimizar sua experiência de navegação e análise de dados do Projeto Agrinho 2026. Você concorda com o uso de cookies?</p>
             <div class="cookie-actions">
-                <button id="cookie-decline-btn" class="btn-cookie btn-cookie-decline" data-lang-pt="Recusar" data-lang-en="Decline">Recusar</button>
                 <button id="cookie-accept-btn" class="btn-cookie btn-cookie-accept" data-lang-pt="Aceitar" data-lang-en="Accept">Aceitar</button>
+                <button id="cookie-decline-btn" class="btn-cookie btn-cookie-decline" data-lang-pt="Recusar" data-lang-en="Decline">Recusar</button>
             </div>
         </div>
     </div>
 
     <div id="emoji-feedback-widget" class="feedback-widget cookie-above">
-        <button id="feedback-trigger-btn" class="feedback-trigger">⭐ <span data-lang-pt="Avaliar Experiência" data-lang-en="Rate Experience">Avaliar Experiência</span></button>
-        
+        <button id="feedback-trigger-btn" class="feedback-trigger">
+            💬 <span data-lang-pt="Avaliar Experiência" data-lang-en="Rate Experience">Avaliar Experiência</span>
+        </button>
         <div id="feedback-card" class="feedback-card hidden">
-            <div id="feedback-screen-voting">
-                <div class="feedback-header">
-                    <h4 data-lang-pt="O que achou do site?" data-lang-en="What did you think?">O que achou do site?</h4>
-                    <button class="feedback-close close-widget-action" aria-label="Fechar">×</button>
-                </div>
-                <div class="feedback-emojis">
-                    <button class="emoji-btn" data-rating="1">😢</button>
-                    <button class="emoji-btn" data-rating="2">🙁</button>
-                    <button class="emoji-btn" data-rating="3">😐</button>
-                    <button class="emoji-btn" data-rating="4">🙂</button>
-                    <button class="emoji-btn" data-rating="5">🤩</button>
-                </div>
+            <div class="feedback-header">
+                <h4 data-lang-pt="O que achou do site?" data-lang-en="What did you think of the site?">O que achou do site?</h4>
+                <button id="feedback-close-btn" class="feedback-close">×</button>
             </div>
-
-            <div id="feedback-screen-thanks" class="hidden">
-                <div class="feedback-header">
-                    <span style="font-size: 0.85rem; font-weight:600; color:var(--accent);" data-lang-pt="Sucesso!" data-lang-en="Success!">Sucesso!</span>
-                    <button class="feedback-close close-widget-action" aria-label="Fechar">×</button>
-                </div>
-                <p class="feedback-thanks" data-lang-pt="Obrigado pelo seu voto! 🌱" data-lang-en="Thanks for voting! 🌱">Obrigado pelo seu voto! 🌱</p>
+            <div id="feedback-emojis" class="feedback-emojis">
+                <button class="emoji-btn" data-rating="1" title="Péssimo">😢</button>
+                <button class="emoji-btn" data-rating="2" title="Ruim">🙁</button>
+                <button class="emoji-btn" data-rating="3" title="Regular">😐</button>
+                <button class="emoji-btn" data-rating="4" title="Bom">🙂</button>
+                <button class="emoji-btn" data-rating="5" title="Excelente">😀</button>
             </div>
+            <p id="feedback-thanks" class="feedback-thanks hidden" data-lang-pt="Obrigado pela sua avaliação! 💚" data-lang-en="Thank you for your rating! 💚">Obrigado pela sua avaliação! 💚</p>
         </div>
     </div>
 
