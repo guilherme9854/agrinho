@@ -1,240 +1,535 @@
-<!DOCTYPE html>
-<html lang="pt">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agrinho 2024 - Práticas Sustentáveis</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body class="light-mode">
+/* ==========================================================================
+   DESIGN SYSTEM PREMIUM & SLIM (Performance Otimizada)
+   ========================================================================== */
+.light-mode {
+    --bg-main: #f8fafc;
+    --card-bg: #ffffff;
+    --text-main: #0f172a;
+    --text-muted: #475569;
+    --navbar-bg: rgba(255, 255, 255, 0.9);
+    --navbar-text: #0f172a;
+    --accordion-hover: #f1f5f9;
+    --shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
+    --border: 1px solid #e2e8f0;
+    --badge-bg: #f1f5f9;
+    --badge-text: #334155;
+    --menu-sep: #e2e8f0;
+    --track-bg: #e2e8f0;
+    --dropdown-hover: #f8fafc;
+}
 
-    <nav class="navbar">
-        <div class="container nav-container">
-            <div class="nav-left">
-                <button class="hamburger" aria-label="Menu">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </button>
-                <div class="logo">Agro<span>Sustentável</span></div>
-                <span class="agrinho-badge">Agrinho 2024</span>
-            </div>
+.dark-mode {
+    --bg-main: #090d16;
+    --card-bg: #111827;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --navbar-bg: rgba(9, 13, 22, 0.9);
+    --navbar-text: #f8fafc;
+    --accordion-hover: #1f2937;
+    --shadow: 0 10px 25px rgba(0,0,0,0.4);
+    --border: 1px solid #1f2937;
+    --badge-bg: #374151;
+    --badge-text: #e2e8f0;
+    --menu-sep: #1f2937;
+    --track-bg: #1f2937;
+    --dropdown-hover: #1f2937;
+}
 
-            <div class="nav-menu">
-                <div class="menu-header" data-lang-pt="Navegação" data-lang-en="Navigation" data-lang-es="Navegación" data-lang-fr="Navigation" data-lang-de="Navigation" data-lang-it="Navigazione">Navegação</div>
-                <ul class="nav-links">
-                    <li><a href="#inicio" data-lang-pt="Início" data-lang-en="Home" data-lang-es="Inicio" data-lang-fr="Accueil" data-lang-de="Startseite" data-lang-it="Home">Início</a></li>
-                    <li><a href="#estatisticas" data-lang-pt="Dados Gerais" data-lang-en="General Data" data-lang-es="Datos Generales" data-lang-fr="Données Générales" data-lang-de="Allgemeine Daten" data-lang-it="Dati Generali">Dados Gerais</a></li>
-                    <li><a href="#infografico" data-lang-pt="Passo a Passo" data-lang-en="Step by Step" data-lang-es="Paso a Paso" data-lang-fr="Étape par Étape" data-lang-de="Schritt für Schritt" data-lang-it="Passo dopo Passo">Passo a Passo</a></li>
-                    <li><a href="#alternativas" data-lang-pt="Práticas Práticas" data-lang-en="Practical Practices" data-lang-es="Prácticas Prácticas" data-lang-fr="Pratiques Pratiques" data-lang-de="Praktische Praktiken" data-lang-it="Pratiche Pratiche">Práticas Práticas</a></li>
-                    <li><a href="#desafio" data-lang-pt="Quiz Educativo" data-lang-en="Educational Quiz" data-lang-es="Quiz Educativo" data-lang-fr="Quiz Éducatif" data-lang-de="Bildungsquiz" data-lang-it="Quiz Educativo">Quiz Educativo</a></li>
-                    <li><a href="#fontes" data-lang-pt="Referências" data-lang-en="References" data-lang-es="Referencias" data-lang-fr="Références" data-lang-de="Referenzen" data-lang-it="Riferimenti">Referências</a></li>
-                </ul>
-            </div>
+:root {
+    --primary: #166534;
+    --accent: #22c55e;
+    --radius: 12px;
+    --font-heading: 'Inter', sans-serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+    --speed: 0.2s;
+}
 
-            <div class="nav-center">
-                <div class="lang-dropdown">
-                    <button class="lang-btn" id="lang-dropdown-btn">🌐 PT</button>
-                    <div class="lang-dropdown-content">
-                        <button data-lang-select="pt">Português</button>
-                        <button data-lang-select="en">English</button>
-                        <button data-lang-select="es">Español</button>
-                        <button data-lang-select="fr">Français</button>
-                        <button data-lang-select="de">Deutsch</button>
-                        <button data-lang-select="it">Italiano</button>
-                    </div>
-                </div>
-            </div>
+/* Otimização de renderização instantânea pelo motor do navegador */
+.content-section, .hero-section, .stats-section {
+    content-visibility: auto;
+    contain-intrinsic-size: 100px 500px;
+}
 
-            <div class="nav-right">
-                <button class="theme-btn" id="theme-toggle" aria-label="Mudar Tema">🌙</button>
-                <div class="nav-auth-buttons">
-                    <a href="https://accounts.google.com/signup" target="_blank" class="btn-register" data-lang-pt="Criar conta" data-lang-en="Sign Up" data-lang-es="Registrarse" data-lang-fr="S'inscrire" data-lang-de="Registrieren" data-lang-it="Registrati">Criar conta</a>
-                    <a href="https://accounts.google.com/v3/signin/identifier" target="_blank" class="btn-login" data-lang-pt="Entrar" data-lang-en="Sign In" data-lang-es="Iniciar Sesión" data-lang-fr="Connexion" data-lang-de="Anmelden" data-lang-it="Accedi">Entrar</a>
-                </div>
-            </div>
-        </div>
-    </nav>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-    <main class="container">
+html {
+    scroll-behavior: smooth;
+}
 
-        <header id="inicio" class="hero-section reveal">
-            <div class="hero-content">
-                <span class="hero-tag" data-lang-pt="Sustentabilidade Racional" data-lang-en="Rational Sustainability" data-lang-es="Sustentabilidad Racional" data-lang-fr="Durabilité Rationnelle" data-lang-de="Rationale Nachhaltigkeit" data-lang-it="Sostenibilità Razionale">Sustentabilidade Racional</span>
-                <h1 data-lang-pt="O Futuro do Campo com Manejo Biológico" data-lang-en="The Future of the Field with Biological Management" data-lang-es="El Futuro del Campo con Manejo Biológico" data-lang-fr="L'Avenir du Champ avec la Gestion Biologique" data-lang-de="Die Zukunft des Feldes mit biologischem Management" data-lang-it="Il Futuro del Campo con Gestione Biologica">O Futuro do Campo com Manejo Biológico</h1>
-                <p data-lang-pt="Uma análise científica sobre como a substituição de defensivos químicos por defensores naturais protege a biodiversidade, reduz custos e garante alimentos mais saudáveis." data-lang-en="A scientific analysis on how replacing chemical pesticides with natural defenders protects biodiversity, reduces costs, and ensures healthier food." data-lang-es="Un análisis científico sobre cómo la sustitución de pesticidas químicos por defensores naturales protege la biodiversidad, reduce costos y garantiza alimentos más saludables." data-lang-fr="Une analyse scientifique sur la façon dont le remplacement des pesticides chimiques par des défenseurs naturels protège la biodiversité, réduit les coûts et garantit des aliments plus sains." data-lang-de="Eine wissenschaftliche Analyse darüber, wie der Ersatz chemischer Pestizide durch natürliche Schützer die Artenvielfalt schützt, Kosten senkt und gesündere Lebensmittel garantiert." data-lang-it="Un'analisi scientifica su come la sostituzione dei pesticidi chimici con difensori naturali protegga la biodiversità, riduca i costi e garantisca alimenti più sani.">Uma análise científica sobre como a substituição de defensivos químicos por defensores naturais protege a biodiversidade, reduz custos e garante alimentos mais saudáveis.</p>
-            </div>
-        </header>
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.6;
+    padding-top: 100px;
+    transition: background var(--speed), color var(--speed);
+    -webkit-font-smoothing: antialiased;
+}
 
-        <section id="estatisticas" class="stats-section reveal">
-            <div class="stat-item">
-                <span class="stat-number">40%</span>
-                <span class="stat-label" data-lang-pt="Redução média nos custos de manejo" data-lang-en="Average reduction in management costs" data-lang-es="Reducción promedio en costos de manejo" data-lang-fr="Réduction moyenne des coûts de gestion" data-lang-de="Durchschnittliche Senkung der Managementkosten" data-lang-it="Riduzione media dei costi di gestione">Redução média nos custos de manejo</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number">2x</span>
-                <span class="stat-label" data-lang-pt="Mais preservação de polinizadores" data-lang-en="More pollinator preservation" data-lang-es="Más preservación de polinizadores" data-lang-fr="Plus de préservation des pollinisateurs" data-lang-de="Mehr Schutz von Bestäubern" data-lang-it="Maggiore preservazione degli impollinatori">Mais preservação de polinizadores</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number">0%</span>
-                <span class="stat-label" data-lang-pt="Resíduos tóxicos no produto final" data-lang-en="Toxic residues in the final product" data-lang-es="Residuos tóxicos en el producto final" data-lang-fr="Résidus toxiques dans le produit final" data-lang-de="Toxische Rückstände im Endprodukt" data-lang-it="Residui tossici nel prodotto finale">0% Resíduos tóxicos no produto final</span>
-            </div>
-        </section>
+.container {
+    width: 90%;
+    max-width: 960px;
+    margin: 0 auto;
+}
 
-        <section id="infografico" class="content-section reveal">
-            <h2 data-lang-pt="Como Funciona a Transição Sustentável?" data-lang-en="How Does the Sustainable Transition Work?" data-lang-es="¿Cómo Funciona la Transición Sostenible?" data-lang-fr="Comment fonctionne la transition durable ?" data-lang-de="Wie funktioniert der nachhaltige Übergang?" data-lang-it="Come Funziona la Transizione Sostenibile?">Como Funciona a Transição Sustentável?</h2>
-            <p class="section-instruction" data-lang-pt="Clique nos cartões abaixo para visualizar cada etapa do processo no ecossistema:" data-lang-en="Click on the cards below to view each stage of the process in the ecosystem:" data-lang-es="Haga clic en las tarjetas a continuación para ver cada etapa del proceso en el ecosistema:" data-lang-fr="Cliquez sur les cartes ci-dessous pour voir chaque étape du processus dans l'écosystème :" data-lang-de="Klicken Sie auf die folgenden Karten, um jede Phase des Prozesses im Ökosystem anzuzeigen:" data-lang-it="Clicca sulle schede sottostanti per visualizzare ogni fase del processo nell'ecosistema:">Clique nos cartões abaixo para visualizar cada etapa do processo no ecossistema:</p>
-            
-            <div class="infographic-steps">
-                <div class="step-card active" onclick="switchStep(1)">
-                    <span class="step-num">01</span>
-                    <h3 data-lang-pt="Monitoramento" data-lang-en="Monitoring" data-lang-es="Monitoreo" data-lang-fr="Suivi" data-lang-de="Überwachung" data-lang-it="Monitoraggio">Monitoramento</h3>
-                    <p data-lang-pt="Identificação precisa dos focos de pragas antes de agir." data-lang-en="Precise identification of pest outbreaks before acting." data-lang-es="Identificación precisa de brotes de plagas antes de actuar." data-lang-fr="Identification précise des foyers de bioagresseurs avant d'agir." data-lang-de="Präzise Identifizierung von Schädlingsherden vor dem Handeln." data-lang-it="Identificazione precisa dei focolai di parassiti prima di agire.">Identificação precisa dos focos de pragas antes de agir.</p>
-                </div>
-                <div class="step-card" onclick="switchStep(2)">
-                    <span class="step-num">02</span>
-                    <h3 data-lang-pt="Introdução" data-lang-en="Introduction" data-lang-es="Introducción" data-lang-fr="Introduction" data-lang-de="Einführung" data-lang-it="Introduzione">Introdução</h3>
-                    <p data-lang-pt="Liberação controlada de inimigos naturais específicos." data-lang-en="Controlled release of specific natural enemies." data-lang-es="Liberación controlada de enemigos naturales específicos." data-lang-fr="Lâcher contrôlé d'ennemis naturels spécifiques." data-lang-de="Gezielte Freisetzung spezifischer natürlicher Feinde." data-lang-it="Rilascio controllato di nemici naturali specifici.">Liberação controlada de inimigos naturais específicos.</p>
-                </div>
-                <div class="step-card" onclick="switchStep(3)">
-                    <span class="step-num">03</span>
-                    <h3 data-lang-pt="Equilíbrio" data-lang-en="Balance" data-lang-es="Equilibrio" data-lang-fr="Équilibre" data-lang-de="Gleichgewicht" data-lang-it="Equilibrio">Equilíbrio</h3>
-                    <p data-lang-pt="A própria natureza controla a população de pragas." data-lang-en="Nature itself controls the pest population." data-lang-es="La naturaleza misma controla la población de plagas." data-lang-fr="La nature elle-même régule la population de bioagresseurs." data-lang-de="Die Natur selbst reguliert die Schädlingspopulation." data-lang-it="La natura stessa controlla la popolazione di parassiti.">A própria natureza controla a população de pragas.</p>
-                </div>
-            </div>
-        </section>
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
 
-        <section id="alternativas" class="content-section reveal">
-            <h2 data-lang-pt="Substituições Inteligentes no Campo" data-lang-en="Smart Replacements in the Field" data-lang-es="Sustituciones Inteligentes en el Campo" data-lang-fr="Substitutions Intelligentes au Champ" data-lang-de="Intelligenter Ersatz auf dem Feld" data-lang-it="Sostituzioni Intelligenti sul Campo">Substituições Inteligentes no Campo</h2>
-            
-            <div class="filter-buttons">
-                <button class="btn-filter active" onclick="filterAlternativas('all')" data-lang-pt="Ver Tudo" data-lang-en="View All" data-lang-es="Ver Todo" data-lang-fr="Voir Tout" data-lang-de="Alles anzeigen" data-lang-it="Mostra Tutto">Ver Tudo</button>
-                <button class="btn-filter" onclick="filterAlternativas('biologico')" data-lang-pt="Manejo Biológico" data-lang-en="Biological Management" data-lang-es="Manejo Biológico" data-lang-fr="Gestion Biologique" data-lang-de="Biologisches Management" data-lang-it="Gestione Biologica">Manejo Biológico</button>
-                <button class="btn-filter" onclick="filterAlternativas('quimico')" data-lang-pt="Riscos Químicos" data-lang-en="Chemical Risks" data-lang-es="Riesgos Químicos" data-lang-fr="Risques Chimiques" data-lang-de="Chemische Risiken" data-lang-it="Rischi Chimici">Riscos Químicos</button>
-            </div>
+.reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    will-change: transform, opacity;
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
 
-            <div class="cards-grid grid-2 alternativas-container">
-                <div class="card premium-card" data-category="quimico">
-                    <span class="card-badge" data-lang-pt="Impacto Convencional" data-lang-en="Conventional Impact">Impacto Convencional</span>
-                    <h3 data-lang-pt="Defensivos Químicos Pesados" data-lang-en="Heavy Chemical Pesticides">Defensivos Químicos Pesados</h3>
-                    <div class="chart-container">
-                        <div class="chart-bar-group">
-                            <span class="chart-label" data-lang-pt="Degradação do Solo" data-lang-en="Soil Degradation">Degradação do Solo</span>
-                            <div class="chart-track"><div class="chart-fill danger-bar" style="width: 85%;"></div></div>
-                            <span class="chart-value">85%</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="card premium-card" data-category="biologico">
-                    <span class="card-badge" data-lang-pt="Alternativa Ecológica" data-lang-en="Ecological Alternative">Alternativa Ecológica</span>
-                    <h3 data-lang-pt="Macrobiológicos (Joaninhas)" data-lang-en="Macrobiologicals (Ladybugs)">Macrobiológicos (Joaninhas)</h3>
-                    <div class="chart-container">
-                        <div class="chart-bar-group">
-                            <span class="chart-label" data-lang-pt="Preservação de Fontes de Água" data-lang-en="Water Source Preservation">Preservação de Fontes de Água</span>
-                            <div class="chart-track"><div class="chart-fill safe-bar" style="width: 95%;"></div></div>
-                            <span class="chart-value">95%</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+/* ==========================================================================
+   NAVBAR & MENU LATERAL (GAVETA)
+   ========================================================================== */
+.navbar {
+    background-color: var(--navbar-bg);
+    color: var(--navbar-text);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: var(--border);
+}
 
-        <section id="desafio" class="content-section reveal">
-            <div class="card">
-                <h2 data-lang-pt="Desafio do Conhecimento" data-lang-en="Knowledge Challenge" data-lang-es="Desafío del Conocimiento" data-lang-fr="Défi des Connaissances" data-lang-de="Wissensherausforderung" data-lang-it="Sfida della Conoscenza">Desafio do Conhecimento</h2>
-                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px;" data-lang-pt="Teste seus conhecimentos sobre o impacto das práticas agroecológicas no campo:" data-lang-en="Test your knowledge about the impact of agroecological practices in the field:">Teste seus conhecimentos sobre o impacto das práticas agroecológicas no campo:</p>
-                
-                <div id="quiz-container">
-                    <h3 id="quiz-question" style="font-size: 1rem; margin-bottom: 12px;">--</h3>
-                    <div id="quiz-options" class="quiz-options"></div>
-                    <div id="quiz-feedback" class="quiz-feedback hidden"></div>
-                    <button id="btn-next-quiz" class="btn-submit hidden" style="margin-top: 15px; width: auto;" data-lang-pt="Avançar" data-lang-en="Next" data-lang-es="Avanzar" data-lang-fr="Suivant" data-lang-de="Weiter" data-lang-it="Avanti">Avançar</button>
-                </div>
-            </div>
-        </section>
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
 
-        <section id="fontes" class="content-section reveal">
-            <h2 data-lang-pt="Fontes e Embasamento Científico" data-lang-en="Sources and Scientific Basis" data-lang-es="Fuentes y Base Científica" data-lang-fr="Sources et Bases Scientifiques" data-lang-de="Quellen und wissenschaftliche Basis" data-lang-it="Fonti e Basi Scientifiche">Fontes e Embasamento Científico</h2>
-            <div class="references-grid">
-                <div class="ref-item">
-                    <div class="ref-icon">📊</div>
-                    <div>
-                        <h4>EMBRAPA</h4>
-                        <p data-lang-pt="Diretrizes Nacionais para o Manejo Integrado de Pragas (MIP)." data-lang-en="National Guidelines for Integrated Pest Management (IPM).">Diretrizes Nacionais para o Manejo Integrado de Pragas (MIP).</p>
-                    </div>
-                </div>
-                <div class="ref-item">
-                    <div class="ref-icon">🌿</div>
-                    <div>
-                        <h4>FAO Organização</h4>
-                        <p data-lang-pt="Relatórios globais sobre o uso seguro de insumos biológicos na lavoura." data-lang-en="Global reports on the safe use of biological inputs in farming.">Relatórios globais sobre o uso seguro de insumos biológicos na lavoura.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+.nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
 
-    </main>
+.logo {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+.logo span { color: var(--accent); }
 
-    <footer class="footer-premium">
-        <div class="container footer-content-wrap">
-            <div class="footer-top-layout">
-                <div class="footer-brand">
-                    <div class="logo" style="font-size: 1rem;">Agro<span>Sustentável</span></div>
-                    <p style="font-size: 0.75rem; margin-top: 4px;" data-lang-pt="Desenvolvido para o Concurso Agrinho 2024 focado na disseminação da ecologia aplicada." data-lang-en="Developed for the Agrinho 2024 Contest focused on spreading applied ecology.">Desenvolvido para o Concurso Agrinho 2024 focado na disseminação da ecologia aplicada.</p>
-                </div>
-                <div class="footer-academic-meta">
-                    <div><span class="academic-tag" data-lang-pt="Categoria:" data-lang-en="Category:">Categoria:</span> <span data-lang-pt="Práticas Agrícolas Sustentáveis" data-lang-en="Sustainable Agricultural Practices">Práticas Agrícolas Sustentáveis</span></div>
-                    <div><span class="academic-tag" data-lang-pt="Foco ODS:" data-lang-en="SDG Focus:">Foco ODS:</span> ODS 12 & ODS 15 - ONU</div>
-                </div>
-            </div>
-            <hr class="footer-divider">
-            <div class="footer-bottom-flex">
-                <p>&copy; 2024 AgroSustentável. <span data-lang-pt="Todos os direitos reservados aos autores." data-lang-en="All rights reserved to the authors.">Todos os direitos reservados aos autores.</span></p>
-            </div>
-        </div>
-    </footer>
+.agrinho-badge {
+    background: var(--badge-bg);
+    color: var(--badge-text);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
 
-    <div id="cookie-banner" class="cookie-banner">
-        <div class="cookie-content">
-            <p data-lang-pt="Utilizamos cookies para otimizar e aprimorar sua experiência de navegação acadêmica no portal do projeto." data-lang-en="We use cookies to optimize and enhance your academic browsing experience on the project portal.">Utilizamos cookies para otimizar e aprimorar sua experiência de navegação acadêmica no portal do projeto.</p>
-            <div class="cookie-actions">
-                <button id="cookie-decline-btn" class="btn-cookie btn-cookie-decline" data-lang-pt="Recusar" data-lang-en="Decline">Recusar</button>
-                <button id="cookie-accept-btn" class="btn-cookie btn-cookie-accept" data-lang-pt="Aceitar" data-lang-en="Accept">Aceitar</button>
-            </div>
-        </div>
-    </div>
+.hamburger {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    z-index: 1100;
+    padding: 5px;
+}
 
-    <div id="emoji-feedback-widget" class="feedback-widget cookie-above">
-        <button id="feedback-trigger-btn" class="feedback-trigger">⭐ <span data-lang-pt="Avaliar Experiência" data-lang-en="Rate Experience">Avaliar Experiência</span></button>
-        
-        <div id="feedback-card" class="feedback-card hidden">
-            <div id="feedback-screen-voting">
-                <div class="feedback-header">
-                    <h4 data-lang-pt="O que achou do site?" data-lang-en="What did you think?">O que achou do site?</h4>
-                    <button class="feedback-close close-widget-action" aria-label="Fechar">×</button>
-                </div>
-                <div class="feedback-emojis">
-                    <button class="emoji-btn" data-rating="1" aria-label="Péssimo">😢</button>
-                    <button class="emoji-btn" data-rating="2" aria-label="Ruim">🙁</button>
-                    <button class="emoji-btn" data-rating="3" aria-label="Regular">😐</button>
-                    <button class="emoji-btn" data-rating="4" aria-label="Bom">🙂</button>
-                    <button class="emoji-btn" data-rating="5" aria-label="Excelente">🤩</button>
-                </div>
-            </div>
+.hamburger .bar {
+    width: 22px;
+    height: 2px;
+    background-color: var(--navbar-text);
+    transition: transform var(--speed), opacity var(--speed);
+}
 
-            <div id="feedback-screen-thanks" class="hidden">
-                <div class="feedback-header">
-                    <span style="font-size: 0.85rem; font-weight:600; color:var(--accent);" data-lang-pt="Sucesso!" data-lang-en="Success!">Sucesso!</span>
-                    <button class="feedback-close close-widget-action" aria-label="Fechar">×</button>
-                </div>
-                <p class="feedback-thanks" data-lang-pt="Obrigado pelo seu voto! 🌱" data-lang-en="Thanks for voting! 🌱">Obrigado pelo seu voto! 🌱</p>
-            </div>
-        </div>
-    </div>
+.hamburger.active .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.active .bar:nth-child(2) { opacity: 0; }
+.hamburger.active .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-    <script src="main.js"></script>
-</body>
-</html>
+.nav-menu {
+    position: fixed;
+    left: -100%;
+    top: 0;
+    background-color: var(--card-bg);
+    width: 290px;
+    height: 100vh;
+    padding: 90px 24px 40px 24px;
+    box-shadow: var(--shadow);
+    transition: left 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    border-right: var(--border);
+    z-index: 1050;
+    overflow-y: auto;
+}
+.nav-menu.active { left: 0; }
+
+.menu-header {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+.nav-links { display: flex; flex-direction: column; list-style: none; }
+.nav-links li { display: flex; flex-direction: column; padding: 14px 0; position: relative; }
+.nav-links li:not(:last-child)::after {
+    content: ""; position: absolute; bottom: 0; left: 0; width: 40px; height: 1px; background-color: var(--menu-sep);
+}
+.nav-links a { color: var(--text-main); text-decoration: none; font-weight: 500; font-size: 1.05rem; transition: color 0.2s, padding-left 0.2s; }
+.nav-links a:hover { color: var(--accent); padding-left: 6px; }
+
+.menu-contact-section {
+    margin-top: 35px;
+    padding-top: 20px;
+    border-top: 1px solid var(--menu-sep);
+}
+.menu-social-icons {
+    display: flex;
+    gap: 12px;
+    margin-top: 5px;
+}
+.social-icon-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: var(--bg-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: var(--border);
+    transition: transform 0.2s, background-color 0.2s;
+}
+.social-icon-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: var(--text-main);
+}
+.social-icon-btn:hover { transform: translateY(-2px); }
+.social-icon-btn.whatsapp:hover { background-color: #25d366; }
+.social-icon-btn.instagram:hover { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+.social-icon-btn:hover svg { fill: #ffffff; }
+
+.theme-btn { background: transparent; border: none; cursor: pointer; font-size: 1rem; padding: 4px; color: var(--text-main); }
+
+.nav-auth-buttons { display: flex; align-items: center; gap: 8px; }
+.btn-login {
+    border: 1px solid var(--text-main); color: var(--text-main); text-decoration: none;
+    padding: 6px 14px; border-radius: 20px; font-size: 0.82rem; font-weight: 600; transition: all 0.2s;
+}
+.btn-login:hover { background: var(--text-main); color: var(--card-bg); }
+
+.btn-register {
+    background-color: var(--primary); color: white; text-decoration: none;
+    padding: 6px 14px; border-radius: 20px; font-size: 0.82rem; font-weight: 600;
+}
+.btn-register:hover { background-color: var(--accent); }
+
+/* ==========================================================================
+   SISTEMA DE MENU DE IDIOMAS (DROPDOWN NO CANTO DIREITO)
+   ========================================================================== */
+.lang-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.lang-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: background var(--speed);
+}
+.lang-btn:hover { background: var(--accordion-hover); }
+
+.lang-dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 110%;
+    background-color: var(--card-bg);
+    min-width: 140px;
+    box-shadow: var(--shadow);
+    border: var(--border);
+    border-radius: 8px;
+    z-index: 1200;
+    overflow: hidden;
+}
+
+.lang-dropdown-content button {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    padding: 10px 14px;
+    text-align: left;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+.lang-dropdown-content button:hover {
+    background-color: var(--dropdown-hover);
+    color: var(--accent);
+}
+
+.lang-dropdown.active .lang-dropdown-content {
+    display: block;
+}
+
+/* ==========================================================================
+   HERO & ESTRUTURAS DE CONTEÚDO
+   ========================================================================== */
+.hero-section {
+    background: linear-gradient(135deg, #0f1f15 0%, #0f172a 100%);
+    border-radius: var(--radius); padding: 50px 30px; text-align: center; color: white; margin-bottom: 40px;
+}
+.hero-tag { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); font-weight: 700; }
+.hero-content h1 { font-size: 2.4rem; margin: 12px 0; }
+.hero-content p { font-size: 1rem; opacity: 0.85; max-width: 640px; margin: 0 auto; }
+
+.stats-section { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 45px; text-align: center; }
+.stat-item { padding: 20px; background: var(--card-bg); border: var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+.stat-number { display: block; font-family: var(--font-heading); font-size: 2.3rem; font-weight: 300; color: var(--accent); margin-bottom: 4px; }
+.stat-label { font-size: 0.82rem; color: var(--text-muted); }
+
+.infographic-section { margin-bottom: 45px; }
+.infographic-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.step-card { background: var(--card-bg); border: var(--border); border-radius: var(--radius); padding: 20px; cursor: pointer; opacity: 0.6; }
+.step-card:hover { opacity: 0.9; }
+.step-card.active { opacity: 1; border-color: var(--accent); box-shadow: var(--shadow); }
+.step-num { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
+
+.content-section { margin-bottom: 50px; scroll-margin-top: 90px; }
+.content-section h2 { font-size: 1.6rem; margin-bottom: 20px; }
+
+.cards-grid { display: grid; gap: 20px; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+
+.card { background: var(--card-bg); border: var(--border); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); transition: transform 0.2s, border-color 0.2s; }
+.card:hover { transform: translateY(-4px); border-color: var(--accent); }
+.card-badge { display: inline-block; font-size: 0.7rem; font-weight: 700; padding: 3px 10px; border-radius: 4px; background: var(--badge-bg); color: var(--badge-text); margin-bottom: 12px; }
+
+/* Gráficos em Barras */
+.chart-container { display: flex; flex-direction: column; gap: 16px; margin-top: 15px; }
+.chart-bar-group { display: flex; flex-direction: column; gap: 6px; }
+.chart-label { font-size: 0.85rem; font-weight: 600; }
+.chart-track { background-color: var(--track-bg); height: 10px; border-radius: 5px; overflow: hidden; }
+.chart-fill { height: 100%; border-radius: 5px; }
+.danger-bar { background-color: #ef4444; }
+.safe-bar { background-color: var(--accent); }
+.chart-value { font-size: 0.8rem; color: var(--text-muted); }
+
+/* Accordions */
+.accordion-container { display: flex; flex-direction: column; gap: 8px; }
+.accordion-item { border: var(--border); border-radius: var(--radius); background: var(--card-bg); }
+.accordion-header { width: 100%; background: transparent; border: none; padding: 14px 20px; display: flex; justify-content: space-between; color: var(--text-main); font-weight: 500; cursor: pointer; font-size: 0.95rem; }
+.accordion-header:hover { background: var(--accordion-hover); }
+.chevron { font-size: 0.7rem; color: var(--text-muted); transition: transform var(--speed); }
+.accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.2s ease-out; }
+.content-flex { padding: 0 20px 14px 20px; color: var(--text-muted); font-size: 0.88rem; }
+.accordion-item.active { border-color: var(--accent); }
+.accordion-item.active .chevron { transform: rotate(180deg); color: var(--accent); }
+.accordion-item.active .accordion-content { max-height: 120px; }
+
+.list-card ul { display: flex; flex-direction: column; gap: 10px; list-style: none; }
+.list-card li { font-size: 0.9rem; color: var(--text-muted); padding-left: 18px; position: relative; }
+.list-card li::before { content: "•"; color: #ef4444; position: absolute; left: 4px; font-weight: bold; }
+.visual-icon { font-size: 1.4rem; margin-bottom: 8px; }
+
+.filter-buttons { display: flex; gap: 10px; margin-bottom: 24px; flex-wrap: wrap; }
+.btn-filter { background: var(--card-bg); border: var(--border); color: var(--text-main); font-size: 0.85rem; font-weight: 600; padding: 8px 18px; border-radius: 20px; cursor: pointer; }
+.btn-filter.active { background: var(--primary); color: white; border-color: var(--primary); }
+.premium-card.hidden { display: none; }
+
+/* Quiz Dinâmico */
+.quiz-options { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
+.option-btn { width: 100%; text-align: left; padding: 14px 18px; border-radius: 8px; border: var(--border); background: var(--bg-main); color: var(--text-main); font-size: 0.95rem; font-weight: 500; cursor: pointer; }
+.option-btn:hover:not([disabled]) { border-color: var(--accent); background: var(--accordion-hover); }
+.option-btn.correct { background-color: rgba(34, 197, 94, 0.15) !important; border-color: #22c55e !important; color: #166534; }
+.option-btn.wrong { background-color: rgba(239, 68, 68, 0.1) !important; border-color: #ef4444 !important; color: #991b1b; }
+.quiz-feedback { margin-top: 15px; padding: 14px; border-radius: 8px; font-size: 0.9rem; font-weight: 500; }
+.quiz-feedback.success { background-color: rgba(34, 197, 94, 0.1); color: #166534; border: 1px solid rgba(34, 197, 94, 0.2); }
+.quiz-feedback.error { background-color: rgba(239, 68, 68, 0.05); color: #991b1b; border: 1px solid rgba(239, 68, 68, 0.1); }
+
+/* Referências e Sugestões */
+.references-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 15px; }
+.ref-item { background: var(--card-bg); border: var(--border); border-radius: var(--radius); padding: 20px; display: flex; gap: 14px; align-items: flex-start; }
+.ref-icon { font-size: 1.5rem; background: var(--bg-main); padding: 10px; border-radius: 8px; line-height: 1; }
+.ref-item h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 4px; }
+.ref-item p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.4; }
+
+.form-card { max-width: 500px; margin: 0 auto; }
+.suggestion-form { display: flex; flex-direction: column; gap: 14px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; font-size: 0.85rem; font-weight: 600; }
+.form-group input, .form-group textarea { padding: 12px; border-radius: 8px; border: var(--border); background: var(--bg-main); color: var(--text-main); font-family: inherit; }
+.btn-submit { background: var(--primary); color: white; border: none; padding: 12px; border-radius: 8px; font-weight: 600; cursor: pointer; text-align: center; }
+.btn-submit:hover { background: #14532d; }
+
+/* ==========================================================================
+   RODAPÉ PREMIUM (COMPACTO E ACADÊMICO)
+   ========================================================================== */
+.footer-premium { border-top: var(--border); padding: 35px 0 20px 0; margin-top: 60px; font-size: 0.85rem; color: var(--text-muted); background-color: var(--card-bg); }
+.footer-content-wrap { display: flex; flex-direction: column; gap: 20px; }
+.footer-top-layout { display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; flex-wrap: wrap; }
+.footer-brand { flex: 1; min-width: 280px; }
+.footer-desc { margin-top: 8px; font-size: 0.88rem; max-width: 480px; line-height: 1.5; }
+
+.footer-academic-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background-color: var(--bg-main);
+    padding: 12px 18px;
+    border-radius: 8px;
+    border: var(--border);
+    font-size: 0.82rem;
+    min-width: 260px;
+}
+.meta-item { color: var(--text-muted); }
+.meta-item strong { color: var(--text-main); font-weight: 600; margin-right: 4px; }
+.meta-item span { font-weight: 400; opacity: 0.9; }
+
+.footer-divider { border: none; height: 1px; background-color: var(--border); }
+.footer-bottom-flex { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.academic-tag { font-weight: 600; color: var(--primary); }
+
+/* ==========================================================================
+   COOKIES & WIDGET DE AVALIAÇÃO CORRIGIDO
+   ========================================================================== */
+.cookie-banner {
+    position: fixed;
+    bottom: -150px;
+    left: 0;
+    width: 100%;
+    background-color: var(--card-bg);
+    border-top: 2px solid var(--accent);
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.15);
+    z-index: 2000;
+    transition: bottom 0.4s ease;
+    padding: 16px 0;
+}
+.cookie-banner.show { bottom: 0; }
+.cookie-content { width: 90%; max-width: 960px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.cookie-content p { font-size: 0.85rem; color: var(--text-muted); }
+.cookie-actions { display: flex; gap: 8px; }
+
+.btn-cookie { border: none; padding: 8px 20px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; cursor: pointer; }
+.btn-cookie-accept { background-color: var(--primary); color: white; }
+.btn-cookie-decline { background-color: var(--badge-bg); color: var(--badge-text); border: var(--border); }
+
+.feedback-widget {
+    position: fixed;
+    right: 20px;
+    z-index: 1500;
+    transition: bottom 0.3s ease;
+}
+.feedback-widget.cookie-above { bottom: 115px; }
+.feedback-widget.cookie-hidden { bottom: 20px; }
+
+.feedback-trigger {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 11px 16px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transform: scale(0.93);
+    transition: transform var(--speed), background-color var(--speed);
+}
+.feedback-trigger:hover { background-color: var(--accent); transform: scale(0.95) translateY(-2px); }
+
+.feedback-card {
+    position: absolute;
+    bottom: 55px;
+    right: 0;
+    width: 270px;
+    background-color: var(--card-bg);
+    border: var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.feedback-card.hidden { display: none; }
+
+.feedback-header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+}
+.feedback-header h4 { font-size: 0.88rem; font-weight: 600; }
+
+.feedback-close { 
+    background: transparent; 
+    border: none; 
+    font-size: 1.3rem; 
+    cursor: pointer; 
+    color: var(--text-muted); 
+    line-height: 1;
+    padding: 2px;
+}
+.feedback-close:hover { color: #ef4444; }
+
+.feedback-emojis { 
+    display: flex; 
+    justify-content: space-between; 
+    margin-top: 4px;
+}
+.emoji-btn { background: transparent; border: none; font-size: 1.5rem; cursor: pointer; transition: transform 0.15s ease; padding: 4px; }
+.emoji-btn:hover { transform: scale(1.3); }
+
+.feedback-thanks { 
+    font-size: 0.85rem; 
+    text-align: center; 
+    color: var(--accent); 
+    font-weight: 600; 
+    padding: 10px 0;
+}
+.hidden { display: none !important; }
+
+/* ==========================================================================
+   RESPONSIVIDADE (MEDIA QUERIES)
+   ========================================================================== */
+@media(max-width: 768px) {
+    .grid-2, .grid-3, .infographic-steps { grid-template-columns: 1fr; }
+    .footer-top-layout { flex-direction: column; gap: 20px; }
+    .footer-bottom-flex { flex-direction: column; text-align: center; }
+    .nav-center { display: none; }
+    .cookie-content { flex-direction: column; text-align: center; }
+    .nav-menu { display: flex; flex-direction: column; }
+    .navbar .nav-auth-buttons { display: none; }
+    
+    /* Reposiciona o dropdown de idiomas em telas pequenas para não quebrar o topo */
+    .lang-dropdown-content { right: auto; left: 0; }
+}
