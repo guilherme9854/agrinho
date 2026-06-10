@@ -79,19 +79,28 @@ document.addEventListener('DOMContentLoaded', loadQuizQuestion);
 
 
 // ==========================================================================
-// 2. SISTEMA INTERATIVO DE AVISO DE COOKIES (DEMOCRÁTICO)
+// 2. COOKIES E AJUSTE DINÂMICO DE ALTURA DO WIDGET DE FEEDBACK
 // ==========================================================================
 window.addEventListener('load', () => {
     const cookieBanner = document.getElementById('cookie-banner');
     const acceptBtn = document.getElementById('cookie-accept-btn');
     const declineBtn = document.getElementById('cookie-decline-btn');
+    const feedbackWidget = document.getElementById('emoji-feedback-widget');
 
+    // Mostra os cookies e mantém o feedback flutuando por cima dele (cookie-above)
     setTimeout(() => {
         cookieBanner.classList.add('show');
     }, 1200);
 
-    acceptBtn.addEventListener('click', () => cookieBanner.classList.remove('show'));
-    declineBtn.addEventListener('click', () => cookieBanner.classList.remove('show'));
+    // Função que esconde o banner e faz o widget de feedback descer para o canto
+    function hideCookieBanner() {
+        cookieBanner.classList.remove('show');
+        feedbackWidget.classList.remove('cookie-above');
+        feedbackWidget.classList.add('cookie-hidden');
+    }
+
+    acceptBtn.addEventListener('click', hideCookieBanner);
+    declineBtn.addEventListener('click', hideCookieBanner);
 });
 
 
@@ -112,7 +121,7 @@ langToggleBtn.addEventListener('click', () => {
 
 
 // ==========================================================================
-// 4. WIDGET DE FEEDBACK POR EMOJIS (LOGICA DE INTERAÇÃO)
+// 4. WIDGET DE FEEDBACK POR EMOJIS (INTERAÇÃO E AUTO-FECHAMENTO)
 // ==========================================================================
 const feedbackTrigger = document.getElementById('feedback-trigger-btn');
 const feedbackCard = document.getElementById('feedback-card');
@@ -132,14 +141,11 @@ feedbackClose.addEventListener('click', () => {
 emojiButtons.forEach(btn => {
     btn.addEventListener('click', () => {
         const rating = btn.getAttribute('data-rating');
-        // Esconde os emojis e mostra agradecimento técnico elegante
         feedbackEmojisContainer.style.display = 'none';
         feedbackThanks.classList.remove('hidden');
         
-        // Auto-fecha a caixinha de feedback após 2 segundos
         setTimeout(() => {
             feedbackCard.classList.add('hidden');
-            // Reseta o estado para uma próxima abertura
             setTimeout(() => {
                 feedbackEmojisContainer.style.display = 'flex';
                 feedbackThanks.classList.add('hidden');
@@ -161,7 +167,7 @@ themeToggleBtn.addEventListener('click', () => {
 
 
 // ==========================================================================
-// 6. HAMBÚRGUER COM TRANSIÇÃO E CORREÇÃO DE DIRECIONAMENTO
+// 6. HAMBÚRGUER COM SUPORTE MOBILE COMPLETO
 // ==========================================================================
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');

@@ -338,14 +338,24 @@ h1, h2, h3, h4 {
 .btn-cookie-decline:hover { background-color: #ef4444; color: white; border-color: #ef4444; }
 
 /* ==========================================================================
-   WIDGET DE FEEDBACK INTERATIVO POR EMOJIS (CANTO INFERIOR DIREITO)
+   WIDGET DE FEEDBACK INTERATIVO (CANTO INFERIOR DIREITO)
    ========================================================================== */
 .feedback-widget {
     position: fixed;
-    bottom: 20px;
     right: 20px;
     z-index: 3000;
     font-family: var(--font-body);
+    transition: bottom 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Deixa o feedback flutuando cerca de 1 a 2cm (70px) acima da barra de cookies */
+.feedback-widget.cookie-above {
+    bottom: 90px;
+}
+
+/* Quando os cookies somem, ele desce elegantemente para o canto */
+.feedback-widget.cookie-hidden {
+    bottom: 20px;
 }
 
 .feedback-trigger {
@@ -431,5 +441,25 @@ h1, h2, h3, h4 {
     .cookie-content { flex-direction: column; text-align: center; gap: 14px; }
     .cookie-actions { width: 100%; justify-content: center; }
     .btn-cookie { flex: 1; text-align: center; }
-    .nav-auth-buttons { display: none; } /* Oculta na barra principal mobile para evitar estouro */
+    
+    /* Move a área de botões para dentro da gaveta lateral no mobile para manter limpo */
+    .nav-auth-buttons {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        margin-top: 20px;
+        gap: 10px;
+    }
+    .btn-login, .btn-register {
+        text-align: center;
+        width: 100%;
+    }
+    .nav-menu {
+        display: flex;
+        flex-direction: column;
+    }
+    /* Copia os botões para o menu lateral se quiser ou os mantém arrumados */
+    .navbar .nav-auth-buttons {
+        display: none;
+    }
 }
