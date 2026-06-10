@@ -15,6 +15,7 @@
     --badge-text: #334155;
     --menu-sep: #e2e8f0;
     --track-bg: #e2e8f0;
+    --dropdown-hover: #f8fafc;
 }
 
 .dark-mode {
@@ -31,6 +32,7 @@
     --badge-text: #e2e8f0;
     --menu-sep: #1f2937;
     --track-bg: #1f2937;
+    --dropdown-hover: #1f2937;
 }
 
 :root {
@@ -42,7 +44,7 @@
     --speed: 0.2s;
 }
 
-/* Otimização de renderização instantânea do motor do navegador */
+/* Otimização de renderização instantânea pelo motor do navegador */
 .content-section, .hero-section, .stats-section {
     content-visibility: auto;
     contain-intrinsic-size: 100px 500px;
@@ -92,7 +94,7 @@ h1, h2, h3, h4 {
 }
 
 /* ==========================================================================
-   NAVBAR & MENU LATERAL (ROLÁVEL COM REDES)
+   NAVBAR & MENU LATERAL (GAVETA)
    ========================================================================== */
 .navbar {
     background-color: var(--navbar-bg);
@@ -222,7 +224,7 @@ h1, h2, h3, h4 {
 .social-icon-btn.instagram:hover { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
 .social-icon-btn:hover svg { fill: #ffffff; }
 
-.theme-btn, .lang-btn { background: transparent; border: none; cursor: pointer; font-size: 1rem; padding: 4px; color: var(--text-main); font-weight: 600; }
+.theme-btn { background: transparent; border: none; cursor: pointer; font-size: 1rem; padding: 4px; color: var(--text-main); }
 
 .nav-auth-buttons { display: flex; align-items: center; gap: 8px; }
 .btn-login {
@@ -238,7 +240,66 @@ h1, h2, h3, h4 {
 .btn-register:hover { background-color: var(--accent); }
 
 /* ==========================================================================
-   HERO & COMPONENTES
+   SISTEMA DE MENU DE IDIOMAS (DROPDOWN NO CANTO DIREITO)
+   ========================================================================== */
+.lang-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.lang-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: background var(--speed);
+}
+.lang-btn:hover { background: var(--accordion-hover); }
+
+.lang-dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 110%;
+    background-color: var(--card-bg);
+    min-width: 140px;
+    box-shadow: var(--shadow);
+    border: var(--border);
+    border-radius: 8px;
+    z-index: 1200;
+    overflow: hidden;
+}
+
+.lang-dropdown-content button {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    padding: 10px 14px;
+    text-align: left;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+.lang-dropdown-content button:hover {
+    background-color: var(--dropdown-hover);
+    color: var(--accent);
+}
+
+.lang-dropdown.active .lang-dropdown-content {
+    display: block;
+}
+
+/* ==========================================================================
+   HERO & ESTRUTURAS DE CONTEÚDO
    ========================================================================== */
 .hero-section {
     background: linear-gradient(135deg, #0f1f15 0%, #0f172a 100%);
@@ -271,7 +332,7 @@ h1, h2, h3, h4 {
 .card:hover { transform: translateY(-4px); border-color: var(--accent); }
 .card-badge { display: inline-block; font-size: 0.7rem; font-weight: 700; padding: 3px 10px; border-radius: 4px; background: var(--badge-bg); color: var(--badge-text); margin-bottom: 12px; }
 
-/* Gráficos */
+/* Gráficos em Barras */
 .chart-container { display: flex; flex-direction: column; gap: 16px; margin-top: 15px; }
 .chart-bar-group { display: flex; flex-direction: column; gap: 6px; }
 .chart-label { font-size: 0.85rem; font-weight: 600; }
@@ -303,7 +364,7 @@ h1, h2, h3, h4 {
 .btn-filter.active { background: var(--primary); color: white; border-color: var(--primary); }
 .premium-card.hidden { display: none; }
 
-/* Quiz */
+/* Quiz Dinâmico */
 .quiz-options { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
 .option-btn { width: 100%; text-align: left; padding: 14px 18px; border-radius: 8px; border: var(--border); background: var(--bg-main); color: var(--text-main); font-size: 0.95rem; font-weight: 500; cursor: pointer; }
 .option-btn:hover:not([disabled]) { border-color: var(--accent); background: var(--accordion-hover); }
@@ -313,7 +374,7 @@ h1, h2, h3, h4 {
 .quiz-feedback.success { background-color: rgba(34, 197, 94, 0.1); color: #166534; border: 1px solid rgba(34, 197, 94, 0.2); }
 .quiz-feedback.error { background-color: rgba(239, 68, 68, 0.05); color: #991b1b; border: 1px solid rgba(239, 68, 68, 0.1); }
 
-/* Referências e Formulários */
+/* Referências e Sugestões */
 .references-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 15px; }
 .ref-item { background: var(--card-bg); border: var(--border); border-radius: var(--radius); padding: 20px; display: flex; gap: 14px; align-items: flex-start; }
 .ref-icon { font-size: 1.5rem; background: var(--bg-main); padding: 10px; border-radius: 8px; line-height: 1; }
@@ -328,7 +389,7 @@ h1, h2, h3, h4 {
 .btn-submit:hover { background: #14532d; }
 
 /* ==========================================================================
-   RODAPÉ PREMIUM OTIMIZADO (COMPACTO E DISCRETO)
+   RODAPÉ PREMIUM (COMPACTO E ACADÊMICO)
    ========================================================================== */
 .footer-premium { border-top: var(--border); padding: 35px 0 20px 0; margin-top: 60px; font-size: 0.85rem; color: var(--text-muted); background-color: var(--card-bg); }
 .footer-content-wrap { display: flex; flex-direction: column; gap: 20px; }
@@ -336,7 +397,6 @@ h1, h2, h3, h4 {
 .footer-brand { flex: 1; min-width: 280px; }
 .footer-desc { margin-top: 8px; font-size: 0.88rem; max-width: 480px; line-height: 1.5; }
 
-/* Layout Discreto da Autoria Acadêmica */
 .footer-academic-meta {
     display: flex;
     flex-direction: column;
@@ -357,7 +417,7 @@ h1, h2, h3, h4 {
 .academic-tag { font-weight: 600; color: var(--primary); }
 
 /* ==========================================================================
-   WIDGETS FIXOS (COOKIES E FEEDBACK AJUSTADO)
+   COOKIES & WIDGET DE AVALIAÇÃO CORRIGIDO
    ========================================================================== */
 .cookie-banner {
     position: fixed;
@@ -383,7 +443,7 @@ h1, h2, h3, h4 {
 .feedback-widget {
     position: fixed;
     right: 20px;
-    z-index: 3000;
+    z-index: 1500;
     transition: bottom 0.3s ease;
 }
 .feedback-widget.cookie-above { bottom: 115px; }
@@ -403,6 +463,7 @@ h1, h2, h3, h4 {
     align-items: center;
     gap: 8px;
     transform: scale(0.93);
+    transition: transform var(--speed), background-color var(--speed);
 }
 .feedback-trigger:hover { background-color: var(--accent); transform: scale(0.95) translateY(-2px); }
 
@@ -410,25 +471,56 @@ h1, h2, h3, h4 {
     position: absolute;
     bottom: 55px;
     right: 0;
-    width: 260px;
+    width: 270px;
     background-color: var(--card-bg);
     border: var(--border);
     border-radius: var(--radius);
-    padding: 14px;
+    padding: 16px;
     box-shadow: var(--shadow);
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 .feedback-card.hidden { display: none; }
-.feedback-header { display: flex; justify-content: space-between; align-items: center; }
-.feedback-header h4 { font-size: 0.88rem; }
-.feedback-close { background: transparent; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-muted); }
-.feedback-emojis { display: flex; justify-content: space-between; gap: 6px; }
-.emoji-btn { background: transparent; border: none; font-size: 1.5rem; cursor: pointer; transition: transform 0.15s ease; padding: 4px; }
-.emoji-btn:hover { transform: scale(1.25); }
-.feedback-thanks { font-size: 0.82rem; text-align: center; color: var(--accent); font-weight: 600; }
 
+.feedback-header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+}
+.feedback-header h4 { font-size: 0.88rem; font-weight: 600; }
+
+.feedback-close { 
+    background: transparent; 
+    border: none; 
+    font-size: 1.3rem; 
+    cursor: pointer; 
+    color: var(--text-muted); 
+    line-height: 1;
+    padding: 2px;
+}
+.feedback-close:hover { color: #ef4444; }
+
+.feedback-emojis { 
+    display: flex; 
+    justify-content: space-between; 
+    margin-top: 4px;
+}
+.emoji-btn { background: transparent; border: none; font-size: 1.5rem; cursor: pointer; transition: transform 0.15s ease; padding: 4px; }
+.emoji-btn:hover { transform: scale(1.3); }
+
+.feedback-thanks { 
+    font-size: 0.85rem; 
+    text-align: center; 
+    color: var(--accent); 
+    font-weight: 600; 
+    padding: 10px 0;
+}
+.hidden { display: none !important; }
+
+/* ==========================================================================
+   RESPONSIVIDADE (MEDIA QUERIES)
+   ========================================================================== */
 @media(max-width: 768px) {
     .grid-2, .grid-3, .infographic-steps { grid-template-columns: 1fr; }
     .footer-top-layout { flex-direction: column; gap: 20px; }
@@ -437,4 +529,7 @@ h1, h2, h3, h4 {
     .cookie-content { flex-direction: column; text-align: center; }
     .nav-menu { display: flex; flex-direction: column; }
     .navbar .nav-auth-buttons { display: none; }
+    
+    /* Reposiciona o dropdown de idiomas em telas pequenas para não quebrar o topo */
+    .lang-dropdown-content { right: auto; left: 0; }
 }

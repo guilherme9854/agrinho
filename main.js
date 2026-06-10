@@ -1,204 +1,324 @@
 // ==========================================================================
-// CONFIGURAÇÃO UNIFICADA E PERFORMANCE CENTRALIZADA
+// CONFIGURAÇÕES GLOBAIS E ESTADO DA APLICAÇÃO
 // ==========================================================================
+let currentLang = 'pt';
 
+// Banco de dados do Quiz Traduzido (Português, Inglês e Espanhol)
 const quizData = [
     {
-        question: "Qual método abaixo visa combater pragas agrícolas utilizando os próprios predadores naturais do ecossistema?",
-        options: ["A) Herbicidas Seletivos", "B) Controle Biológico", "C) Lixiviação Química"],
-        correct: 1,
-        explanation: "Excelente! O Controle Biológico utiliza predadores naturais (como joaninhas para combater pulgões), eliminando pragas de maneira ecológica e sem resíduos químicos."
+        question: {
+            pt: "Qual é o principal objetivo do Controle Biológico na agricultura sustentável?",
+            en: "What is the main objective of Biological Control in sustainable agriculture?",
+            es: "¿Cuál es el objetivo principal del Control Biológico en la agricultura sostenible?"
+        },
+        options: {
+            pt: [
+                "Eliminar toda a biodiversidade local para proteger as plantas.",
+                "Utilizar inimigos naturais (como insetos benéficos) para controlar pragas.",
+                "Aumentar o uso de herbicidas sintéticos na lavoura.",
+                "Substituir a irrigação por produtos químicos concentrados."
+            ],
+            en: [
+                "Eliminate all local biodiversity to protect plants.",
+                "Use natural enemies (like beneficial insects) to control pests.",
+                "Increase the use of synthetic herbicides in the crop.",
+                "Replace irrigation with concentrated chemical products."
+            ],
+            es: [
+                "Eliminar toda la biodiversidad local para proteger las plantas.",
+                "Utilizar enemigos naturales (como insectos benéficos) para controlar plagas.",
+                "Aumentar el uso de herbicidas sintéticos en el cultivo.",
+                "Reemplazar el riego por productos químicos concentrados."
+            ]
+        },
+        correct: 1
     },
     {
-        question: "O acúmulo de substâncias químicas em tecidos vivos ao longo do tempo através da cadeia alimentar é chamado de:",
-        options: ["A) Bioacumulação", "B) Fitossanidade", "C) Transgênese"],
-        correct: 0,
-        explanation: "Correto! A bioacumulação faz com que resíduos de defensivos fiquem retidos no organismo de animais e humanos de forma progressiva e cumulativa."
-    },
-    {
-        question: "Qual é o principal foco da técnica conhecida como MIP (Manejo Integrado de Pragas)?",
-        options: ["A) Erradicar 100% dos insetos com químicos rápidos", "B) Associar métodos biológicos, culturais e químicos de forma equilibrada", "C) Substituir a irrigação por defensivos líquidos"],
-        correct: 1,
-        explanation: "Perfeito! O MIP integra ferramentas preventivas, genéticas e biológicas para reduzir ao máximo a dependência exclusiva de defensivos sintéticos."
+        question: {
+            pt: "Qual dessas alternativas NÃO é considerada um impacto ambiental do uso excessivo de agrotóxicos?",
+            en: "Which of these alternatives is NOT considered an environmental impact of excessive pesticide use?",
+            es: "¿Cuál de estas alternativas NO se considera un impacto ambiental del uso excesivo de pesticidas?"
+        },
+        options: {
+            pt: [
+                "Poluição de lençóis freáticos e rios.",
+                "Intoxicação de polinizadores essenciais como abelhas.",
+                "Fortalecimento natural dos nutrientes originais do solo.",
+                "Acúmulo de resíduos químicos na cadeia alimentar."
+            ],
+            en: [
+                "Pollution of groundwater and rivers.",
+                "Intoxication of essential pollinators like bees.",
+                "Natural strengthening of original soil nutrients.",
+                "Accumulation of chemical residues in the food chain."
+            ],
+            es: [
+                "Contaminación de capas freáticas y ríos.",
+                "Intoxicación de polinizadores esenciales como las abejas.",
+                "Fortalecimiento natural de los nutrientes originales del suelo.",
+                "Acumulación de residuos químicos en la cadena alimentaria."
+            ]
+        },
+        correct: 2
     }
 ];
 
 let currentQuestionIndex = 0;
 
-// Inicializador centralizado - Carrega tudo em um único evento para velocidade máxima
-document.addEventListener('DOMContentLoaded', () => {
-    
-    // 1. Inicializa Quiz
-    loadQuizQuestion();
-
-    // 2. Controle de Cookies e Posicionamento do Widget
-    const cookieBanner = document.getElementById('cookie-banner');
-    const acceptBtn = document.getElementById('cookie-accept-btn');
-    const declineBtn = document.getElementById('cookie-decline-btn');
-    const feedbackWidget = document.getElementById('emoji-feedback-widget');
-
-    setTimeout(() => {
-        if(cookieBanner) cookieBanner.classList.add('show');
-    }, 800);
-
-    function hideCookieBanner() {
-        if(cookieBanner) cookieBanner.classList.remove('show');
-        if(feedbackWidget) {
-            feedbackWidget.classList.remove('cookie-above');
-            feedbackWidget.classList.add('cookie-hidden');
-        }
-    }
-
-    if(acceptBtn) acceptBtn.addEventListener('click', hideCookieBanner);
-    if(declineBtn) declineBtn.addEventListener('click', hideCookieBanner);
-
-    // 3. Gerenciamento do Menu Hambúrguer Dinâmico
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('.nav-menu');
-
-    if(hamburger && navMenu) {
-        hamburger.addEventListener('click', (e) => {
-            e.stopPropagation();
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
-        });
-
-        document.addEventListener('click', (e) => {
-            if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            }
-        });
-    }
-
-    // 4. Widget de Avaliação (Feedback)
-    const feedbackTrigger = document.getElementById('feedback-trigger-btn');
-    const feedbackCard = document.getElementById('feedback-card');
-    const feedbackClose = document.getElementById('feedback-close-btn');
-    const emojiButtons = document.querySelectorAll('.emoji-btn');
-    const feedbackThanks = document.getElementById('feedback-thanks');
-    const feedbackEmojisContainer = document.getElementById('feedback-emojis');
-
-    if(feedbackTrigger && feedbackCard) {
-        feedbackTrigger.addEventListener('click', () => feedbackCard.classList.toggle('hidden'));
-        if(feedbackClose) feedbackClose.addEventListener('click', () => feedbackCard.classList.add('hidden'));
-
-        emojiButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                if(feedbackEmojisContainer) feedbackEmojisContainer.style.display = 'none';
-                if(feedbackThanks) feedbackThanks.classList.remove('hidden');
-                
-                setTimeout(() => {
-                    feedbackCard.classList.add('hidden');
-                    setTimeout(() => {
-                        if(feedbackEmojisContainer) feedbackEmojisContainer.style.display = 'flex';
-                        if(feedbackThanks) feedbackThanks.classList.add('hidden');
-                    }, 300);
-                }, 1500);
-            });
-        });
-    }
-
-    // 5. Alternador de Temas (Light / Dark)
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    if(themeToggleBtn) {
-        themeToggleBtn.addEventListener('click', () => {
-            document.body.classList.toggle('light-mode');
-            document.body.classList.toggle('dark-mode');
-            themeToggleBtn.textContent = document.body.classList.contains('dark-mode') ? '🌙' : '☀️';
-        });
-    }
-
-    // 6. Controle Multilíngue Simplificado
-    const langToggleBtn = document.getElementById('lang-toggle');
-    let currentLang = 'pt';
-    if(langToggleBtn) {
-        langToggleBtn.addEventListener('click', () => {
-            currentLang = currentLang === 'pt' ? 'en' : 'pt';
-            langToggleBtn.textContent = currentLang === 'pt' ? '🌐 PT' : '🌐 EN';
-            document.querySelectorAll('[data-lang-pt]').forEach(el => {
-                el.textContent = el.getAttribute(`data-lang-${currentLang}`);
-            });
-        });
-    }
-
-    // 7. Sistema Otimizado de Scroll (Reveal Sections)
-    const revealElements = document.querySelectorAll('.reveal');
-    function checkReveal() {
-        const triggerBottom = window.innerHeight * 0.92;
-        revealElements.forEach(el => {
-            if (el.getBoundingClientRect().top < triggerBottom) el.classList.add('visible');
-        });
-    }
-    window.addEventListener('scroll', checkReveal);
-    checkReveal(); // Disparo imediato inicial
+// ==========================================================================
+// INICIALIZAÇÃO DO SISTEMA
+// ==========================================================================
+document.addEventListener("DOMContentLoaded", () => {
+    initTheme();
+    initMenuLateral();
+    initLanguageDropdown();
+    initInfografico();
+    initScrollReveal();
+    initQuiz();
+    initFeedbackWidget();
+    initCookies();
 });
 
-// Funções Auxiliares do Ciclo Global do App
-function loadQuizQuestion() {
+// ==========================================================================
+// SISTEMA DE IDIOMAS (MENU HAMBÚRGUER / DROPDOWN DE IDIOMAS)
+// ==========================================================================
+function initLanguageDropdown() {
+    const btn = document.getElementById('lang-dropdown-btn');
+    const dropdown = document.querySelector('.lang-dropdown');
+    const options = document.querySelectorAll('[data-lang-select]');
+
+    // Abre e fecha o menu de idiomas ao clicar no botão global
+    btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdown.classList.toggle('active');
+    });
+
+    // Fecha o menu se clicar em qualquer outro lugar da tela
+    document.addEventListener('click', () => {
+        dropdown.classList.remove('active');
+    });
+
+    // Captura a troca de idioma ao clicar em uma opção
+    options.forEach(opt => {
+        opt.addEventListener('click', () => {
+            const selectedLang = opt.getAttribute('data-lang-select');
+            changeLanguage(selectedLang);
+            
+            // Atualiza o texto visual do botão do menu principal
+            const flags = { pt: '🇧🇷 PT', en: '🇺🇸 EN', es: '🇪🇸 ES' };
+            btn.textContent = `🌐 ${flags[selectedLang].split(' ')[1]}`;
+            dropdown.classList.remove('active');
+        });
+    });
+}
+
+function changeLanguage(lang) {
+    currentLang = lang;
+    document.documentElement.lang = lang === 'pt' ? 'pt-BR' : lang;
+
+    // Traduz todos os elementos estáticos que possuem os atributos customizados
+    document.querySelectorAll(`[data-lang-${lang}]`).forEach(el => {
+        el.textContent = el.getAttribute(`data-lang-${lang}`);
+    });
+
+    // Recarrega a pergunta atual do quiz com o novo idioma aplicado
+    renderQuizQuestion();
+}
+
+// ==========================================================================
+// RENDERIZAÇÃO DO QUIZ (CORRIGIDO PARA SUPORTAR IDIOMAS DIRETAMENTE)
+// ==========================================================================
+function initQuiz() {
+    const nextBtn = document.getElementById('btn-next-quiz');
+    nextBtn.addEventListener('click', () => {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < quizData.length) {
+            renderQuizQuestion();
+        } else {
+            showQuizFinished();
+        }
+    });
+    renderQuizQuestion();
+}
+
+function renderQuizQuestion() {
     const questionEl = document.getElementById('quiz-question');
     const optionsContainer = document.getElementById('quiz-options');
     const feedbackEl = document.getElementById('quiz-feedback');
     const nextBtn = document.getElementById('btn-next-quiz');
 
-    if(!questionEl || !optionsContainer) return;
-
     feedbackEl.classList.add('hidden');
     nextBtn.classList.add('hidden');
     optionsContainer.innerHTML = '';
 
-    const currentQuiz = quizData[currentQuestionIndex];
-    questionEl.textContent = currentQuiz.question;
+    if (currentQuestionIndex >= quizData.length) {
+        showQuizFinished();
+        return;
+    }
 
-    currentQuiz.options.forEach((option, index) => {
+    const currentQuiz = quizData[currentQuestionIndex];
+    questionEl.textContent = currentQuiz.question[currentLang];
+
+    currentQuiz.options[currentLang].forEach((optionText, index) => {
         const button = document.createElement('button');
         button.className = 'option-btn';
-        button.textContent = option;
-        button.onclick = () => checkQuizAnswer(index, button);
+        button.textContent = optionText;
+        button.addEventListener('click', () => selectQuizOption(index, button));
         optionsContainer.appendChild(button);
     });
 }
 
-function checkQuizAnswer(selectedIndex, clickedButton) {
+function selectQuizOption(selectedIndex, clickedButton) {
     const currentQuiz = quizData[currentQuestionIndex];
+    const optionsContainer = document.getElementById('quiz-options');
     const feedbackEl = document.getElementById('quiz-feedback');
     const nextBtn = document.getElementById('btn-next-quiz');
-    const buttons = document.querySelectorAll('.option-btn');
 
+    // Desativa todos os botões para impedir múltiplos cliques
+    const buttons = optionsContainer.querySelectorAll('.option-btn');
     buttons.forEach(btn => btn.disabled = true);
 
     if (selectedIndex === currentQuiz.correct) {
         clickedButton.classList.add('correct');
-        feedbackEl.textContent = currentQuiz.explanation;
         feedbackEl.className = "quiz-feedback success";
+        
+        const msgs = { pt: "Parabéns! Resposta correta. 🌿", en: "Congratulations! Correct answer. 🌿", es: "¡Felicitaciones! Respuesta correcta. 🌿" };
+        feedbackEl.textContent = msgs[currentLang];
     } else {
         clickedButton.classList.add('wrong');
-        feedbackEl.textContent = "Incorreto. Que tal tentar mais uma vez com o próximo desafio?";
-        feedbackEl.className = "quiz-feedback error";
         buttons[currentQuiz.correct].classList.add('correct');
-        nextBtn.classList.remove('hidden');
+        feedbackEl.className = "quiz-feedback error";
+
+        const msgs = { pt: "Resposta incorreta. Estude mais as alternativas biológicas!", en: "Incorrect answer. Learn more about biological alternatives!", es: "Respuesta incorrecta. ¡Estudie más as alternativas biológicas!" };
+        feedbackEl.textContent = msgs[currentLang];
     }
+
     feedbackEl.classList.remove('hidden');
+    nextBtn.classList.remove('hidden');
 }
 
-document.getElementById('btn-next-quiz').addEventListener('click', () => {
-    currentQuestionIndex = (currentQuestionIndex + 1) % quizData.length;
-    loadQuizQuestion();
-});
+function showQuizFinished() {
+    const questionEl = document.getElementById('quiz-question');
+    const optionsContainer = document.getElementById('quiz-options');
+    const feedbackEl = document.getElementById('quiz-feedback');
+    const nextBtn = document.getElementById('btn-next-quiz');
 
+    optionsContainer.innerHTML = '';
+    feedbackEl.classList.add('hidden');
+    nextBtn.classList.add('hidden');
+
+    const titles = { pt: "Desafio Concluído!", en: "Challenge Completed!", es: "¡Desafío Completado!" };
+    const messages = { 
+        pt: "Obrigado por participar do Quiz do Projeto Agrinho 2026. Você concluiu sua análise crítica com sucesso!", 
+        en: "Thank you for participating in the Agrinho Project 2026 Quiz. You have successfully completed your critical analysis!", 
+        es: "Gracias por participar en el Quiz del Proyecto Agrinho 2026. ¡Ha completado su análisis crítico con éxito!" 
+    };
+
+    questionEl.textContent = titles[currentLang];
+    const p = document.createElement('p');
+    p.style.marginTop = "10px";
+    p.textContent = messages[currentLang];
+    optionsContainer.appendChild(p);
+}
+
+// ==========================================================================
+// CORREÇÃO DO WIDGET DE AVALIAÇÃO (E BOTÃO DE FECHAR "X")
+// ==========================================================================
+function initFeedbackWidget() {
+    const triggerBtn = document.getElementById('feedback-trigger-btn');
+    const card = document.getElementById('feedback-card');
+    const closeBtn = document.getElementById('feedback-close-btn');
+    const emojisContainer = document.getElementById('feedback-emojis');
+    const thanksMsg = document.getElementById('feedback-thanks');
+
+    // Abre e fecha o card de feedback ao clicar no botão flutuante
+    triggerBtn.addEventListener('click', () => {
+        card.classList.toggle('hidden');
+    });
+
+    // Fecha o card ao clicar no botão "X"
+    closeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        card.classList.add('hidden');
+    });
+
+    // Gerencia o clique nos emojis para salvar e exibir o agradecimento da forma certa
+    const emojiButtons = emojisContainer.querySelectorAll('.emoji-btn');
+    emojiButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const rating = btn.getAttribute('data-rating');
+            localStorage.setItem('agro_feedback_rating', rating);
+
+            // Esconde os emojis para dar lugar à mensagem de sucesso de forma limpa
+            emojisContainer.classList.add('hidden');
+            thanksMsg.classList.remove('hidden');
+
+            // Fecha o card automaticamente após 2.5 segundos
+            setTimeout(() => {
+                card.classList.add('hidden');
+                // Reseta o estado interno do card caso ele seja reaberto futuramente
+                setTimeout(() => {
+                    emojisContainer.classList.remove('hidden');
+                    thanksMsg.classList.add('hidden');
+                }, 400);
+            }, 2500);
+        });
+    });
+}
+
+// ==========================================================================
+// CONTROLE DO TEMA (LIGHT / DARK)
+// ==========================================================================
+function initTheme() {
+    const toggle = document.getElementById('theme-toggle');
+    const savedTheme = localStorage.getItem('theme') || 'light-mode';
+    document.body.className = savedTheme;
+    toggle.textContent = savedTheme === 'light-mode' ? '🌙' : '☀️';
+
+    toggle.addEventListener('click', () => {
+        if (document.body.classList.contains('light-mode')) {
+            document.body.className = 'dark-mode';
+            toggle.textContent = '☀️';
+            localStorage.setItem('theme', 'dark-mode');
+        } else {
+            document.body.className = 'light-mode';
+            toggle.textContent = '🌙';
+            localStorage.setItem('theme', 'light-mode');
+        }
+    });
+}
+
+// ==========================================================================
+// MENU GAVETA LATERAL (RESPONSIVO)
+// ==========================================================================
+function initMenuLateral() {
+    const hamburger = document.querySelector('.hamburger');
+    const menu = document.querySelector('.nav-menu');
+    const links = document.querySelectorAll('.nav-links a');
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        menu.classList.toggle('active');
+    });
+
+    links.forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            menu.classList.remove('active');
+        });
+    });
+}
+
+// ==========================================================================
+// FILTROS DAS ALTERNATIVAS SUSTENTÁVEIS
+// ==========================================================================
 function filterAlternativas(category) {
-    const buttons = document.querySelectorAll('.btn-filter');
-    buttons.forEach(btn => btn.classList.remove('active'));
-    if(event) event.target.classList.add('active');
+    const cards = document.querySelectorAll('.alternativas-container .card');
+    const buttons = document.querySelectorAll('.filter-buttons .btn-filter');
 
-    const cards = document.querySelectorAll('.premium-card');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    event.currentTarget.classList.add('active');
+
     cards.forEach(card => {
         if (category === 'all' || card.getAttribute('data-category') === category) {
             card.classList.remove('hidden');
@@ -208,20 +328,60 @@ function filterAlternativas(category) {
     });
 }
 
-function switchStep(stepIndex) {
-    const cards = document.querySelectorAll('.step-card');
+// ==========================================================================
+// INFOGRÁFICO INTERATIVO (PASSOS)
+// ==========================================================================
+function switchStep(stepNumber) {
+    const cards = document.querySelectorAll('.infographic-steps .step-card');
     cards.forEach((card, index) => {
-        if (index === (stepIndex - 1)) card.classList.add('active');
-        else card.classList.remove('active');
+        if (index + 1 === stepNumber) {
+            card.classList.add('active');
+        } else {
+            card.classList.remove('active');
+        }
     });
 }
 
-document.querySelectorAll('.accordion-header').forEach(button => {
-    button.addEventListener('click', () => {
-        const currentItem = button.parentElement;
-        document.querySelectorAll('.accordion-item').forEach(item => {
-            if (item !== currentItem) item.classList.remove('active');
-        });
-        currentItem.classList.toggle('active');
+// ==========================================================================
+// COOKIES BANNER
+// ==========================================================================
+function initCookies() {
+    const banner = document.getElementById('cookie-banner');
+    const accept = document.getElementById('cookie-accept-btn');
+    const decline = document.getElementById('cookie-decline-btn');
+    const widget = document.getElementById('emoji-feedback-widget');
+
+    if (!localStorage.getItem('agro_cookies_accepted')) {
+        setTimeout(() => banner.classList.add('show'), 600);
+    } else {
+        widget.className = "feedback-widget cookie-hidden";
+    }
+
+    accept.addEventListener('click', () => {
+        localStorage.setItem('agro_cookies_accepted', 'true');
+        banner.classList.remove('show');
+        widget.className = "feedback-widget cookie-hidden";
     });
-});
+
+    decline.addEventListener('click', () => {
+        banner.classList.remove('show');
+        widget.className = "feedback-widget cookie-hidden";
+    });
+}
+
+// ==========================================================================
+// ANIMACAO SCROLL REVEAL (OTIMIZADA COM INTERSECTION OBSERVER)
+// ==========================================================================
+function initScrollReveal() {
+    const elements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    elements.forEach(el => observer.observe(el));
+}
