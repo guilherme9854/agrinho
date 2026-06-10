@@ -1,535 +1,303 @@
-/* ==========================================================================
-   DESIGN SYSTEM PREMIUM & SLIM (Performance Otimizada)
-   ========================================================================== */
-.light-mode {
-    --bg-main: #f8fafc;
-    --card-bg: #ffffff;
-    --text-main: #0f172a;
-    --text-muted: #475569;
-    --navbar-bg: rgba(255, 255, 255, 0.9);
-    --navbar-text: #0f172a;
-    --accordion-hover: #f1f5f9;
-    --shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
-    --border: 1px solid #e2e8f0;
-    --badge-bg: #f1f5f9;
-    --badge-text: #334155;
-    --menu-sep: #e2e8f0;
-    --track-bg: #e2e8f0;
-    --dropdown-hover: #f8fafc;
+// ==========================================================================
+// CENTRAL DE TRADUÇÃO DO DESAFIO (QUIZ) - 6 IDIOMAS
+// ==========================================================================
+let currentLang = 'pt';
+
+const quizData = [
+    {
+        question: {
+            pt: "Qual é o principal objetivo do Controle Biológico na agricultura sustentável?",
+            en: "What is the main objective of Biological Control in sustainable agriculture?",
+            es: "¿Cuál es el objetivo principal del Control Biológico en la agricultura sostenible?",
+            fr: "Quel est l'objectif principal du contrôle biologique dans l'agriculture durable?",
+            de: "Was ist das Hauptziel der biologischen Schädlingsbekämpfung in der nachhaltigen Landwirtschaft?",
+            it: "Qual è l'obiettivo principale del controllo biologico nell'agricoltura sostenibile?"
+        },
+        options: {
+            pt: [
+                "Eliminar toda a biodiversidade local para proteger as plantas.",
+                "Utilizar inimigos naturais (como insetos benéficos) para controlar pragas.",
+                "Aumentar o uso de herbicidas sintéticos na lavoura.",
+                "Substituir a irrigação por produtos químicos concentrados."
+            ],
+            en: [
+                "Eliminate all local biodiversity to protect plants.",
+                "Use natural enemies (like beneficial insects) to control pests.",
+                "Increase the use of synthetic herbicides in the crop.",
+                "Replace irrigation with concentrated chemical products."
+            ],
+            es: [
+                "Eliminar toda la biodiversidad local para proteger las plantas.",
+                "Utilizar enemigos naturales (como insectos benéficos) para controlar plagas.",
+                "Aumentar el uso de herbicidas sintéticos en el cultivo.",
+                "Reemplazar el riego por productos químicos concentrados."
+            ],
+            fr: [
+                "Éliminer toute la biodiversité locale pour protéger les plantes.",
+                "Utiliser des ennemis naturels (comme des insectes utiles) pour lutter contre les bioagresseurs.",
+                "Augmenter l'utilisation d'herbicides de synthèse dans les cultures.",
+                "Remplacer l'irrigation par des produits chimiques concentrés."
+            ],
+            de: [
+                "Die gesamte lokale Artenvielfalt vernichten, um Pflanzen zu schützen.",
+                "Natürliche Feinde (wie Nützlinge) zur Schädlingsbekämpfung einsetzen.",
+                "Den Einsatz synthetischer Herbizide im Anbau erhöhen.",
+                "Die Bewässerung durch konzentrierte Chemikalien ersetzen."
+            ],
+            it: [
+                "Eliminare tutta la biodiversità locale per proteggere le piante.",
+                "Utilizzare nemici naturali (come insetti utili) per controllare i parassiti.",
+                "Aumentare l'uso di erbicidi sintetici nelle colture.",
+                "Sostituire l'irrigazione con prodotti chimici concentrati."
+            ]
+        },
+        correct: 1
+    }
+];
+
+let currentQuestionIndex = 0;
+
+// ==========================================================================
+// INICIALIZAÇÃO CONTROLADA
+// ==========================================================================
+document.addEventListener("DOMContentLoaded", () => {
+    initTheme();
+    initMenuLateral();
+    initLanguageSystem();
+    initQuizSystem();
+    initFeedbackWidget();
+    initCookies();
+    initScrollReveal();
+});
+
+// ==========================================================================
+// SISTEMA DE TROCA DE IDIOMAS GLOBAL (6 IDIOMAS)
+// ==========================================================================
+function initLanguageSystem() {
+    const btn = document.getElementById('lang-dropdown-btn');
+    const dropdown = document.querySelector('.lang-dropdown');
+    const options = document.querySelectorAll('[data-lang-select]');
+
+    btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdown.classList.toggle('active');
+    });
+
+    document.addEventListener('click', () => dropdown.classList.remove('active'));
+
+    options.forEach(opt => {
+        opt.addEventListener('click', () => {
+            const selectedLang = opt.getAttribute('data-lang-select');
+            currentLang = selectedLang;
+            
+            // Atualiza bandeira visual do botão principal
+            const labelMap = { pt: 'PT', en: 'EN', es: 'ES', fr: 'FR', de: 'DE', it: 'IT' };
+            btn.textContent = `🌐 ${labelMap[selectedLang]}`;
+            
+            // Aplica as traduções estáticas do HTML
+            document.querySelectorAll(`[data-lang-${selectedLang}]`).forEach(el => {
+                el.textContent = el.getAttribute(`data-lang-${selectedLang}`);
+            });
+
+            renderQuizQuestion();
+        });
+    });
 }
 
-.dark-mode {
-    --bg-main: #090d16;
-    --card-bg: #111827;
-    --text-main: #f8fafc;
-    --text-muted: #94a3b8;
-    --navbar-bg: rgba(9, 13, 22, 0.9);
-    --navbar-text: #f8fafc;
-    --accordion-hover: #1f2937;
-    --shadow: 0 10px 25px rgba(0,0,0,0.4);
-    --border: 1px solid #1f2937;
-    --badge-bg: #374151;
-    --badge-text: #e2e8f0;
-    --menu-sep: #1f2937;
-    --track-bg: #1f2937;
-    --dropdown-hover: #1f2937;
+// ==========================================================================
+// SISTEMA DO QUIZ INTERATIVO
+// ==========================================================================
+function initQuizSystem() {
+    const nextBtn = document.getElementById('btn-next-quiz');
+    nextBtn.addEventListener('click', () => {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < quizData.length) {
+            renderQuizQuestion();
+        } else {
+            showQuizFinished();
+        }
+    });
+    renderQuizQuestion();
 }
 
-:root {
-    --primary: #166534;
-    --accent: #22c55e;
-    --radius: 12px;
-    --font-heading: 'Inter', sans-serif;
-    --font-body: 'Plus Jakarta Sans', sans-serif;
-    --speed: 0.2s;
+function renderQuizQuestion() {
+    const questionEl = document.getElementById('quiz-question');
+    const optionsContainer = document.getElementById('quiz-options');
+    const feedbackEl = document.getElementById('quiz-feedback');
+    const nextBtn = document.getElementById('btn-next-quiz');
+
+    if (!questionEl) return;
+
+    feedbackEl.classList.add('hidden');
+    nextBtn.classList.add('hidden');
+    optionsContainer.innerHTML = '';
+
+    if (currentQuestionIndex >= quizData.length) {
+        showQuizFinished();
+        return;
+    }
+
+    const currentQuiz = quizData[currentQuestionIndex];
+    questionEl.textContent = currentQuiz.question[currentLang];
+
+    currentQuiz.options[currentLang].forEach((optionText, index) => {
+        const button = document.createElement('button');
+        button.className = 'option-btn';
+        button.textContent = optionText;
+        button.addEventListener('click', () => {
+            const buttons = optionsContainer.querySelectorAll('.option-btn');
+            buttons.forEach(b => b.disabled = true);
+
+            if (index === currentQuiz.correct) {
+                button.classList.add('correct');
+                feedbackEl.className = "quiz-feedback success";
+                const msg = { pt: "Correto! 🌿", en: "Correct! 🌿", es: "¡Correcto! 🌿", fr: "Correct! 🌿", de: "Richtig! 🌿", it: "Corretto! 🌿" };
+                feedbackEl.textContent = msg[currentLang];
+            } else {
+                button.classList.add('wrong');
+                buttons[currentQuiz.correct].classList.add('correct');
+                feedbackEl.className = "quiz-feedback error";
+                const msg = { pt: "Incorreto.", en: "Incorrect.", es: "Incorrecto.", fr: "Incorrect.", de: "Falsch.", it: "Incorretto." };
+                feedbackEl.textContent = msg[currentLang];
+            }
+            feedbackEl.classList.remove('hidden');
+            nextBtn.classList.remove('hidden');
+        });
+        optionsContainer.appendChild(button);
+    });
 }
 
-/* Otimização de renderização instantânea pelo motor do navegador */
-.content-section, .hero-section, .stats-section {
-    content-visibility: auto;
-    contain-intrinsic-size: 100px 500px;
+function showQuizFinished() {
+    const questionEl = document.getElementById('quiz-question');
+    const optionsContainer = document.getElementById('quiz-options');
+    const msgs = { pt: "Desafio Concluído!", en: "Challenge Completed!", es: "¡Desafío Completado!", fr: "Défi Terminé!", de: "Herausforderung Abgeschlossen!", it: "Sfida Completata!" };
+    questionEl.textContent = msgs[currentLang];
+    optionsContainer.innerHTML = '';
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+// ==========================================================================
+// CONTROLE DO WIDGET DE AVALIAÇÃO (Trava Absoluta Anti-Bug)
+// ==========================================================================
+function initFeedbackWidget() {
+    const trigger = document.getElementById('feedback-trigger-btn');
+    const card = document.getElementById('feedback-card');
+    const closeButtons = document.querySelectorAll('.close-widget-action');
+    const screenVoting = document.getElementById('feedback-screen-voting');
+    const screenThanks = document.getElementById('feedback-screen-thanks');
+    const emojis = document.querySelectorAll('.feedback-emojis .emoji-btn');
+
+    // Abre/Fecha a caixinha principal
+    trigger.addEventListener('click', () => {
+        card.classList.toggle('hidden');
+    });
+
+    // Função única para fechar o widget de qualquer tela pelo "X"
+    closeButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            card.classList.add('hidden');
+        });
+    });
+
+    // Clique nas carinhas (Garante inversão de telas rígida)
+    emojis.forEach(emoji => {
+        emoji.addEventListener('click', () => {
+            // Salva a nota localmente
+            localStorage.setItem('agro_voto', emoji.getAttribute('data-rating'));
+
+            // Tranca e inverte as visualizações imediatamente
+            screenVoting.classList.add('hidden');
+            screenThanks.classList.remove('hidden');
+
+            // Agenda o fechamento total suave após 2.5 segundos
+            setTimeout(() => {
+                card.classList.add('hidden');
+                
+                // Reseta a estrutura em background após fechar de forma invisível
+                setTimeout(() => {
+                    screenVoting.classList.remove('hidden');
+                    screenThanks.classList.add('hidden');
+                }, 300);
+            }, 2500);
+        });
+    });
 }
 
-html {
-    scroll-behavior: smooth;
+// ==========================================================================
+// FUNÇÕES AUXILIARES DE SUPORTE
+// ==========================================================================
+function initTheme() {
+    const toggle = document.getElementById('theme-toggle');
+    toggle.addEventListener('click', () => {
+        if (document.body.classList.contains('light-mode')) {
+            document.body.className = 'dark-mode';
+            toggle.textContent = '☀️';
+        } else {
+            document.body.className = 'light-mode';
+            toggle.textContent = '🌙';
+        }
+    });
 }
 
-body {
-    font-family: var(--font-body);
-    background-color: var(--bg-main);
-    color: var(--text-main);
-    line-height: 1.6;
-    padding-top: 100px;
-    transition: background var(--speed), color var(--speed);
-    -webkit-font-smoothing: antialiased;
+function initMenuLateral() {
+    const burger = document.querySelector('.hamburger');
+    const menu = document.querySelector('.nav-menu');
+    burger.addEventListener('click', () => {
+        burger.classList.toggle('active');
+        menu.classList.toggle('active');
+    });
 }
 
-.container {
-    width: 90%;
-    max-width: 960px;
-    margin: 0 auto;
-}
-
-h1, h2, h3, h4 {
-    font-family: var(--font-heading);
-    font-weight: 600;
-    letter-spacing: -0.02em;
-}
-
-.reveal {
-    opacity: 0;
-    transform: translateY(12px);
-    will-change: transform, opacity;
-    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
-}
-.reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* ==========================================================================
-   NAVBAR & MENU LATERAL (GAVETA)
-   ========================================================================== */
-.navbar {
-    background-color: var(--navbar-bg);
-    color: var(--navbar-text);
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: var(--border);
-}
-
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 70px;
-}
-
-.nav-left, .nav-right {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-}
-
-.logo {
-    font-family: var(--font-heading);
-    font-weight: 700;
-    font-size: 1.25rem;
-}
-.logo span { color: var(--accent); }
-
-.agrinho-badge {
-    background: var(--badge-bg);
-    color: var(--badge-text);
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
-}
-
-.hamburger {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    z-index: 1100;
-    padding: 5px;
-}
-
-.hamburger .bar {
-    width: 22px;
-    height: 2px;
-    background-color: var(--navbar-text);
-    transition: transform var(--speed), opacity var(--speed);
-}
-
-.hamburger.active .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.hamburger.active .bar:nth-child(2) { opacity: 0; }
-.hamburger.active .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-.nav-menu {
-    position: fixed;
-    left: -100%;
-    top: 0;
-    background-color: var(--card-bg);
-    width: 290px;
-    height: 100vh;
-    padding: 90px 24px 40px 24px;
-    box-shadow: var(--shadow);
-    transition: left 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    border-right: var(--border);
-    z-index: 1050;
-    overflow-y: auto;
-}
-.nav-menu.active { left: 0; }
-
-.menu-header {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 20px;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-}
-
-.nav-links { display: flex; flex-direction: column; list-style: none; }
-.nav-links li { display: flex; flex-direction: column; padding: 14px 0; position: relative; }
-.nav-links li:not(:last-child)::after {
-    content: ""; position: absolute; bottom: 0; left: 0; width: 40px; height: 1px; background-color: var(--menu-sep);
-}
-.nav-links a { color: var(--text-main); text-decoration: none; font-weight: 500; font-size: 1.05rem; transition: color 0.2s, padding-left 0.2s; }
-.nav-links a:hover { color: var(--accent); padding-left: 6px; }
-
-.menu-contact-section {
-    margin-top: 35px;
-    padding-top: 20px;
-    border-top: 1px solid var(--menu-sep);
-}
-.menu-social-icons {
-    display: flex;
-    gap: 12px;
-    margin-top: 5px;
-}
-.social-icon-btn {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    background-color: var(--bg-main);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: var(--border);
-    transition: transform 0.2s, background-color 0.2s;
-}
-.social-icon-btn svg {
-    width: 20px;
-    height: 20px;
-    fill: var(--text-main);
-}
-.social-icon-btn:hover { transform: translateY(-2px); }
-.social-icon-btn.whatsapp:hover { background-color: #25d366; }
-.social-icon-btn.instagram:hover { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
-.social-icon-btn:hover svg { fill: #ffffff; }
-
-.theme-btn { background: transparent; border: none; cursor: pointer; font-size: 1rem; padding: 4px; color: var(--text-main); }
-
-.nav-auth-buttons { display: flex; align-items: center; gap: 8px; }
-.btn-login {
-    border: 1px solid var(--text-main); color: var(--text-main); text-decoration: none;
-    padding: 6px 14px; border-radius: 20px; font-size: 0.82rem; font-weight: 600; transition: all 0.2s;
-}
-.btn-login:hover { background: var(--text-main); color: var(--card-bg); }
-
-.btn-register {
-    background-color: var(--primary); color: white; text-decoration: none;
-    padding: 6px 14px; border-radius: 20px; font-size: 0.82rem; font-weight: 600;
-}
-.btn-register:hover { background-color: var(--accent); }
-
-/* ==========================================================================
-   SISTEMA DE MENU DE IDIOMAS (DROPDOWN NO CANTO DIREITO)
-   ========================================================================== */
-.lang-dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.lang-btn {
-    background: transparent;
-    border: 1px solid var(--border);
-    padding: 6px 12px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: var(--text-main);
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    transition: background var(--speed);
-}
-.lang-btn:hover { background: var(--accordion-hover); }
-
-.lang-dropdown-content {
-    display: none;
-    position: absolute;
-    right: 0;
-    top: 110%;
-    background-color: var(--card-bg);
-    min-width: 140px;
-    box-shadow: var(--shadow);
-    border: var(--border);
-    border-radius: 8px;
-    z-index: 1200;
-    overflow: hidden;
-}
-
-.lang-dropdown-content button {
-    width: 100%;
-    background: transparent;
-    border: none;
-    color: var(--text-main);
-    padding: 10px 14px;
-    text-align: left;
-    font-size: 0.85rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background 0.15s ease;
-}
-.lang-dropdown-content button:hover {
-    background-color: var(--dropdown-hover);
-    color: var(--accent);
-}
-
-.lang-dropdown.active .lang-dropdown-content {
-    display: block;
-}
-
-/* ==========================================================================
-   HERO & ESTRUTURAS DE CONTEÚDO
-   ========================================================================== */
-.hero-section {
-    background: linear-gradient(135deg, #0f1f15 0%, #0f172a 100%);
-    border-radius: var(--radius); padding: 50px 30px; text-align: center; color: white; margin-bottom: 40px;
-}
-.hero-tag { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); font-weight: 700; }
-.hero-content h1 { font-size: 2.4rem; margin: 12px 0; }
-.hero-content p { font-size: 1rem; opacity: 0.85; max-width: 640px; margin: 0 auto; }
-
-.stats-section { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 45px; text-align: center; }
-.stat-item { padding: 20px; background: var(--card-bg); border: var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
-.stat-number { display: block; font-family: var(--font-heading); font-size: 2.3rem; font-weight: 300; color: var(--accent); margin-bottom: 4px; }
-.stat-label { font-size: 0.82rem; color: var(--text-muted); }
-
-.infographic-section { margin-bottom: 45px; }
-.infographic-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
-.step-card { background: var(--card-bg); border: var(--border); border-radius: var(--radius); padding: 20px; cursor: pointer; opacity: 0.6; }
-.step-card:hover { opacity: 0.9; }
-.step-card.active { opacity: 1; border-color: var(--accent); box-shadow: var(--shadow); }
-.step-num { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
-
-.content-section { margin-bottom: 50px; scroll-margin-top: 90px; }
-.content-section h2 { font-size: 1.6rem; margin-bottom: 20px; }
-
-.cards-grid { display: grid; gap: 20px; }
-.grid-2 { grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); }
-.grid-3 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-
-.card { background: var(--card-bg); border: var(--border); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); transition: transform 0.2s, border-color 0.2s; }
-.card:hover { transform: translateY(-4px); border-color: var(--accent); }
-.card-badge { display: inline-block; font-size: 0.7rem; font-weight: 700; padding: 3px 10px; border-radius: 4px; background: var(--badge-bg); color: var(--badge-text); margin-bottom: 12px; }
-
-/* Gráficos em Barras */
-.chart-container { display: flex; flex-direction: column; gap: 16px; margin-top: 15px; }
-.chart-bar-group { display: flex; flex-direction: column; gap: 6px; }
-.chart-label { font-size: 0.85rem; font-weight: 600; }
-.chart-track { background-color: var(--track-bg); height: 10px; border-radius: 5px; overflow: hidden; }
-.chart-fill { height: 100%; border-radius: 5px; }
-.danger-bar { background-color: #ef4444; }
-.safe-bar { background-color: var(--accent); }
-.chart-value { font-size: 0.8rem; color: var(--text-muted); }
-
-/* Accordions */
-.accordion-container { display: flex; flex-direction: column; gap: 8px; }
-.accordion-item { border: var(--border); border-radius: var(--radius); background: var(--card-bg); }
-.accordion-header { width: 100%; background: transparent; border: none; padding: 14px 20px; display: flex; justify-content: space-between; color: var(--text-main); font-weight: 500; cursor: pointer; font-size: 0.95rem; }
-.accordion-header:hover { background: var(--accordion-hover); }
-.chevron { font-size: 0.7rem; color: var(--text-muted); transition: transform var(--speed); }
-.accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.2s ease-out; }
-.content-flex { padding: 0 20px 14px 20px; color: var(--text-muted); font-size: 0.88rem; }
-.accordion-item.active { border-color: var(--accent); }
-.accordion-item.active .chevron { transform: rotate(180deg); color: var(--accent); }
-.accordion-item.active .accordion-content { max-height: 120px; }
-
-.list-card ul { display: flex; flex-direction: column; gap: 10px; list-style: none; }
-.list-card li { font-size: 0.9rem; color: var(--text-muted); padding-left: 18px; position: relative; }
-.list-card li::before { content: "•"; color: #ef4444; position: absolute; left: 4px; font-weight: bold; }
-.visual-icon { font-size: 1.4rem; margin-bottom: 8px; }
-
-.filter-buttons { display: flex; gap: 10px; margin-bottom: 24px; flex-wrap: wrap; }
-.btn-filter { background: var(--card-bg); border: var(--border); color: var(--text-main); font-size: 0.85rem; font-weight: 600; padding: 8px 18px; border-radius: 20px; cursor: pointer; }
-.btn-filter.active { background: var(--primary); color: white; border-color: var(--primary); }
-.premium-card.hidden { display: none; }
-
-/* Quiz Dinâmico */
-.quiz-options { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
-.option-btn { width: 100%; text-align: left; padding: 14px 18px; border-radius: 8px; border: var(--border); background: var(--bg-main); color: var(--text-main); font-size: 0.95rem; font-weight: 500; cursor: pointer; }
-.option-btn:hover:not([disabled]) { border-color: var(--accent); background: var(--accordion-hover); }
-.option-btn.correct { background-color: rgba(34, 197, 94, 0.15) !important; border-color: #22c55e !important; color: #166534; }
-.option-btn.wrong { background-color: rgba(239, 68, 68, 0.1) !important; border-color: #ef4444 !important; color: #991b1b; }
-.quiz-feedback { margin-top: 15px; padding: 14px; border-radius: 8px; font-size: 0.9rem; font-weight: 500; }
-.quiz-feedback.success { background-color: rgba(34, 197, 94, 0.1); color: #166534; border: 1px solid rgba(34, 197, 94, 0.2); }
-.quiz-feedback.error { background-color: rgba(239, 68, 68, 0.05); color: #991b1b; border: 1px solid rgba(239, 68, 68, 0.1); }
-
-/* Referências e Sugestões */
-.references-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 15px; }
-.ref-item { background: var(--card-bg); border: var(--border); border-radius: var(--radius); padding: 20px; display: flex; gap: 14px; align-items: flex-start; }
-.ref-icon { font-size: 1.5rem; background: var(--bg-main); padding: 10px; border-radius: 8px; line-height: 1; }
-.ref-item h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 4px; }
-.ref-item p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.4; }
-
-.form-card { max-width: 500px; margin: 0 auto; }
-.suggestion-form { display: flex; flex-direction: column; gap: 14px; }
-.form-group { display: flex; flex-direction: column; gap: 6px; font-size: 0.85rem; font-weight: 600; }
-.form-group input, .form-group textarea { padding: 12px; border-radius: 8px; border: var(--border); background: var(--bg-main); color: var(--text-main); font-family: inherit; }
-.btn-submit { background: var(--primary); color: white; border: none; padding: 12px; border-radius: 8px; font-weight: 600; cursor: pointer; text-align: center; }
-.btn-submit:hover { background: #14532d; }
-
-/* ==========================================================================
-   RODAPÉ PREMIUM (COMPACTO E ACADÊMICO)
-   ========================================================================== */
-.footer-premium { border-top: var(--border); padding: 35px 0 20px 0; margin-top: 60px; font-size: 0.85rem; color: var(--text-muted); background-color: var(--card-bg); }
-.footer-content-wrap { display: flex; flex-direction: column; gap: 20px; }
-.footer-top-layout { display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; flex-wrap: wrap; }
-.footer-brand { flex: 1; min-width: 280px; }
-.footer-desc { margin-top: 8px; font-size: 0.88rem; max-width: 480px; line-height: 1.5; }
-
-.footer-academic-meta {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    background-color: var(--bg-main);
-    padding: 12px 18px;
-    border-radius: 8px;
-    border: var(--border);
-    font-size: 0.82rem;
-    min-width: 260px;
-}
-.meta-item { color: var(--text-muted); }
-.meta-item strong { color: var(--text-main); font-weight: 600; margin-right: 4px; }
-.meta-item span { font-weight: 400; opacity: 0.9; }
-
-.footer-divider { border: none; height: 1px; background-color: var(--border); }
-.footer-bottom-flex { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
-.academic-tag { font-weight: 600; color: var(--primary); }
-
-/* ==========================================================================
-   COOKIES & WIDGET DE AVALIAÇÃO CORRIGIDO
-   ========================================================================== */
-.cookie-banner {
-    position: fixed;
-    bottom: -150px;
-    left: 0;
-    width: 100%;
-    background-color: var(--card-bg);
-    border-top: 2px solid var(--accent);
-    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.15);
-    z-index: 2000;
-    transition: bottom 0.4s ease;
-    padding: 16px 0;
-}
-.cookie-banner.show { bottom: 0; }
-.cookie-content { width: 90%; max-width: 960px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
-.cookie-content p { font-size: 0.85rem; color: var(--text-muted); }
-.cookie-actions { display: flex; gap: 8px; }
-
-.btn-cookie { border: none; padding: 8px 20px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; cursor: pointer; }
-.btn-cookie-accept { background-color: var(--primary); color: white; }
-.btn-cookie-decline { background-color: var(--badge-bg); color: var(--badge-text); border: var(--border); }
-
-.feedback-widget {
-    position: fixed;
-    right: 20px;
-    z-index: 1500;
-    transition: bottom 0.3s ease;
-}
-.feedback-widget.cookie-above { bottom: 115px; }
-.feedback-widget.cookie-hidden { bottom: 20px; }
-
-.feedback-trigger {
-    background-color: var(--primary);
-    color: white;
-    border: none;
-    padding: 11px 16px;
-    border-radius: 30px;
-    font-weight: 600;
-    font-size: 0.85rem;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transform: scale(0.93);
-    transition: transform var(--speed), background-color var(--speed);
-}
-.feedback-trigger:hover { background-color: var(--accent); transform: scale(0.95) translateY(-2px); }
-
-.feedback-card {
-    position: absolute;
-    bottom: 55px;
-    right: 0;
-    width: 270px;
-    background-color: var(--card-bg);
-    border: var(--border);
-    border-radius: var(--radius);
-    padding: 16px;
-    box-shadow: var(--shadow);
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-.feedback-card.hidden { display: none; }
-
-.feedback-header { 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-}
-.feedback-header h4 { font-size: 0.88rem; font-weight: 600; }
-
-.feedback-close { 
-    background: transparent; 
-    border: none; 
-    font-size: 1.3rem; 
-    cursor: pointer; 
-    color: var(--text-muted); 
-    line-height: 1;
-    padding: 2px;
-}
-.feedback-close:hover { color: #ef4444; }
-
-.feedback-emojis { 
-    display: flex; 
-    justify-content: space-between; 
-    margin-top: 4px;
-}
-.emoji-btn { background: transparent; border: none; font-size: 1.5rem; cursor: pointer; transition: transform 0.15s ease; padding: 4px; }
-.emoji-btn:hover { transform: scale(1.3); }
-
-.feedback-thanks { 
-    font-size: 0.85rem; 
-    text-align: center; 
-    color: var(--accent); 
-    font-weight: 600; 
-    padding: 10px 0;
-}
-.hidden { display: none !important; }
-
-/* ==========================================================================
-   RESPONSIVIDADE (MEDIA QUERIES)
-   ========================================================================== */
-@media(max-width: 768px) {
-    .grid-2, .grid-3, .infographic-steps { grid-template-columns: 1fr; }
-    .footer-top-layout { flex-direction: column; gap: 20px; }
-    .footer-bottom-flex { flex-direction: column; text-align: center; }
-    .nav-center { display: none; }
-    .cookie-content { flex-direction: column; text-align: center; }
-    .nav-menu { display: flex; flex-direction: column; }
-    .navbar .nav-auth-buttons { display: none; }
+function filterAlternativas(category) {
+    const cards = document.querySelectorAll('.alternativas-container .card');
+    const buttons = document.querySelectorAll('.filter-buttons .btn-filter');
     
-    /* Reposiciona o dropdown de idiomas em telas pequenas para não quebrar o topo */
-    .lang-dropdown-content { right: auto; left: 0; }
+    buttons.forEach(b => b.classList.remove('active'));
+    event.currentTarget.classList.add('active');
+
+    cards.forEach(card => {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+            card.classList.remove('hidden');
+        } else {
+            card.classList.add('hidden');
+        }
+    });
+}
+
+function switchStep(step) {
+    const cards = document.querySelectorAll('.infographic-steps .step-card');
+    cards.forEach((c, idx) => {
+        if (idx + 1 === step) c.classList.add('active');
+        else c.classList.remove('active');
+    });
+}
+
+function initCookies() {
+    const banner = document.getElementById('cookie-banner');
+    const widget = document.getElementById('emoji-feedback-widget');
+    if (!localStorage.getItem('cookies_ok')) {
+        banner.classList.add('show');
+    }
+    document.getElementById('cookie-accept-btn').addEventListener('click', () => {
+        localStorage.setItem('cookies_ok', true);
+        banner.classList.remove('show');
+        widget.className = "feedback-widget cookie-hidden";
+    });
+    document.getElementById('cookie-decline-btn').addEventListener('click', () => {
+        banner.classList.remove('show');
+        widget.className = "feedback-widget cookie-hidden";
+    });
+}
+
+function initScrollReveal() {
+    const els = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.classList.add('visible');
+                obs.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.05 });
+    els.forEach(el => obs.observe(el));
 }
