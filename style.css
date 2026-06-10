@@ -88,7 +88,7 @@ h1, h2, h3, h4 {
 }
 
 /* ==========================================================================
-   NAVBAR MODIFICADA (BOTÕES DE AUTENTICAÇÃO E IDIOMA)
+   NAVBAR & GAVETA LATERAL (ROLÁVEL COM REDES SOCIAIS)
    ========================================================================== */
 .navbar {
     background-color: var(--navbar-bg);
@@ -155,7 +155,7 @@ h1, h2, h3, h4 {
 .hamburger.active .bar:nth-child(2) { opacity: 0; }
 .hamburger.active .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* Gaveta Lateral */
+/* Gaveta Lateral Atualizada - Tornada Rolável */
 .nav-menu {
     position: fixed;
     left: -100%;
@@ -163,11 +163,12 @@ h1, h2, h3, h4 {
     background-color: var(--card-bg);
     width: 290px;
     height: 100vh;
-    padding: 100px 24px;
+    padding: 90px 24px 40px 24px;
     box-shadow: var(--shadow);
     transition: left 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     border-right: var(--border);
     z-index: 1050;
+    overflow-y: auto; /* Permite rolar para baixo em telas menores */
 }
 .nav-menu.active { left: 0; }
 
@@ -181,21 +182,57 @@ h1, h2, h3, h4 {
 }
 
 .nav-links { display: flex; flex-direction: column; list-style: none; }
-.nav-links li { display: flex; flex-direction: column; padding: 16px 0; position: relative; }
+.nav-links li { display: flex; flex-direction: column; padding: 14px 0; position: relative; }
 .nav-links li:not(:last-child)::after {
     content: ""; position: absolute; bottom: 0; left: 0; width: 40px; height: 1px; background-color: var(--menu-sep);
 }
 .nav-links a { color: var(--text-main); text-decoration: none; font-weight: 500; font-size: 1.05rem; transition: color 0.2s, padding-left 0.2s; }
 .nav-links a:hover { color: var(--accent); padding-left: 6px; }
 
+/* Estilização da Seção de Contatos no Menu */
+.menu-contact-section {
+    margin-top: 35px;
+    padding-top: 20px;
+    border-top: 1px solid var(--menu-sep);
+}
+.menu-social-icons {
+    display: flex;
+    gap: 12px;
+    margin-top: 5px;
+}
+.social-icon-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: var(--bg-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: var(--border);
+    transition: transform 0.2s, background-color 0.2s, fill 0.2s;
+}
+.social-icon-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: var(--text-main);
+}
+.social-icon-btn:hover {
+    transform: translateY(-2px);
+}
+.social-icon-btn.whatsapp:hover {
+    background-color: #25d366;
+}
+.social-icon-btn.instagram:hover {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+.social-icon-btn:hover svg {
+    fill: #ffffff;
+}
+
 .theme-btn, .lang-btn { background: transparent; border: none; cursor: pointer; font-size: 1rem; padding: 4px; color: var(--text-main); font-weight: 600; font-family: inherit; }
 
 /* Grupo de botões integrados */
-.nav-auth-buttons {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
+.nav-auth-buttons { display: flex; align-items: center; gap: 8px; }
 .btn-login {
     border: 1px solid var(--text-main); color: var(--text-main); text-decoration: none;
     padding: 6px 14px; border-radius: 20px; font-size: 0.82rem; font-weight: 600; transition: all 0.2s;
@@ -348,12 +385,12 @@ h1, h2, h3, h4 {
     transition: bottom 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Deixa o feedback flutuando cerca de 1 a 2cm (70px) acima da barra de cookies */
+/* Modificado: Flutua mais alto (115px - cerca de 2cm extras) e reduzido levemente com scale */
 .feedback-widget.cookie-above {
-    bottom: 90px;
+    bottom: 115px; 
 }
 
-/* Quando os cookies somem, ele desce elegantemente para o canto */
+/* Quando os cookies somem, desce de forma limpa para o canto */
 .feedback-widget.cookie-hidden {
     bottom: 20px;
 }
@@ -362,31 +399,32 @@ h1, h2, h3, h4 {
     background-color: var(--primary);
     color: white;
     border: none;
-    padding: 12px 18px;
+    padding: 11px 16px;
     border-radius: 30px;
     font-weight: 600;
-    font-size: 0.88rem;
+    font-size: 0.85rem; /* Levemente menor conforme solicitado */
     cursor: pointer;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     transition: background var(--speed), transform var(--speed);
     display: flex;
     align-items: center;
     gap: 8px;
+    transform: scale(0.93); /* Ajuste refinado de tamanho proporcional */
 }
 .feedback-trigger:hover {
     background-color: var(--accent);
-    transform: translateY(-2px);
+    transform: scale(0.95) translateY(-2px);
 }
 
 .feedback-card {
     position: absolute;
     bottom: 55px;
     right: 0;
-    width: 280px;
+    width: 260px; /* Levemente reduzido */
     background-color: var(--card-bg);
     border: var(--border);
     border-radius: var(--radius);
-    padding: 16px;
+    padding: 14px;
     box-shadow: var(--shadow);
     display: flex;
     flex-direction: column;
@@ -399,7 +437,7 @@ h1, h2, h3, h4 {
     justify-content: space-between;
     align-items: center;
 }
-.feedback-header h4 { font-size: 0.9rem; color: var(--text-main); }
+.feedback-header h4 { font-size: 0.88rem; color: var(--text-main); }
 .feedback-close {
     background: transparent; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-muted); line-height: 1;
 }
@@ -410,23 +448,12 @@ h1, h2, h3, h4 {
     gap: 6px;
 }
 .emoji-btn {
-    background: transparent;
-    border: none;
-    font-size: 1.6rem;
-    cursor: pointer;
-    transition: transform 0.15s ease;
-    padding: 4px;
+    background: transparent; border: none; font-size: 1.5rem; cursor: pointer; transition: transform 0.15s ease; padding: 4px;
 }
-.emoji-btn:hover {
-    transform: scale(1.25);
-}
+.emoji-btn:hover { transform: scale(1.25); }
 
 .feedback-thanks {
-    font-size: 0.85rem;
-    text-align: center;
-    color: var(--accent);
-    font-weight: 600;
-    animation: fadeIn 0.3s ease;
+    font-size: 0.82rem; text-align: center; color: var(--accent); font-weight: 600; animation: fadeIn 0.3s ease;
 }
 
 @keyframes fadeIn {
@@ -442,7 +469,6 @@ h1, h2, h3, h4 {
     .cookie-actions { width: 100%; justify-content: center; }
     .btn-cookie { flex: 1; text-align: center; }
     
-    /* Move a área de botões para dentro da gaveta lateral no mobile para manter limpo */
     .nav-auth-buttons {
         display: flex;
         width: 100%;
@@ -450,16 +476,7 @@ h1, h2, h3, h4 {
         margin-top: 20px;
         gap: 10px;
     }
-    .btn-login, .btn-register {
-        text-align: center;
-        width: 100%;
-    }
-    .nav-menu {
-        display: flex;
-        flex-direction: column;
-    }
-    /* Copia os botões para o menu lateral se quiser ou os mantém arrumados */
-    .navbar .nav-auth-buttons {
-        display: none;
-    }
+    .btn-login, .btn-register { text-align: center; width: 100%; }
+    .nav-menu { display: flex; flex-direction: column; }
+    .navbar .nav-auth-buttons { display: none; }
 }

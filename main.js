@@ -87,12 +87,12 @@ window.addEventListener('load', () => {
     const declineBtn = document.getElementById('cookie-decline-btn');
     const feedbackWidget = document.getElementById('emoji-feedback-widget');
 
-    // Mostra os cookies e mantém o feedback flutuando por cima dele (cookie-above)
+    // Mostra os cookies e mantém o feedback flutuando por cima dele
     setTimeout(() => {
         cookieBanner.classList.add('show');
     }, 1200);
 
-    // Função que esconde o banner e faz o widget de feedback descer para o canto
+    // Esconde o banner e faz o widget de feedback descer para o canto inferor
     function hideCookieBanner() {
         cookieBanner.classList.remove('show');
         feedbackWidget.classList.remove('cookie-above');
